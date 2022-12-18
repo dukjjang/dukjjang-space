@@ -11,10 +11,14 @@ export default function Home() {
         <meta name="description" content="frontend developer Hyunduk Jin" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Waves />
-      <section className="flex min-h-screen flex-col items-center justify-center text-gray-600 body-font">
-        <div className=" container mx-auto flex px-5 py-24 md:flex-col flex-col items-center"></div>
-      </section>
+      <main className="w-full ">
+        <Waves />
+        <section className=" w-full bg-white h-[1000px] dark:bg-[#0E141B] ">
+          <h1 className="w-full flex-wrap text-6xl font-bold">
+            안녕하세요 진현덕입니다!
+          </h1>
+        </section>
+      </main>
     </Layout>
   );
 }

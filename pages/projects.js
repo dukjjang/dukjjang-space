@@ -10,8 +10,11 @@ export default function Projects() {
         <meta name="projects" content="프로젝트" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Waves />
-      <h1 className="w-full h-[1000px]">프로젝트</h1>
+      <main className="relative bg-[#EEF1F5] w-full h-[1000px]">
+        <h1 className="absolute w-full text-center top-[-320px] font-bold text-4xl ">
+          안녕하세요 진현덕입니다!
+        </h1>
+      </main>
     </Layout>
   );
 }
