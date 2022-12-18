@@ -1,15 +1,13 @@
 import Link from "next/link";
+import MainTitle from "./mainTitle";
+
 export default function Footer() {
   return (
     <div>
       <footer className=" body-font">
         <div className="">
           <div className="container px-3 py-6 mx-auto flex items-center sm:flex-row flex-col">
-            <Link href="/">
-              <div className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-                <span className="ml-3 text-xl">진현덕 포트폴리오</span>
-              </div>
-            </Link>
+            <MainTitle />
 
             <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
               <a className="text-gray-500">
