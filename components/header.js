@@ -6,7 +6,7 @@ import MainTitle from "./mainTitle";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 w-full text-black bg-transparent backdrop-blur-sm z-10 ">
+    <header className="fixed top-0 w-full text-black bg-transparent backdrop-blur-sm z-50 ">
       <div className="container mx-auto flex p-10 px-40 items-center">
         <div className="flex title-font font-medium items-center text-black mb-4 md:mb-0">
           <MainTitle />{" "}
