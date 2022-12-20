@@ -13,8 +13,8 @@ export default function Home() {
       </Head>
       <main className="w-full  ">
         <Waves />
-        <section className=" relative w-full px-40 bg-white h-[1000px] dark:bg-[#0E141B] ">
-          <h1 className=" flex-wrap absolute  md:w-[60%] left-14 md:left-20 top-[-80px] text-3xl md:text-6xl font-bold">
+        <section className="  w-full px-40 bg-white h-[1000px] dark:bg-[#0E141B] ">
+          <h1 className=" flex-wrap   md:w-[60%] left-14 md:left-20 top-[-80px] text-3xl md:text-6xl font-bold">
             안녕하세요,{" "}
             <span className=" relative z-20">
               진현덕{" "}
