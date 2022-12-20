@@ -17,7 +17,7 @@ const Waves = () => {
         <div className="bg-[#CAE4F5] dark:bg-[#172028] w-full h-24"></div>
         <svg
           preserveAspectRatio="none"
-          className={`bg-[#CAE4F5] max-h-[320px] w-full h-[320px]  dark:bg-[#1A242C] `}
+          className={`bg-[#CAE4F5] max-h-[200px] w-full h-[200px]  dark:bg-[#1A242C] `}
           xmlns="http://www.w3.org/2000/svg"
           viewBox={`0 0 1440 320`}
         >

@@ -5,6 +5,12 @@ import DarkModeToggleButton from "./home/dark-mode-toggle";
 import MainTitle from "./mainTitle";
 
 export default function Header() {
+  const links = [
+    { name: "RESUME", path: "/" },
+    { name: "Project", path: "/project" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
+  ];
   return (
     <header className="fixed top-0 w-full text-black bg-transparent backdrop-blur-sm z-50 ">
       <div className="container mx-auto flex md:p-10 md:px-40 items-center">
