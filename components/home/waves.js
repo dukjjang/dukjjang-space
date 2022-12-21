@@ -14,7 +14,7 @@ const Waves = () => {
   if (loaded)
     return (
       <div className=" w-full ">
-        <div className="bg-[#CAE4F5] dark:bg-[#172028] w-full h-24"></div>
+        <div className="bg-[#CAE4F5] dark:bg-[#1A242C] w-full h-24"></div>
         <svg
           preserveAspectRatio="none"
           className={`bg-[#CAE4F5] max-h-[200px] w-full h-[200px]  dark:bg-[#1A242C] `}

@@ -12,11 +12,9 @@ const Header = () => {
   ];
   return (
     <header className="fixed top-0 w-full text-black bg-transparent z-50 ">
-      <div className=" mx-auto flex py-10 px-5  md:px-20 lg:px-40 items-center">
-        <div className="flex title-font font-medium justify-center items-center text-black md:mb-4 mb-0">
-          <Logo />
-        </div>
-        <nav className=" text-xs gap-5 font-normal  text-[15px]  ml-auto flex items-center text-black dark:text-white justify-center">
+      <div className=" mx-auto flex py-8 px-5  md:px-20 lg:px-40 items-center">
+        <Logo />
+        <nav className=" gap-5 font-normal  text-[15px]  ml-auto flex items-center text-black dark:text-white justify-center">
           <Link href="/">
             <span>Resume</span>
           </Link>
