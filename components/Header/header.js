@@ -11,12 +11,12 @@ const Header = () => {
     { name: "Contact", path: "/contact" },
   ];
   return (
-    <header className="fixed top-0 w-full text-black bg-transparent backdrop-blur-sm z-50 ">
-      <div className=" mx-auto flex md:py-10 md:px-20 lg:px-40 items-center">
+    <header className="fixed top-0 w-full text-black bg-transparent z-50 ">
+      <div className=" mx-auto flex py-10 px-5  md:px-20 lg:px-40 items-center">
         <div className="flex title-font font-medium justify-center items-center text-black md:mb-4 mb-0">
           <Logo />
         </div>
-        <nav className=" text-xs gap-5 font-normal  md:text-[15px]  md:ml-auto flex items-center text-black dark:text-white justify-center">
+        <nav className=" text-xs gap-5 font-normal  text-[15px]  ml-auto flex items-center text-black dark:text-white justify-center">
           <Link href="/">
             <span>Resume</span>
           </Link>
@@ -26,8 +26,8 @@ const Header = () => {
           <Link href="/about-me">
             <span>Contact</span>
           </Link>
+          <DarkModeToggleButton />
         </nav>
-        <DarkModeToggleButton />
       </div>
     </header>
   );

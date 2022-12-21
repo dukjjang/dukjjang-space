@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function Resume() {
   return (
-    <main className=" w-full px-5 md:px-20 bg-white dark:bg-[#0E141B]">
+    <main className=" w-full px-5 md:px-20 lg:px-40 bg-white dark:bg-[#0E141B]">
       <section className=" w-full bg-white h-[1000px] dark:bg-[#0E141B] ">
         <h1 className=" w-full text-[30px] md:text-4xl lg:text-6xl font-bold">
           안녕하세요,{" "}

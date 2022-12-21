@@ -11,10 +11,9 @@ export default function Home() {
         <meta name="description" content="frontend developer Hyunduk Jin" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Waves />
-      <main className="w-full ">
-        <Resume />
-      </main>
+      <Resume />
     </Layout>
   );
 }
