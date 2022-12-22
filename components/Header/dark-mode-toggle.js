@@ -6,11 +6,11 @@ export default function DarkModeToggleButton() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="inline-flex items-center bg-gray-100 border-0 py-1 
-        px-3 focus:outline-none hover:bg-gray-200 rounded 
+      className="inline-flex items-center  border-0 py-1 
+        px-3 focus:outline-none  rounded 
         text-base  dark:text-white 
         hover:text-orange-500 text-blue 
-        dark:bg-slate-600 dark:hover:text-yellow-500"
+         dark:hover:text-yellow-500"
     >
       {/* 라이트모드 */}
       <svg
