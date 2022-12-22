@@ -1,10 +1,13 @@
 import Link from "next/link";
-import UnderLine from "../UnderLine";
 const Logo = () => {
   return (
     <Link href="/">
       <span className="text-black dark:text-white text-xl  md:text-2xl font-bold">
-        Jin <span className="relative">Hyunduk</span>
+        <span className="text-red-400">J</span>in{" "}
+        <span className="relative">
+          <span className="text-red-400">H</span>yun
+          <span className="text-red-400">D</span>uk
+        </span>
       </span>
     </Link>
   );

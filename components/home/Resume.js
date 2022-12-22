@@ -1,4 +1,3 @@
-import Link from "next/link";
 import UnderLine from "../UnderLine";
 export default function Resume() {
   return (
