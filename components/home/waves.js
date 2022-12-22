@@ -1,16 +1,10 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useLoaded } from "../../hooks/useLoaded";
 
 const Waves = () => {
-  const { theme, setTheme } = useTheme();
-  const [loaded, setLoaded] = useState(false);
-  const { windowSize } = useWindowSize();
-
-  useEffect(() => {
-    setLoaded(true);
-  }, [setLoaded]);
-
+  const { theme } = useTheme();
+  const { loaded } = useLoaded();
   if (loaded)
     return (
       <div className=" w-full ">

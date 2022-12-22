@@ -1,13 +1,22 @@
+import { useTheme } from "next-themes";
 import Link from "next/link";
+import UnderLine from "../UnderLine";
+import { useLoaded } from "../../hooks/useLoaded";
+
 const Logo = () => {
+  const { theme } = useTheme();
+
   return (
     <Link href="/">
-      <span className="text-black dark:text-white text-xl  md:text-2xl font-bold">
-        <span className="text-red-400">J</span>in{" "}
+      <span className="relative text-black dark:text-white text-xl  md:text-2xl font-bold">
+        <span className="dark:text-[#C3FA07]">J</span>in{" "}
         <span className="relative">
-          <span className="text-red-400">H</span>yun
-          <span className="text-red-400">D</span>uk
+          <span className="dark:text-[#C3FA07]">H</span>yun
+          <span className="dark:text-[#C3FA07]">D</span>uk
         </span>
+        <div className="visible dark:invisible">
+          <UnderLine />
+        </div>
       </span>
     </Link>
   );
