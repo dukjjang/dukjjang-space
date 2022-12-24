@@ -11,9 +11,7 @@ const Logo = () => {
           <span className="dark:text-[#C3FA07]">H</span>yun
           <span className="dark:text-[#C3FA07]">D</span>uk
         </span>
-        <div className="dark:invisible">
-          <UnderLine />
-        </div>
+        <div className="dark:invisible"></div>
       </span>
     </Link>
   );
