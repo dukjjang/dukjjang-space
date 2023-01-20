@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import DarkModeToggleButton from "./dark-mode-toggle";
 
