@@ -8,7 +8,7 @@ const ThemeToggleButton = () => {
 
   const onClick = () => {
     setTheme(theme === "dark" ? "light" : "dark");
-    play({ forceSoundEnabled: false });
+    play({ forceSoundEnabled: false }) as any;
   };
 
   return (
