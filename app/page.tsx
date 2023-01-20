@@ -1,14 +1,8 @@
 import { NextPage } from "next";
-import Resume from "./components/home/Resume";
-import Waves from "./components/home/waves";
+import Resume from "./shared/Resume";
 
-const Page: NextPage = () => {
-  return (
-    <>
-      <Waves />
-      <Resume />
-    </>
-  );
+const Home: NextPage = () => {
+  return <Resume />;
 };
 
-export default Page;
+export default Home;
