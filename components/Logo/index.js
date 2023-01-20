@@ -1,6 +1,4 @@
-import { useTheme } from "next-themes";
 import Link from "next/link";
-import UnderLine from "../UnderLine";
 
 const Logo = () => {
   return (
