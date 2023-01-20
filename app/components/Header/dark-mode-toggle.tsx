@@ -35,7 +35,7 @@ export default function DarkModeToggleButton() {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="invisible dark:visible text-red dark:w-5 dark:h-5 w-0 h-0"
+        className=" invisible dark:visible text-red dark:w-5 dark:h-5 w-0 h-0"
       >
         <path
           strokeLinecap="round"
