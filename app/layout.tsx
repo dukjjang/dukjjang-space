@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-
 import Header from "./shared/Header";
 import { Providers } from "./providers";
 import Footer from "./shared/Footer";
@@ -12,7 +11,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body>
+      <body className="">
         <Providers>
           <Header />
           {children}

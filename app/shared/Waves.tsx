@@ -1,10 +1,10 @@
 const Waves = () => {
   return (
     <section>
-      <div className=" bg-[#CAE4F5] dark:bg-[#1A242C] w-full h-24" />
+      <div className=" bg-[#CAE4F5] dark:bg-[#070707] w-full h-24" />
       <svg
         preserveAspectRatio="none"
-        className={` fill-white dark:fill-[#0E141B] bg-[#CAE4F5] max-h-[200px] w-full h-[100px] md:h-[150px] dark:bg-[#1A242C] `}
+        className={` fill-white dark:fill-[#0E141B] bg-[#CAE4F5] max-h-[200px] w-full h-[100px] md:h-[150px] dark:bg-[#070707] `}
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 1440 320`}
       >

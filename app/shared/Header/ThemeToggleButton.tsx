@@ -1,15 +1,15 @@
 "use client";
 import { useTheme } from "next-themes";
 
-export default function DarkModeToggleButton() {
+const ThemeToggleButton = () => {
   const { theme, setTheme } = useTheme();
 
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="inline-flex items-center  border-0 p-1 focus:outline-none  rounded 
-        text-base  dark:text-white 
-        hover:text-orange-500 text-blue 
+      className="inline-flex items-center  border-0 p-1  rounded 
+      text-orange-500 dark:text-yellow-500
+        hover:scale-150 text-blue 
          dark:hover:text-yellow-500"
     >
       {/* 라이트모드 */}
@@ -44,4 +44,6 @@ export default function DarkModeToggleButton() {
       </svg>
     </button>
   );
-}
+};
+
+export default ThemeToggleButton;
