@@ -1,16 +1,24 @@
 "use client";
 import { useTheme } from "next-themes";
+import useSound from "use-sound";
 
 const ThemeToggleButton = () => {
   const { theme, setTheme } = useTheme();
+  const [play] = useSound("/sounds/bulb.mp3");
+
+  const onClick = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    play();
+  };
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="inline-flex items-center  border-0 p-1  rounded 
+      type="button"
+      onClick={onClick}
+      className="transition-all ease-in-out group md:active:translate-y-3 inline-flex items-center border-0 p-1  rounded 
       text-orange-500 dark:text-yellow-500
         hover:scale-150 text-blue 
-         dark:hover:text-yellow-500"
+         dark:hover:text-yellow-500 relative"
     >
       {/* 라이트모드 */}
       <svg
@@ -19,7 +27,7 @@ const ThemeToggleButton = () => {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="visible w-5 h-5 dark:invisible dark:w-0 dark:h-0 dark:text-white-200 "
+        className="visible w-6 h-6 dark:invisible dark:w-0 dark:h-0 dark:text-white-200 z-10 "
       >
         <path
           strokeLinecap="round"
@@ -34,7 +42,7 @@ const ThemeToggleButton = () => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className=" invisible dark:visible text-red dark:w-5 dark:h-5 w-0 h-0"
+        className=" invisible dark:visible text-red dark:w-6 dark:h-6 w-0 h-0 z-10"
       >
         <path
           strokeLinecap="round"

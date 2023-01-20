@@ -4,7 +4,7 @@ import Waves from "./shared/Waves";
 
 const Home: NextPage = () => {
   return (
-    <main className=" h-full w-full bg-white dark:bg-[#0E141B]">
+    <main className=" h-full w-full bg-white dark:bg-[#0F151C]">
       <Waves />
       <Resume />
     </main>

@@ -8,7 +8,7 @@ import ThemeToggleButton from "./ThemeToggleButton";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 w-full text-black  backdrop-blur-sm z-50 ">
+    <header className="transition-colors ease-in-out duration-1000 top-0 w-full text-black bg-primary backdrop-blur-sm z-50 ">
       <motion.div
         initial={{ opacity: 0, x: 0 }}
         animate={{ opacity: 1, x: 15 }}

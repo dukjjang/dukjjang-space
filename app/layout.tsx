@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body className="">
+      <body className="ts-bg">
         <Providers>
           <Header />
           {children}

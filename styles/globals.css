@@ -3,7 +3,15 @@
 @tailwind utilities;
 
 .bg-primary {
-  @apply bg-[#CAE4F5] dark:bg-[#0E141B];
+  @apply bg-[#CAE4F5] dark:bg-[#070707];
+}
+
+body {
+  @apply bg-primary;
+}
+
+.ts-color {
+  @apply transition-colors ease-in-out duration-1000;
 }
 
 h1,
