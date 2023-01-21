@@ -16,7 +16,7 @@ const ThemeToggleButton = () => {
       type="button"
       onClick={onClick}
       className="transition-all ease-in-out group md:active:translate-y-3 inline-flex items-center border-0 p-1 rounded 
-      text-orange-500 dark:text-yellow-500
+      text-orange-400 dark:text-yellow-400
         md:hover:scale-150 text-blue 
          dark:hover:text-yellow-500 relative"
     >

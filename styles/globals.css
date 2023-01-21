@@ -6,8 +6,12 @@
   @apply bg-[#CAE4F5] dark:bg-[#070707];
 }
 
+.unLine {
+  @apply hover:underline-offset-8 hover:underline;
+}
+
 body {
-  @apply bg-primary;
+  @apply bg-white dark:bg-[#0E141B];
 }
 
 .ts-color {
@@ -29,4 +33,22 @@ p {
 
 footer {
   @apply text-gray-600 bg-[#C8E3F4] dark:bg-[#192129] dark:text-white;
+}
+
+@layer utilities {
+  .bg-growing-underline {
+    background-size: 0 0.2em;
+    background-position: 0 88%;
+
+    @apply bg-no-repeat transition-all duration-200;
+  }
+  .bg-growing-underline:hover {
+    background-size: 100% 100%;
+  }
+  .bg-growing-underline:focus {
+    background-size: 100% 100%;
+  }
+  .gradient {
+    @apply bg-gradient-to-r from-cyan-400 to-green-400 dark:from-green-300  dark:to-blue-400 bg-growing-underline;
+  }
 }
