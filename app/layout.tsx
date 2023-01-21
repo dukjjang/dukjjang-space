@@ -9,9 +9,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <head />
-      <body className="ts-color ">
+      <body>
         <Providers>
           <Header />
           {children}

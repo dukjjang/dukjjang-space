@@ -7,9 +7,9 @@ const Resume = () => {
   return (
     <section className=" ts-color w-full px-5 lg:px-56 bg-white h-[1000px] bg-background  ">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
       >
         <h1 className=" text-[24px] w-fit mb-10 dark:text-neutral-200 md:text-4xl lg:text-6xl font-bold  ">
           안녕하세요,{" "}
