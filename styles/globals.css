@@ -11,7 +11,7 @@
 }
 
 body {
-  @apply bg-white dark:bg-[#0F151C];
+  @apply bg-white dark:bg-[#0E141B];
 }
 
 .ts-color {
