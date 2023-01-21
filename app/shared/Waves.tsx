@@ -1,7 +1,6 @@
 const Waves = () => {
   return (
     <section>
-      <div className="ts-color bg-primary border-none w-full h-14" />
       <svg
         preserveAspectRatio="none"
         className={` ts-color  fill-white dark:fill-[#0E141B] bg-[#CAE4F5] max-h-[200px] w-full h-[100px] md:h-[150px] dark:bg-[#070707] `}

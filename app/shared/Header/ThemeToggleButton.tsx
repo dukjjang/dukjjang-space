@@ -4,20 +4,20 @@ import useSound from "use-sound";
 
 const ThemeToggleButton = () => {
   const { theme, setTheme } = useTheme();
-  const [play] = useSound("/sounds/bulb.mp3");
+  const [play] = useSound("/sounds/bulb.mp3", { volume: 0.2 });
 
   const onClick = () => {
     setTheme(theme === "dark" ? "light" : "dark");
-    play({ forceSoundEnabled: false }) as any;
+    play();
   };
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className="transition-all ease-in-out group md:active:translate-y-3 inline-flex items-center border-0 p-1  rounded 
+      className="transition-all ease-in-out group md:active:translate-y-3 inline-flex items-center border-0 p-1 rounded 
       text-orange-500 dark:text-yellow-500
-        hover:scale-150 text-blue 
+        md:hover:scale-150 text-blue 
          dark:hover:text-yellow-500 relative"
     >
       {/* 라이트모드 */}
