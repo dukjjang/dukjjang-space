@@ -2,7 +2,7 @@ import Resume from "./shared/Resume";
 
 const Home = () => {
   return (
-    <main className=" h-full w-full bg-white dark:bg-[#0F151C]">
+    <main className=" h-full w-full bg-background">
       <Resume />
     </main>
   );

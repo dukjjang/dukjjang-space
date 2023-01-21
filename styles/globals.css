@@ -6,12 +6,16 @@
   @apply bg-[#CAE4F5] dark:bg-[#070707];
 }
 
+.bg-background {
+  @apply bg-white dark:bg-[#0E141B];
+}
+
 .unLine {
   @apply hover:underline-offset-8 hover:underline;
 }
 
 body {
-  @apply bg-white dark:bg-[#0E141B];
+  @apply bg-background;
 }
 
 .ts-color {
