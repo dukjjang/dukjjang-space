@@ -10,7 +10,7 @@ const BlogList = ({ posts }: Props) => {
   return (
     <ul>
       {posts.map((post) => (
-        <li className="group flex flex-col cursor-pointer">
+        <li className="group flex flex-col cursor-pointer" key={post._id}>
           <div className="relative w-full h-80 drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out">
             <Img
               className="object-cover object-left lg:object-center"
