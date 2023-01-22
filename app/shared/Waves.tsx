@@ -3,7 +3,7 @@ const Waves = () => {
     <section className="ts-color">
       <svg
         preserveAspectRatio="none"
-        className={` ts-color  bg-[#CAE4F5] max-h-[200px] w-full h-[100px] md:h-[150px] dark:bg-[#070707] `}
+        className={` ts-color bg-[#CAE4F5] max-h-[200px] w-full h-[100px] md:h-[150px] dark:bg-[#070707] `}
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 1440 320`}
       >

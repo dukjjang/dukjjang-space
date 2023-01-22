@@ -1,7 +1,7 @@
-import "../styles/globals.css";
 import Header from "./shared/Header";
-import { Providers } from "./providers";
+import { Providers } from "./Providers";
 import Footer from "./shared/Footer";
+import "../styles/global.css";
 
 export default function RootLayout({
   children,
@@ -12,11 +12,7 @@ export default function RootLayout({
     <html suppressHydrationWarning>
       <head />
       <body>
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
