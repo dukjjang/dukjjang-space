@@ -18,22 +18,22 @@ const BlogList = ({ posts }: Props) => {
           className="relative flex flex-col cursor-pointer w-full "
           key={post._id}
         >
-          <div className="relative w-full h-80 drop-shadow-lg rounded overflow-hidden  ">
+          <div className="relative w-full h-52 md:h-80 drop-shadow-lg md:rounded overflow-hidden  ">
             <Img
-              className="object-cover rounded-lg object-left lg:object-center "
+              className="object-cover md:rounded-lg object-left lg:object-center "
               src={urlFor(post.mainImage).url()}
               alt={post.author.name}
               fill
             />
             <div
-              className="ts-color absolute bottom-0 w-full  
+              className="ts-color absolute bottom-0 w-full 
              bg-white  dark:bg-[#070707] text-white flex flex-col justify-between px-5 py-3 "
             >
-              <div className="ts-color text-black dark:text-white ">
-                <div className="flex justify-between mb-3">
-                  <p className="text-2xl font-bold">{post.title}</p>
+              <div className="text-background ">
+                <div className="flex justify-between mb-2">
+                  <p className="text-lg md:text-2xl">{post.title}</p>
                   {post.categories.map((category) => (
-                    <div className=" text-green-400 dark:to-blue-400 ">
+                    <div className="text-md font-bold text-green-400 dark:to-blue-400 ">
                       <p>{category.title}</p>
                     </div>
                   ))}
@@ -45,7 +45,7 @@ const BlogList = ({ posts }: Props) => {
                   <PortableText value={post.body} />
                 </div>
 
-                <p>
+                <p className="text-sm  font-sans text-gray-600">
                   {new Date(post._createdAt).toLocaleDateString("ko-KR", {
                     year: "numeric",
                     month: "long",

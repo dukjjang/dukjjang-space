@@ -27,6 +27,10 @@ body {
   @apply text-slate-500 dark:text-neutral-200;
 }
 
+.text-background {
+  @apply text-black dark:text-white;
+}
+
 footer {
   @apply text-gray-600 bg-[#C8E3F4] dark:bg-[#192129] dark:text-white;
 }

@@ -20,7 +20,7 @@ const Header = () => {
         isHomePage ? "bg-primary" : "bg-background"
       } backdrop-blur-sm z-50 `}
     >
-      <div className=" mx-auto flex py-8 px-5 md:px-64 w-full items-center">
+      <div className=" text-background mx-auto flex py-8 px-5 md:px-64 w-full items-center">
         <Logo />
         <nav className=" gap-3 md:gap-8 font-normal text-[14px] ml-auto flex items-center justify-center">
           <Link
