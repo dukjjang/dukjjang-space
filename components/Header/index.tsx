@@ -1,19 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "../Logo";
 import { motion } from "framer-motion";
-
 import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
 
 const Header = () => {
+  const pathName = usePathname().slice(1);
+  const isHomePage = pathName.length < 1;
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -200 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
-      className=" ts-color  top-0 w-full bg-primary backdrop-blur-sm z-50 "
+      className={` ts-color top-0 w-full ${
+        isHomePage ? "bg-primary" : "bg-background"
+      } backdrop-blur-sm z-50 `}
     >
       <div className=" mx-auto flex py-8 px-5 md:px-64 w-full items-center">
         <Logo />
@@ -33,7 +38,7 @@ const Header = () => {
           <ThemeToggleButton />
         </nav>
       </div>
-      <Waves />
+      {isHomePage && <Waves />}
     </motion.header>
   );
 };

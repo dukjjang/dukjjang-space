@@ -14,25 +14,17 @@
   @apply hover:underline-offset-8 hover:underline;
 }
 
+html,
 body {
-  @apply bg-background;
+  @apply bg-background h-full ts-color;
 }
 
 .ts-color {
   @apply transition-colors ease-in-out duration-1000;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply text-slate-800 dark:text-neutral-200;
-}
-
-p {
-  @apply text-slate-500 dark:text-neutral-200 inline;
+.text-primary {
+  @apply text-slate-500 dark:text-neutral-200;
 }
 
 footer {

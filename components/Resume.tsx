@@ -23,8 +23,8 @@ const Resume = () => {
           Introduce
           <UnderLine />
         </h2>
-        <div className="max-w-4xl text-md md:text-lg">
-          <p>
+        <div className="text-primary max-w-4xl text-md md:text-lg">
+          <p className="inline">
             최고의 개발자를 꿈꾸며 성장하고 있는 신입 개발자입니다. 상상을
             현실로 만드는 것을 좋아합니다. 호기심이 많아 새로운 기술을 학습하고
             적용하는 것을 좋아하며,{" "}
@@ -33,7 +33,7 @@ const Resume = () => {
             <h6 className="inline-block"> 적응력과 개발속도가 빠른 편입니다</h6>
             <UnderLine />
           </span>
-          <p>
+          <p className="inline">
             . 확장성과 유지보수성이 높은 코드를 지향하며 리팩토링과 클린코드,
             디자인 패턴에 관심이 많습니다. 견고하고 완성도 높은 프로그램은
             타입언어와 테스트에서 만들어진다고 생각하여, 주로 타입스크립트를
