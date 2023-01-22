@@ -33,7 +33,10 @@ const BlogList = ({ posts }: Props) => {
                 <div className="flex justify-between mb-2">
                   <p className="text-lg md:text-2xl">{post.title}</p>
                   {post.categories.map((category) => (
-                    <div className="text-md font-bold text-green-400 dark:to-blue-400 ">
+                    <div
+                      key={category._id}
+                      className="text-md font-bold text-green-400 dark:to-blue-400 "
+                    >
                       <p>{category.title}</p>
                     </div>
                   ))}
