@@ -1,9 +1,9 @@
 import { previewData } from "next/headers";
 import { groq } from "next-sanity";
 import { client } from "../../lib/sanity.client";
-import PreviewBlogList from "../../components/Blog/PreviewBlogList";
+import PreviewBlogs from "../../components/Blog/PreviewBlogs";
 import PreviewSuspense from "../../components/Blog/PreviewSuspense";
-import BlogList from "../../components/Blog/BlogList";
+import Blogs from "../../components/Blog/Blogs";
 
 const query = groq`
   *[_type=='post'] {
@@ -26,15 +26,15 @@ const Writing = async () => {
           </div>
         }
       >
-        <PreviewBlogList query={query} />
+        <PreviewBlogs query={query} />
       </PreviewSuspense>
     );
   }
 
   return (
     <main className="h-full bg-[#EBECF0] dark:bg-black">
-      <section className=" ts-color bg-background h-full w-full lg:px-[200px]">
-        <BlogList posts={posts} />
+      <section className=" ts-color bg-background h-full w-full lg:px-[180px]">
+        <Blogs posts={posts} />
       </section>
     </main>
   );
