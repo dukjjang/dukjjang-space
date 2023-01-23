@@ -8,8 +8,7 @@ const ThemeToggleButton = () => {
 
   const onClick = () => {
     play();
-    if (theme === "system") setTheme("light");
-    else setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
