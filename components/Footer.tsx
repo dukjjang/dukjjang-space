@@ -4,7 +4,7 @@ import Logo from "./Logo";
 export default function Footer() {
   return (
     <footer className="body-font bg-primary">
-      <div className="container p-3 mx-auto flex items-center  justify-between ">
+      <div className="container px-3 py-5 mx-auto flex items-center  justify-between ">
         <Logo />
         <div className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
           <Link href="#" className="text-gray-500">

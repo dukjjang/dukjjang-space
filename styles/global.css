@@ -16,7 +16,7 @@
 
 html,
 body {
-  @apply bg-background h-full ts-color;
+  @apply bg-background h-full;
 }
 
 .ts-color {
