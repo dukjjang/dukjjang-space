@@ -39,9 +39,9 @@ const Header = () => {
   return (
     <motion.header
       {...animation}
-      className={` ts-color top-0 w-full ${
-        isHomePage ? "bg-primary" : "bg-background"
-      } backdrop-blur-sm z-50 `}
+      className={`${pathName === "writing" && "sticky"}   top-0 w-full ${
+        isHomePage ? "bg-primary ts-color" : "bg-transparent"
+      } backdrop-blur-lg z-50  `}
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />

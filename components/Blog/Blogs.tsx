@@ -1,10 +1,8 @@
 "use client";
 
 import Img from "next/image";
-import { PortableText } from "@portabletext/react";
 import urlFor from "../../lib/urlFor";
 import { DragEvent, useState } from "react";
-import myPortableTextComponents from "./MyPortableTextComponents";
 
 type Props = {
   posts: Post[];
@@ -46,13 +44,17 @@ const Blogs = ({ posts }: Props) => {
           id={post._id}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => handleDrop({ e, idx })}
-          className={`${dragCache[idx].magic === 1 && `row-span-2 h-80`} ${
+          className={`${dragCache[idx].magic === 1 && `row-span-2 h-96`} ${
             dragCache[idx].magic === 2 && `row-span-4 h-[500px]`
-          } relative flex flex-col w-full rounded-lg h-full overflow-hidden `}
+          } relative flex flex-col w-full max-sm:row-span-2 max-sm:h-96 rounded-lg h-full md:overflow-hidden drop-shadow-xl `}
           key={post._id}
         >
-          {dragCache[idx].magic > 0 && (
-            <div className="relative h-full">
+          {
+            <div
+              className={`${
+                dragCache[idx].magic > 0 ? "md:block" : "md:hidden"
+              } relative h-full w-full`}
+            >
               <Img
                 draggable={false}
                 className="object-cover"
@@ -61,9 +63,9 @@ const Blogs = ({ posts }: Props) => {
                 fill
               />
             </div>
-          )}
+          }
           <div
-            className="ts-color bottom-0 w-full h-full 
+            className=" bottom-0 w-full h-full 
              bg-white dark:bg-[#222222] text-white flex flex-col justify-between 
               px-5 py-3  "
           >

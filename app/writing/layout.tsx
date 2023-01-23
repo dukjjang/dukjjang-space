@@ -1,12 +1,7 @@
 import Header from "../../components/Header";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <Header />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default layout;
