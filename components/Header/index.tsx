@@ -46,19 +46,21 @@ const Header = () => {
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
         <nav className=" text-background gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center">
-          <Image
-            onDragStart={handleDragStart}
-            onDragEnter={handleDragEnter}
-            onDragEnd={() => setGrab(false)}
-            draggable
-            width={35}
-            height={35}
-            alt="magic stick"
-            src={Wizard}
-            className={`${
-              grab === true ? "cursor-grabbing" : "cursor-pointer"
-            } active:scale-150`}
-          />
+          {pathName === "writing" && (
+            <Image
+              onDragStart={handleDragStart}
+              onDragEnter={handleDragEnter}
+              onDragEnd={() => setGrab(false)}
+              draggable
+              width={35}
+              height={35}
+              alt="magic stick"
+              src={Wizard}
+              className={`${
+                grab === true ? "cursor-grabbing" : "cursor-pointer"
+              } active:scale-150`}
+            />
+          )}
           {LINKS.map((link) => (
             <Link
               key={link.id}

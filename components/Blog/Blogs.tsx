@@ -20,8 +20,7 @@ const Blogs = ({ posts }: Props) => {
     e: DragEvent<HTMLLIElement>;
     idx: number;
   }): void => {
-    console.log("drop!", e.currentTarget.id);
-    const targetBlogId = e.currentTarget.id;
+    if (dragCache[idx].magic === 2) return;
 
     const temp = [...dragCache];
     temp[idx].magic += 1;
@@ -65,7 +64,7 @@ const Blogs = ({ posts }: Props) => {
             </div>
           }
           <div
-            className=" bottom-0 w-full h-full 
+            className="  w-full h-fit 
              bg-white dark:bg-[#222222] text-white flex flex-col justify-between 
               px-5 py-3  "
           >
@@ -85,7 +84,7 @@ const Blogs = ({ posts }: Props) => {
                 className={`${
                   dragCache[idx].magic === 2 ? "h-[140px]" : "h-[50px]"
                 } text-primary flex-1 text-md md:text-[16px]
-                  w-full  overflow-hidden mb-2 `}
+                  w-full overflow-hidden mb-2 `}
               >
                 <p className="text-background inline">
                   {post.description && `${post.description} | `}
