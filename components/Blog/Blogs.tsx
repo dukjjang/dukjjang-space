@@ -37,7 +37,7 @@ const Blogs = ({ posts }: Props) => {
   return (
     <ul
       className=" gap-y-4 grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense md:px-10 
-      md:gap-10 md:gap-y-16 md:pb-24 h-full "
+      md:gap-10 md:gap-y-16 md:pb-24 md:h-full "
     >
       {posts.map((post, idx) => (
         <li
