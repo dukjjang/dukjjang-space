@@ -25,7 +25,7 @@ const Header = () => {
   const animation = isHomePage && {
     initial: { opacity: 0, y: -200 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 1 },
+    transition: { duration: 0.7 },
   };
 
   const handleDragStart = (e) => {
@@ -35,36 +35,29 @@ const Header = () => {
   return (
     <motion.header
       {...animation}
-      className={`${pathName === "writing" && "sticky"}   top-0 w-full ${
+      className={`${pathName === "writing" && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
-      } backdrop-blur-md z-50  `}
+      } backdrop-blur-sm  z-50  `}
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
         <nav className=" text-background gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center">
-          {pathName === "writing" && (
-            <Image
-              onTouchStart={handleDragStart}
-              onTouchMove={(e) => e.preventDefault()}
-              onDragStart={handleDragStart}
-              onDragEnd={() => setGrab(false)}
-              draggable
-              width={35}
-              height={35}
-              alt="magic stick"
-              src={Wizard}
-              className={`peer ${
-                grab === true ? "cursor-grabbing" : "cursor-pointer"
-              } hover:scale-[2]  z-10 transition-all ease-in-out duration-200 delay-75`}
-            />
-          )}
-          <div
-            className=" p-2 bg-amber-100 rounded-lg peer-hover:visible peer-hover:scale-100 transition-all 
-            ease-in delay-100 duration-200 invisible scale-0  
-            absolute -bottom-3 right-[420px] underline underline-offset-4 text-black"
-          >
-            hey, will you drag me over there?
-          </div>
+          <Image
+            onTouchStart={handleDragStart}
+            onTouchMove={(e) => e.preventDefault()}
+            onDragStart={handleDragStart}
+            onDragEnd={() => setGrab(false)}
+            draggable
+            width={35}
+            height={35}
+            alt="magic stick"
+            src={Wizard}
+            className={`peer ${
+              grab === true ? "cursor-grabbing" : "cursor-pointer"
+            } ${
+              pathName === "writng" ? "block" : "hidden"
+            }  hover:scale-[2] md:active:scale-[3] z-10 transition-all ease-in-out duration-200 delay-75`}
+          />
 
           {LINKS.map((link) => (
             <Link
@@ -81,7 +74,7 @@ const Header = () => {
           <ThemeToggleButton />
         </nav>
       </div>
-      {isHomePage && <Waves />}
+      <Waves />
     </motion.header>
   );
 };
