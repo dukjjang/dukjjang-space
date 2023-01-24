@@ -55,7 +55,7 @@ const Header = () => {
               src={Wizard}
               className={`peer ${
                 grab === true ? "cursor-grabbing" : "cursor-pointer"
-              } hover:scale-[2] active:scale-[3] z-10 transition-all ease-in-out duration-200 delay-75`}
+              } hover:scale-[2]  z-10 transition-all ease-in-out duration-200 delay-75`}
             />
           )}
           <div
