@@ -45,6 +45,7 @@ const Header = () => {
           {pathName === "writing" && (
             <Image
               onTouchStart={handleDragStart}
+              onTouchMove={(e) => e.preventDefault()}
               onDragStart={handleDragStart}
               onDragEnd={() => setGrab(false)}
               draggable
