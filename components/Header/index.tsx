@@ -32,10 +32,6 @@ const Header = () => {
     setGrab(true);
   };
 
-  const handleDragEnter = (e) => {
-    console.log(e.currentTarget);
-  };
-
   return (
     <motion.header
       {...animation}
@@ -49,18 +45,25 @@ const Header = () => {
           {pathName === "writing" && (
             <Image
               onDragStart={handleDragStart}
-              onDragEnter={handleDragEnter}
               onDragEnd={() => setGrab(false)}
               draggable
               width={35}
               height={35}
               alt="magic stick"
               src={Wizard}
-              className={`${
+              className={`peer ${
                 grab === true ? "cursor-grabbing" : "cursor-pointer"
-              } active:scale-150`}
+              } hover:scale-[2] active:scale-[3] z-10 transition-all ease-in-out duration-200 delay-75`}
             />
           )}
+          <div
+            className=" p-2 bg-amber-100 rounded-lg peer-hover:visible peer-hover:scale-100 transition-all 
+            ease-in delay-100 duration-200 invisible scale-0  
+            absolute -bottom-3 right-[420px] underline underline-offset-4 text-black"
+          >
+            hey, will you drag me over there?
+          </div>
+
           {LINKS.map((link) => (
             <Link
               key={link.id}
