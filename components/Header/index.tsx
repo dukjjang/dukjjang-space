@@ -44,6 +44,7 @@ const Header = () => {
         <nav className=" text-background gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center">
           {pathName === "writing" && (
             <Image
+              onTouchStart={handleDragStart}
               onDragStart={handleDragStart}
               onDragEnd={() => setGrab(false)}
               draggable

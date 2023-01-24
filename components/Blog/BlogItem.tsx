@@ -40,6 +40,7 @@ const BlogItem = ({
   return (
     <li
       onDrop={() => handleDrop(idx)}
+      onTouchEnd={() => handleDrop(idx)}
       id={post._id}
       onDragEnter={(e) => {
         handleDragEnter(e, idx);
