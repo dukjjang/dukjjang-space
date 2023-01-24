@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   const handleDragEnter = (e) => {
-    console.log(e.target);
+    console.log(e.currentTarget);
   };
 
   return (
