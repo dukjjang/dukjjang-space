@@ -12,8 +12,8 @@ const Waves = () => {
         className={`${
           pathName === "writing"
             ? "bg-background h-0 "
-            : "md:h-[150px] ts-color bg-primary"
-        }    max-h-[200px] w-full h-[100px]  `}
+            : "md:h-[150px] h-[100px] max-h-[200px] ts-color bg-primary"
+        }     w-full   `}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
         viewBox={`0 0 1440 320`}

@@ -13,6 +13,7 @@ const Blogs = ({ posts }: Props) => {
   const [currentDragEnter, setCurrentDragEnter] = useState(-1);
 
   const handleDragEnter = (e: DragEvent) => {
+    console.log("드래그 엔터", e.target);
     const target = e.target as HTMLUListElement;
     if (target.tagName === "UL") setCurrentDragEnter(-1);
   };

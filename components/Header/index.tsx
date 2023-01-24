@@ -16,6 +16,8 @@ const Header = () => {
   const [grab, setGrab] = useState(false);
   const pathName = usePathname().slice(1);
   const isHomePage = pathName.length < 1;
+  const [{ x, y }, setPosition] = useState({ x: 0, y: 0 });
+  const [defaultPosition, setDefaultPosition] = useState({ x: 0, y: 0 });
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -32,10 +34,23 @@ const Header = () => {
     setGrab(true);
   };
 
+  const handleTouchStart = (e) => {
+    console.log("터치스타트", defaultPosition);
+    setDefaultPosition({
+      x: e.targetTouches[0].screenX,
+      y: e.targetTouches[0].screenY,
+    });
+  };
+
+  const handleTouchMove = (e) => {
+    console.log("터치 무브", x, y);
+    setPosition({ y: e.changedTouches[0].pageY, x: e.changedTouches[0].pageX });
+  };
+
   return (
     <motion.header
       {...animation}
-      className={`${pathName === "writing" && "sticky"} top-0 w-full ${
+      className={`${!isHomePage && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
       } backdrop-blur-sm  z-50  `}
     >
@@ -43,8 +58,11 @@ const Header = () => {
         <Logo />
         <nav className=" text-background gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center">
           <Image
-            onTouchStart={handleDragStart}
-            onTouchMove={(e) => e.preventDefault()}
+            style={{ top: y, left: x }}
+            id={"wizard"}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={(e) => console.log("터치 끝", e)}
             onDragStart={handleDragStart}
             onDragEnd={() => setGrab(false)}
             draggable
@@ -52,11 +70,11 @@ const Header = () => {
             height={35}
             alt="magic stick"
             src={Wizard}
-            className={`peer ${
-              grab === true ? "cursor-grabbing" : "cursor-pointer"
+            className={` absolute peer ${
+              grab === true ? "cursor-grabbing" : "cursor-move"
             } ${
-              pathName === "writng" ? "block" : "hidden"
-            }  hover:scale-[2] md:active:scale-[3] z-10 transition-all ease-in-out duration-200 delay-75`}
+              pathName !== "writing" && "hidden"
+            }   z-10 transition-all ease-in-out duration-200 delay-75`}
           />
 
           {LINKS.map((link) => (
