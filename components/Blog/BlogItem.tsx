@@ -39,8 +39,9 @@ const BlogItem = ({
 
   return (
     <li
+      draggable={false}
       onDrop={() => handleDrop(idx)}
-      onTouchEnd={() => handleDrop(idx)}
+      // onTouchEnd={() => handleDrop(idx)}
       id={post._id}
       onDragEnter={(e) => {
         handleDragEnter(e, idx);
@@ -54,13 +55,11 @@ const BlogItem = ({
       key={post._id}
     >
       <div
-        draggable={false}
         className={`${
           dragCache[idx].magic === 2 ? "md:block" : "md:hidden"
         } relative h-full w-full`}
       >
         <Img
-          draggable={false}
           className="object-cover "
           src={urlFor(post.mainImage).url()}
           alt={post.author.name}
@@ -68,7 +67,6 @@ const BlogItem = ({
         />
       </div>
       <div
-        draggable={false}
         className="  w-full h-fit 
              bg-white dark:bg-[#222222] text-white flex flex-col justify-between 
               px-5 py-3  "

@@ -51,10 +51,25 @@ const Header = () => {
     setGrab(true);
   };
 
+  const handleTouchStart = (e) => {
+    console.log("도큐먼트 터치 스타트");
+
+    if (e.target.hasAttribute("draggable")) {
+      setIsDragging(true);
+    }
+    // document.body.style.overflow = "hidden";
+    setPosition({
+      x: dragRef.current!.offsetLeft,
+      y: dragRef.current!.offsetTop,
+      dx: dragRef.current!.offsetLeft,
+      dy: dragRef.current!.offsetTop,
+    });
+    dragRef.current!.style.position = "absolute";
+  };
+
   const handleTouchMove = (e) => {
-    if (isDragging) e.preventDefault();
-    // if (e.cancelable) e.preventDefault();
     const touch = e.touches[0];
+    // if (e.cancelable) e.preventDefault();
 
     if (
       touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
@@ -85,42 +100,36 @@ const Header = () => {
       const targetParentNode = target.closest("ul > li");
       if (targetParentNode) {
         setTargetId(targetParentNode.id);
-        targetParentNode.classList.add("opacity-20");
+        // targetParentNode.classList.add("opacity-20");
       }
     }
   };
 
-  const handleTouchStart = (e) => {
-    console.log("타겟", e.target.hasAttribute("draggable"));
-    setIsDragging(true);
-    document.body.style.overflow = "hidden";
-    setPosition({
-      x: dragRef.current!.offsetLeft,
-      y: dragRef.current!.offsetTop,
-      dx: dragRef.current!.offsetLeft,
-      dy: dragRef.current!.offsetTop,
-    });
-
-    dragRef.current!.style.position = "absolute";
-
-    console.log("터치");
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
-  };
-
   const handleDragEnd = () => {
-    console.log("드레그 끝");
-    window.removeEventListener("touchmove", handleTouchMove);
-
     setIsDragging(false);
     setGrab(false);
 
     setPosition({ ...position, y: position.dy, x: position.dx });
     document.body.style.removeProperty("overflow");
-    dragRef.current.style.removeProperty("position");
+    document.body.style.removeProperty("position");
   };
+
+  useEffect(() => {
+    document.addEventListener("touchstart", handleTouchStart);
+
+    document.getElementById("header").addEventListener(
+      "touchstart",
+      (e) => {
+        console.log("헤더 터치 스타트");
+        e.preventDefault();
+      },
+      { passive: false }
+    );
+  }, []);
 
   return (
     <motion.header
+      id="header"
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
@@ -133,7 +142,7 @@ const Header = () => {
             style={{ top: position.y, left: position.x }}
             ref={dragRef}
             id={"wizard"}
-            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
             onTouchEnd={handleDragEnd}
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
@@ -142,9 +151,7 @@ const Header = () => {
             height={35}
             alt="magic stick"
             src={Wizard}
-            className={`overflow-y-scroll  peer ${
-              pathName !== "writing" && "hidden"
-            }    `}
+            className={` peer ${pathName !== "writing" && "hidden"}    `}
           />
 
           {LINKS.map((link) => (
