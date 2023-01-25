@@ -119,12 +119,11 @@ const Header = () => {
     document.getElementById("header").addEventListener(
       "touchstart",
       (e) => {
+        document.body.style.overflow = "hidden";
         console.log("헤더에서 터치");
 
         const target = e.target as HTMLElement;
         if (target.hasAttribute("draggable")) {
-          e.preventDefault();
-
           setPosition({
             x: dragRef.current?.offsetLeft,
             y: dragRef.current?.offsetTop,
@@ -132,9 +131,11 @@ const Header = () => {
             dy: dragRef.current?.offsetTop,
           });
 
+          dragRef.current.style.position = "absolute";
+
           // document.body.style.overflow = "hidden";
           console.log("헤더에서 드래거블임");
-          dragRef.current.style.position = "absolute";
+          e.preventDefault();
         } else return;
       },
       { passive: false }
