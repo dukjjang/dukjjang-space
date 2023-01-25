@@ -120,7 +120,10 @@ const Header = () => {
     document.getElementById("header").addEventListener(
       "touchstart",
       (e) => {
-        if (isDragging) e.preventDefault();
+        const target = e.target as HTMLElement;
+        if (target.hasAttribute("draggable")) {
+          e.preventDefault();
+        }
       },
       { passive: false }
     );
