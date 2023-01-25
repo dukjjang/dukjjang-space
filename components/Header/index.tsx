@@ -51,8 +51,8 @@ const Header = () => {
   };
 
   const handleTouchStart = (e) => {
+    console.log("터치");
     document.body.style.overflow = "hidden";
-    console.log("스크린 사이즈", window.screen.width);
 
     document.body.style.width = "100%";
     document.body.style.height = "100%";
@@ -126,6 +126,9 @@ const Header = () => {
             style={{ top: position.y, left: position.x }}
             ref={dragRef}
             id={"wizard"}
+            onClick={() => {
+              console.log("클릭!");
+            }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleDragEnd}
@@ -136,7 +139,9 @@ const Header = () => {
             height={35}
             alt="magic stick"
             src={Wizard}
-            className={`  peer ${pathName !== "writing" && "hidden"}    `}
+            className={`overflow-y-scroll  peer ${
+              pathName !== "writing" && "hidden"
+            }    `}
           />
 
           {LINKS.map((link) => (
