@@ -35,16 +35,25 @@ const Header = () => {
   };
 
   const handleTouchStart = (e) => {
-    console.log("터치스타트", defaultPosition);
-    setDefaultPosition({
-      x: e.targetTouches[0].screenX,
-      y: e.targetTouches[0].screenY,
-    });
+    e.preventDefault();
+    e.stopPropagation();
+    document.body.style.overflow = "hidden";
   };
 
   const handleTouchMove = (e) => {
-    console.log("터치 무브", x, y);
-    setPosition({ y: e.changedTouches[0].pageY, x: e.changedTouches[0].pageX });
+    if (e.cancelable) e.preventDefault();
+    const target = document.getElementById("wizard");
+    if (e.target.hasAttribute("draggable")) {
+      console.log("터치 무브", x, y);
+      setPosition({ y: e.touches[0].pageY, x: e.touches[0].pageX });
+    }
+  };
+
+  const handleDragEnd = () => {
+    setGrab(false);
+    document.body.style.overflow = "";
+
+    setPosition({ y: 0, x: 0 });
   };
 
   return (
@@ -58,13 +67,13 @@ const Header = () => {
         <Logo />
         <nav className=" text-background gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center">
           <Image
-            style={{ top: y, left: x }}
+            style={{ top: `${y}px`, left: `${x}px` }}
             id={"wizard"}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
-            onTouchEnd={(e) => console.log("터치 끝", e)}
+            onTouchEnd={handleDragEnd}
             onDragStart={handleDragStart}
-            onDragEnd={() => setGrab(false)}
+            onDragEnd={handleDragEnd}
             draggable
             width={35}
             height={35}

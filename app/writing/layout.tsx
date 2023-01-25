@@ -1,5 +1,5 @@
 const layout = ({ children }: { children: React.ReactNode }) => {
-  return <div>{children}</div>;
+  return <div id={"writing"}>{children}</div>;
 };
 
 export default layout;
