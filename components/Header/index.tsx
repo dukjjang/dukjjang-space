@@ -64,7 +64,7 @@ const Header = () => {
         dy: dragRef.current?.offsetTop,
       });
 
-      dragRef.current.classList.add("absolute");
+      dragRef.current.style.position = "absolute";
     }
     document.body.style.overflow = "hidden";
     console.log("도큐멘트 스타트");
@@ -112,7 +112,7 @@ const Header = () => {
     setGrab(false);
 
     setPosition({ ...position, y: position.dy, x: position.dx });
-    dragRef.current.classList.remove("absolute");
+    dragRef.current.style.position = "";
     document.body.style.removeProperty("overflow");
 
     console.log("엔드");
