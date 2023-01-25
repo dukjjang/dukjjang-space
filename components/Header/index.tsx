@@ -71,6 +71,7 @@ const Header = () => {
   const handleTouchMove = (e) => {
     if (e.cancelable) e.preventDefault();
     document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
     const touch = e.touches[0];
     if (e.cancelable) e.preventDefault();
 
@@ -81,7 +82,7 @@ const Header = () => {
       return;
     }
     if (
-      touch.pageY < scrollY + dragRef.current.offsetHeight / 2 ||
+      touch.pageY < position.dy - scrollY ||
       touch.pageY - scrollY + dragRef.current.offsetHeight / 2 >
         window.screen.height
     ) {
@@ -113,6 +114,7 @@ const Header = () => {
 
     setPosition({ ...position, y: position.dy, x: position.dx });
     document.body.style.removeProperty("overflow");
+    document.body.style.removeProperty("position");
   };
 
   return (
