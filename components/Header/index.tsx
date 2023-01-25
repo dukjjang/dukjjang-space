@@ -107,14 +107,14 @@ const Header = () => {
   };
 
   const handleDragEnd = () => {
+    window.removeEventListener("touchmove", handleTouchMove);
+
     setIsDragging(false);
     setGrab(false);
 
     setPosition({ ...position, y: position.dy, x: position.dx });
     document.body.style.removeProperty("overflow");
-    document.body.style.removeProperty("position");
-
-    window.removeEventListener("touchmove", handleTouchMove);
+    dragRef.current.style.removeProperty("position");
   };
 
   return (
