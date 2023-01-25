@@ -64,14 +64,14 @@ const Header = () => {
         dy: dragRef.current?.offsetTop,
       });
 
-      dragRef.current?.classList.add("absolute");
-      console.log("도큐멘트 스타트");
+      dragRef.current.classList.add("absolute");
     }
+    document.body.style.overflow = "hidden";
+    console.log("도큐멘트 스타트");
   };
 
   const handleTouchMove = (e) => {
     const touch = e.touches[0];
-    console.log("스크롤 ", scrollY);
 
     if (
       touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
@@ -113,6 +113,8 @@ const Header = () => {
 
     setPosition({ ...position, y: position.dy, x: position.dx });
     dragRef.current.classList.remove("absolute");
+    document.body.style.removeProperty("overflow");
+
     console.log("엔드");
   };
 
@@ -122,26 +124,16 @@ const Header = () => {
       dx: dragRef.current.offsetLeft,
       dy: dragRef.current.offsetTop,
     });
-    document.getElementById("header").addEventListener(
+    document.getElementById("nav").addEventListener(
       "touchstart",
       (e) => {
         const target = e.target as HTMLElement;
-
-        console.log(target.tagName);
-
-        if (
-          target.tagName === "H6" ||
-          target.tagName === "svg" ||
-          target.tagName === "H1"
-        ) {
-          console.log("H6잖아");
-          return;
+        if (target.hasAttribute("draggable")) {
+          e.preventDefault();
+          document.addEventListener("touchstart", handleTouchStart);
+          console.log("헤더에서 터치");
+          console.log("헤더에서 드래거블임");
         }
-
-        e.preventDefault();
-        document.addEventListener("touchstart", handleTouchStart);
-
-        console.log("헤더에서 터치");
       },
       { passive: false }
     );
@@ -149,7 +141,6 @@ const Header = () => {
 
   return (
     <motion.header
-      id="header"
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
