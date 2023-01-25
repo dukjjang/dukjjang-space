@@ -52,9 +52,9 @@ const Header = () => {
   };
 
   const handleTouchMove = (e) => {
-    if (e.cancelable) e.preventDefault();
+    if (isDragging) e.preventDefault();
+    // if (e.cancelable) e.preventDefault();
     const touch = e.touches[0];
-    if (e.cancelable) e.preventDefault();
 
     if (
       touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
@@ -91,6 +91,7 @@ const Header = () => {
   };
 
   const handleTouchStart = (e) => {
+    console.log("타겟", e.target.hasAttribute("draggable"));
     setIsDragging(true);
     document.body.style.overflow = "hidden";
     setPosition({
@@ -107,6 +108,7 @@ const Header = () => {
   };
 
   const handleDragEnd = () => {
+    console.log("드레그 끝");
     window.removeEventListener("touchmove", handleTouchMove);
 
     setIsDragging(false);
