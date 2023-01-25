@@ -47,31 +47,8 @@ const Header = () => {
     return window.removeEventListener("scroll", () => {});
   }, []);
 
-  const handleDragStart = (e) => {
-    setGrab(true);
-  };
-
-  const handleTouchStart = (e) => {
-    console.log("터치");
-    document.body.style.overflow = "hidden";
-
-    document.body.style.width = "100%";
-    document.body.style.height = "100%";
-
-    setPosition({
-      x: dragRef.current!.offsetLeft,
-      y: dragRef.current!.offsetTop,
-      dx: dragRef.current!.offsetLeft,
-      dy: dragRef.current!.offsetTop,
-    });
-
-    dragRef.current!.style.position = "absolute";
-  };
-
   const handleTouchMove = (e) => {
     if (e.cancelable) e.preventDefault();
-    document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
     const touch = e.touches[0];
     if (e.cancelable) e.preventDefault();
 
@@ -109,12 +86,36 @@ const Header = () => {
     }
   };
 
+  const handleDragStart = (e) => {
+    setGrab(true);
+  };
+
   const handleDragEnd = () => {
+    document.removeEventListener("touchmove", handleTouchMove);
+    setIsDragging(false);
     setGrab(false);
 
     setPosition({ ...position, y: position.dy, x: position.dx });
     document.body.style.removeProperty("overflow");
     document.body.style.removeProperty("position");
+  };
+
+  const handleTouchStart = (e) => {
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+    document.addEventListener("touchend", handleDragEnd, { once: true });
+
+    setIsDragging(true);
+    document.body.style.overflow = "hidden";
+    setPosition({
+      x: dragRef.current!.offsetLeft,
+      y: dragRef.current!.offsetTop,
+      dx: dragRef.current!.offsetLeft,
+      dy: dragRef.current!.offsetTop,
+    });
+
+    dragRef.current!.style.position = "absolute";
+
+    console.log("터치");
   };
 
   return (
@@ -131,14 +132,9 @@ const Header = () => {
             style={{ top: position.y, left: position.x }}
             ref={dragRef}
             id={"wizard"}
-            onClick={() => {
-              console.log("클릭!");
-            }}
             onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
             onTouchEnd={handleDragEnd}
             onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
             draggable
             width={35}
             height={35}
