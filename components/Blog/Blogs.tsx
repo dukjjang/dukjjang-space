@@ -13,13 +13,13 @@ const Blogs = ({ posts }: Props) => {
   const [currentDragEnter, setCurrentDragEnter] = useState(-1);
 
   const handleDragEnter = (e: DragEvent) => {
-    console.log("드래그 엔터", e.target);
     const target = e.target as HTMLUListElement;
     if (target.tagName === "UL") setCurrentDragEnter(-1);
   };
 
   return (
     <ul
+      id="blogs"
       onDragOver={(e) => e.preventDefault()}
       onDragEnter={handleDragEnter}
       className=" gap-y-4 grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense md:px-10 
