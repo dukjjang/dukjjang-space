@@ -64,6 +64,7 @@ const Header = () => {
 
       dragRef.current.classList.add("absolute");
     }
+    console.log("도큐멘트 스타트");
   };
 
   const handleTouchMove = (e) => {
@@ -112,14 +113,15 @@ const Header = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("touchstart", handleTouchStart);
-
     document.getElementById("nav").addEventListener(
       "touchstart",
       (e) => {
         const target = e.target as HTMLElement;
         if (target.hasAttribute("draggable")) {
           e.preventDefault();
+          document.addEventListener("touchstart", handleTouchStart);
+        } else {
+          return document.removeEventListener("touchstart", handleTouchStart);
         }
 
         console.log("헤더에서 터치");
