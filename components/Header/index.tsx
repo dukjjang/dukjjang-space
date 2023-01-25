@@ -69,6 +69,7 @@ const Header = () => {
 
   const handleTouchMove = (e) => {
     const touch = e.touches[0];
+    if (e.cancelable) e.preventDefault();
 
     if (
       touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
