@@ -47,6 +47,10 @@ const Header = () => {
     return window.removeEventListener("scroll", () => {});
   }, []);
 
+  const handleDragStart = (e) => {
+    setGrab(true);
+  };
+
   const handleTouchMove = (e) => {
     if (e.cancelable) e.preventDefault();
     const touch = e.touches[0];
@@ -86,24 +90,7 @@ const Header = () => {
     }
   };
 
-  const handleDragStart = (e) => {
-    setGrab(true);
-  };
-
-  const handleDragEnd = () => {
-    document.removeEventListener("touchmove", handleTouchMove);
-    setIsDragging(false);
-    setGrab(false);
-
-    setPosition({ ...position, y: position.dy, x: position.dx });
-    document.body.style.removeProperty("overflow");
-    document.body.style.removeProperty("position");
-  };
-
   const handleTouchStart = (e) => {
-    document.addEventListener("touchmove", handleTouchMove, { passive: false });
-    document.addEventListener("touchend", handleDragEnd, { once: true });
-
     setIsDragging(true);
     document.body.style.overflow = "hidden";
     setPosition({
@@ -116,6 +103,18 @@ const Header = () => {
     dragRef.current!.style.position = "absolute";
 
     console.log("터치");
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    setGrab(false);
+
+    setPosition({ ...position, y: position.dy, x: position.dx });
+    document.body.style.removeProperty("overflow");
+    document.body.style.removeProperty("position");
+
+    window.removeEventListener("touchmove", handleTouchMove);
   };
 
   return (
@@ -135,6 +134,7 @@ const Header = () => {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleDragEnd}
             onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
             draggable
             width={35}
             height={35}
