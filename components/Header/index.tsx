@@ -38,14 +38,16 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.scroll(0, 0);
+    // window.scroll(0, 0);
 
     window.addEventListener("scroll", () => {
       setScrollY(window.scrollY);
     });
 
+    console.log("스크롤 들어옴", scrollY);
     return window.removeEventListener("scroll", () => {});
-  }, []);
+  }, [scrollY]);
+  console.log("스크롤 ", scrollY);
 
   const handleDragStart = (e) => {
     setGrab(true);
@@ -62,13 +64,14 @@ const Header = () => {
         dy: dragRef.current?.offsetTop,
       });
 
-      dragRef.current.classList.add("absolute");
+      dragRef.current?.classList.add("absolute");
+      console.log("도큐멘트 스타트");
     }
-    console.log("도큐멘트 스타트");
   };
 
   const handleTouchMove = (e) => {
     const touch = e.touches[0];
+    console.log("스크롤 ", scrollY);
 
     if (
       touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
@@ -109,23 +112,36 @@ const Header = () => {
     setGrab(false);
 
     setPosition({ ...position, y: position.dy, x: position.dx });
-    dragRef.current.style.removeProperty("position");
+    dragRef.current.classList.remove("absolute");
+    console.log("엔드");
   };
 
   useEffect(() => {
-    document.getElementById("nav").addEventListener(
+    setPosition({
+      ...position,
+      dx: dragRef.current.offsetLeft,
+      dy: dragRef.current.offsetTop,
+    });
+    document.getElementById("header").addEventListener(
       "touchstart",
       (e) => {
         const target = e.target as HTMLElement;
-        if (target.hasAttribute("draggable")) {
-          e.preventDefault();
-          document.addEventListener("touchstart", handleTouchStart);
-        } else {
-          return document.removeEventListener("touchstart", handleTouchStart);
+
+        console.log(target.tagName);
+
+        if (
+          target.tagName === "H6" ||
+          target.tagName === "svg" ||
+          target.tagName === "H1"
+        ) {
+          console.log("H6잖아");
+          return;
         }
 
+        e.preventDefault();
+        document.addEventListener("touchstart", handleTouchStart);
+
         console.log("헤더에서 터치");
-        console.log("헤더에서 드래거블임");
       },
       { passive: false }
     );
@@ -133,6 +149,7 @@ const Header = () => {
 
   return (
     <motion.header
+      id="header"
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
@@ -148,9 +165,9 @@ const Header = () => {
             style={{ top: position.y, left: position.x }}
             ref={dragRef}
             id={"wizard"}
-            onTouchMove={handleTouchMove}
             onTouchEnd={handleDragEnd}
             onDragStart={handleDragStart}
+            onTouchMove={handleTouchMove}
             onDragEnd={handleDragEnd}
             draggable
             width={35}
