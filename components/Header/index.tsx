@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 const Header = () => {
   const [grab, setGrab] = useState(false);
   const pathName = usePathname().slice(1);
+  const [isDragging, setIsDragging] = useState(false);
   const isHomePage = pathName.length < 1;
   const [scrollY, setScrollY] = useState(0);
   const [targetId, setTargetId] = useState("-1");
@@ -68,6 +69,8 @@ const Header = () => {
   };
 
   const handleTouchMove = (e) => {
+    if (e.cancelable) e.preventDefault();
+    document.body.style.overflow = "hidden";
     const touch = e.touches[0];
     if (e.cancelable) e.preventDefault();
 
@@ -79,7 +82,7 @@ const Header = () => {
     }
     if (
       touch.pageY < scrollY + dragRef.current.offsetHeight / 2 ||
-      touch.pageY + scrollY + dragRef.current.offsetHeight / 2 >
+      touch.pageY - scrollY + dragRef.current.offsetHeight / 2 >
         window.screen.height
     ) {
       return;
@@ -109,7 +112,7 @@ const Header = () => {
     setGrab(false);
 
     setPosition({ ...position, y: position.dy, x: position.dx });
-    document.body.style.overflow = "auto";
+    document.body.style.removeProperty("overflow");
   };
 
   return (
