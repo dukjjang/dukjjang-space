@@ -52,7 +52,6 @@ const Header = () => {
   };
 
   const handleTouchStart = (e) => {
-    dragRef.current.style.position = "absolute";
     console.log("도큐먼트 터치 스타트");
 
     if (!e.target.hasAttribute("draggable")) {
@@ -129,21 +128,23 @@ const Header = () => {
     document.getElementById("header").addEventListener(
       "touchstart",
       (e) => {
-        setPosition({
-          x: dragRef.current?.offsetLeft,
-          y: dragRef.current?.offsetTop,
-          dx: dragRef.current?.offsetLeft,
-          dy: dragRef.current?.offsetTop,
-        });
-
         document.body.style.overflow = "hidden";
         console.log("헤더에서 터치");
-        e.preventDefault();
 
         const target = e.target as HTMLElement;
         if (target.hasAttribute("draggable")) {
+          setPosition({
+            x: dragRef.current?.offsetLeft,
+            y: dragRef.current?.offsetTop,
+            dx: dragRef.current?.offsetLeft,
+            dy: dragRef.current?.offsetTop,
+          });
+
+          dragRef.current.style.position = "absolute";
+
           // document.body.style.overflow = "hidden";
           console.log("헤더에서 드래거블임");
+          e.preventDefault();
         } else return;
       },
       { passive: false }
