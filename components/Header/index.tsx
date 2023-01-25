@@ -52,19 +52,22 @@ const Header = () => {
   };
 
   const handleTouchStart = (e) => {
-    console.log("도큐먼트 터치 스타트");
+    const target = e.target as HTMLElement;
 
-    if (!e.target.hasAttribute("draggable")) {
-      console.log("도큐먼트 드래거블 아님");
-      return;
+    if (target.hasAttribute("draggable")) {
+      setPosition({
+        x: dragRef.current?.offsetLeft,
+        y: dragRef.current?.offsetTop,
+        dx: dragRef.current?.offsetLeft,
+        dy: dragRef.current?.offsetTop,
+      });
+
+      dragRef.current.classList.add("absolute");
     }
-
-    document.body.style.overflow = "hidden";
   };
 
   const handleTouchMove = (e) => {
     const touch = e.touches[0];
-    // if (e.cancelable) e.preventDefault();
 
     if (
       touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
@@ -104,11 +107,8 @@ const Header = () => {
     setIsDragging(false);
     setGrab(false);
 
-    dragRef.current.style.removeProperty("position");
     setPosition({ ...position, y: position.dy, x: position.dx });
-
-    document.body.style.removeProperty("overflow");
-    document.body.style.removeProperty("position");
+    dragRef.current.style.removeProperty("position");
   };
 
   useEffect(() => {
@@ -117,23 +117,13 @@ const Header = () => {
     document.getElementById("nav").addEventListener(
       "touchstart",
       (e) => {
-        console.log("헤더에서 터치");
         const target = e.target as HTMLElement;
-
         if (target.hasAttribute("draggable")) {
           e.preventDefault();
+        }
 
-          setPosition({
-            x: dragRef.current?.offsetLeft,
-            y: dragRef.current?.offsetTop,
-            dx: dragRef.current?.offsetLeft,
-            dy: dragRef.current?.offsetTop,
-          });
-
-          // document.body.style.overflow = "hidden";
-          console.log("헤더에서 드래거블임");
-          dragRef.current.style.position = "absolute";
-        } else return;
+        console.log("헤더에서 터치");
+        console.log("헤더에서 드래거블임");
       },
       { passive: false }
     );
