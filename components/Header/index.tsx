@@ -120,8 +120,7 @@ const Header = () => {
     document.getElementById("header").addEventListener(
       "touchstart",
       (e) => {
-        console.log("헤더 터치 스타트");
-        e.preventDefault();
+        if (isDragging) e.preventDefault();
       },
       { passive: false }
     );
