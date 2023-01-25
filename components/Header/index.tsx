@@ -54,18 +54,12 @@ const Header = () => {
   const handleTouchStart = (e) => {
     console.log("도큐먼트 터치 스타트");
 
-    // if (!e.target.hasAttribute("draggable")) {
-    //   console.log("도큐먼트 드래거블 아님");
-    //   return;
-    // }
-    // document.body.style.overflow = "hidden";
-    setPosition({
-      x: dragRef.current?.offsetLeft,
-      y: dragRef.current?.offsetTop,
-      dx: dragRef.current?.offsetLeft,
-      dy: dragRef.current?.offsetTop,
-    });
-    dragRef.current!.style.position = "absolute";
+    if (!e.target.hasAttribute("draggable")) {
+      console.log("도큐먼트 드래거블 아님");
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
   };
 
   const handleTouchMove = (e) => {
@@ -110,7 +104,9 @@ const Header = () => {
     setIsDragging(false);
     setGrab(false);
 
+    dragRef.current.style.removeProperty("position");
     setPosition({ ...position, y: position.dy, x: position.dx });
+
     document.body.style.removeProperty("overflow");
     document.body.style.removeProperty("position");
   };
@@ -118,15 +114,26 @@ const Header = () => {
   useEffect(() => {
     document.addEventListener("touchstart", handleTouchStart);
 
-    document.getElementById("header").addEventListener(
+    document.getElementById("nav").addEventListener(
       "touchstart",
       (e) => {
         console.log("헤더에서 터치");
         const target = e.target as HTMLElement;
+
         if (target.hasAttribute("draggable")) {
-          console.log("헤더에서 드래거블임");
           e.preventDefault();
-        }
+
+          setPosition({
+            x: dragRef.current?.offsetLeft,
+            y: dragRef.current?.offsetTop,
+            dx: dragRef.current?.offsetLeft,
+            dy: dragRef.current?.offsetTop,
+          });
+
+          // document.body.style.overflow = "hidden";
+          console.log("헤더에서 드래거블임");
+          dragRef.current.style.position = "absolute";
+        } else return;
       },
       { passive: false }
     );
@@ -134,7 +141,6 @@ const Header = () => {
 
   return (
     <motion.header
-      id="header"
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
@@ -142,7 +148,10 @@ const Header = () => {
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
-        <nav className=" text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center">
+        <nav
+          id={"nav"}
+          className=" text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center"
+        >
           <Image
             style={{ top: position.y, left: position.x }}
             ref={dragRef}
