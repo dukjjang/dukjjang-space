@@ -11,11 +11,10 @@ import Logo from "../Logo";
 import UnderLine from "../UnderLine";
 import Wizard from "/public/images/wizard.png";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import useTouch from "../Hooks/useTouch";
 
 const Header = () => {
-  const [grab, setGrab] = useState(false);
   const pathName = usePathname().slice(1);
   const isHomePage = pathName.length < 1;
   const dragRef = useRef<HTMLImageElement>(null);
@@ -37,14 +36,6 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
-  const handleDragStart = () => {
-    setGrab(true);
-  };
-
-  const handleDragEnd = () => {
-    setGrab(false);
-  };
-
   return (
     <motion.header
       id="header"
@@ -63,22 +54,31 @@ const Header = () => {
         >
           {
             <i
-              id={"wizard"}
-              style={{ top: position.y, left: position.x }}
+              id={"wizard-wrapper"}
               ref={dragRef}
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
-              // onDragStart={handleDragStart}
-              // onDragEnd={handleDragEnd}
               draggable
-              className={` peer text-green-300 ${
-                pathName !== "writing" && "hidden"
+              className={` peer z-10 ${
+                pathName !== "writing" ? "hidden" : ""
               } `}
             >
-              <Image width={45} height={45} alt="magic stick" src={Wizard} />
+              <Image
+                id="wizard"
+                width={45}
+                height={45}
+                alt="magic stick"
+                src={Wizard}
+              />
             </i>
           }
+          <i
+            id={"wizard-clone-wrapper"}
+            style={{ top: position.y, left: position.x }}
+            draggable
+            className="absolute hidden w-14 h-14 z-0"
+          />
 
           {LINKS.map((link) => (
             <Link

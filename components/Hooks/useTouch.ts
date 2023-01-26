@@ -43,16 +43,21 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
   }, []);
 
   const onTouchStart = (e) => {
-    console.log("마법 터치");
+    console.log(" 터치 스타트");
 
-    const nav = document.getElementById("nav");
+    const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");
+    wizardCloneWrapper.classList.remove("hidden");
 
     document.body.classList.add("overflow-hidden");
 
-    const cloneImg = dragRef.current.cloneNode(true) as HTMLImageElement;
-    nav.append(cloneImg);
-    nav.insertBefore(cloneImg, nav.firstChild);
+    const cloneImg = document
+      .getElementById("wizard")
+      .cloneNode(true) as HTMLImageElement;
+
+    cloneImg.classList.add("absolute");
     cloneImg.id = "cloneImg";
+
+    wizardCloneWrapper.append(cloneImg);
 
     setPosition({
       x: dragRef.current.offsetLeft,
@@ -60,26 +65,30 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
       dx: dragRef.current.offsetLeft,
       dy: dragRef.current.offsetTop,
     });
-
-    dragRef.current.classList.add("absolute");
   };
 
   const onTouchMove = (e: TouchEvent) => {
     const touch = e.touches[0];
+    console.log("터치 무브");
 
     setPosition({
       ...position,
       x: touch.clientX - dragRef.current!.offsetWidth / 2,
       y: touch.clientY - dragRef.current!.offsetHeight / 2,
     });
+    console.log("포지션", position.x, position.y);
   };
 
   const onTouchEnd = (e) => {
+    console.log("터치 엔드");
     setPosition({ ...position, x: position.dx, y: position.dy });
-    dragRef.current.classList.remove("absolute");
+
+    const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");
+    wizardCloneWrapper.classList.add("hidden");
 
     const cloneImg = document.getElementById("cloneImg");
-    document.getElementById("nav").removeChild(cloneImg);
+    wizardCloneWrapper.removeChild(cloneImg);
+    //
     document.body.classList.remove("overflow-hidden");
   };
 
