@@ -2,34 +2,34 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
 import Logo from "../Logo";
 import UnderLine from "../UnderLine";
 import Wizard from "/public/images/wizard.svg";
-import { useEffect, useRef, useState } from "react";
+
+import { useRef, useState } from "react";
+import useTouch from "../Hooks/useTouch";
 
 const Header = () => {
   const [grab, setGrab] = useState(false);
   const pathName = usePathname().slice(1);
-  const [isDragging, setIsDragging] = useState(false);
   const isHomePage = pathName.length < 1;
-  const [scrollY, setScrollY] = useState(0);
-  const [targetId, setTargetId] = useState("-1");
-  const [position, setPosition] = useState({
-    x: 0,
-    dx: 0,
-    y: 0,
-    dy: 0,
-  });
   const dragRef = useRef<HTMLImageElement>(null);
+  const wrapperRef = useRef<HTMLHeadingElement>(null);
+
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
     { id: 1, name: "Contact", path: "contact" },
   ];
+
+  const { onTouchStart, onTouchMove, onTouchEnd, position } = useTouch({
+    dragRef,
+    wrapperRef,
+  });
 
   const animation = isHomePage && {
     initial: { opacity: 0, y: -200 },
@@ -37,123 +37,18 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
-  useEffect(() => {
-    window.scroll(0, 0);
-
-    window.addEventListener("scroll", () => {
-      setScrollY(window.scrollY);
-    });
-
-    return window.removeEventListener("scroll", () => {});
-  }, []);
-
   const handleDragStart = (e) => {
     setGrab(true);
   };
 
-  const handleTouchStart = (e) => {
-    console.log("도큐먼트 터치 스타트");
-
-    if (!e.target.hasAttribute("draggable")) {
-      console.log("도큐먼트 드래거블 아님");
-      return;
-    }
-
-    // document.body.style.overflow = "hidden";
-
-    // dragRef.current.style.position = "absolute";
-  };
-
-  const handleTouchMove = (e) => {
-    const touch = e.touches[0];
-    // if (e.cancelable) e.preventDefault();
-
-    if (
-      touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
-      touch.pageX + dragRef.current!.offsetWidth / 2 > window.screen.width
-    ) {
-      return;
-    }
-    if (
-      touch.pageY < position.dy - scrollY ||
-      touch.pageY - scrollY + dragRef.current.offsetHeight / 2 >
-        window.screen.height
-    ) {
-      return;
-    }
-
-    setPosition({
-      ...position,
-      x: touch.pageX - dragRef.current!.offsetWidth / 2,
-      y: touch.pageY - scrollY - dragRef.current!.offsetHeight / 2,
-    });
-
-    const target = document.elementFromPoint(
-      position.x + dragRef.current!.offsetWidth,
-      position.y + dragRef.current!.offsetHeight - 5
-    );
-
-    if (target) {
-      const targetParentNode = target.closest("ul > li");
-      if (targetParentNode) {
-        setTargetId(targetParentNode.id);
-        // targetParentNode.classList.add("opacity-20");
-      }
-    }
-  };
-
   const handleDragEnd = () => {
-    setIsDragging(false);
     setGrab(false);
-
-    dragRef.current.style.removeProperty("position");
-    setPosition({ ...position, y: position.dy, x: position.dx });
-
-    document.body.style.removeProperty("overflow");
-    document.body.style.removeProperty("position");
   };
-
-  useEffect(() => {
-    setPosition({
-      x: dragRef.current?.offsetLeft,
-      y: dragRef.current?.offsetTop,
-      dx: dragRef.current?.offsetLeft,
-      dy: dragRef.current?.offsetTop,
-    });
-    dragRef.current.style.top = `${position.y}`;
-    dragRef.current.style.left = `${position.x}`;
-
-    document.addEventListener("touchstart", handleTouchStart);
-
-    document.getElementById("header").addEventListener(
-      "touchstart",
-      (e) => {
-        document.body.style.overflow = "hidden";
-        console.log("헤더에서 터치");
-
-        const target = e.target as HTMLElement;
-        if (target.hasAttribute("draggable")) {
-          setPosition({
-            x: dragRef.current?.offsetLeft,
-            y: dragRef.current?.offsetTop,
-            dx: dragRef.current?.offsetLeft,
-            dy: dragRef.current?.offsetTop,
-          });
-
-          dragRef.current.style.position = "absolute";
-
-          // document.body.style.overflow = "hidden";
-          console.log("헤더에서 드래거블임");
-          e.preventDefault();
-        } else return;
-      },
-      { passive: false }
-    );
-  }, []);
 
   return (
     <motion.header
       id="header"
+      ref={wrapperRef}
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
@@ -161,13 +56,17 @@ const Header = () => {
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
-        <nav className=" text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center">
+        <nav
+          id="nav"
+          className=" text-background h-14  gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center"
+        >
           <Image
             style={{ top: position.y, left: position.x }}
             ref={dragRef}
             id={"wizard"}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleDragEnd}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
             draggable
@@ -197,4 +96,5 @@ const Header = () => {
     </motion.header>
   );
 };
+
 export default Header;
