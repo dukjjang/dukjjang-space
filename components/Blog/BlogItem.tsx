@@ -46,7 +46,7 @@ const BlogItem = ({
       }}
       className={`${dragCache[idx].magic === 1 && `row-span-2 h-fit`} ${
         dragCache[idx].magic === 2 && `row-span-4 h-[500px]`
-      } dropzone relative flex flex-col w-full rounded-lg  md:overflow-hidden border-0   ${
+      } dropzone relative flex flex-col w-full rounded-lg max-sm:h-96  md:overflow-hidden border-0   ${
         currentDragEnter === idx &&
         "outline transition-all duration-100 ease-in outline-green-400 dark:outline-blue-500 "
       } `}
