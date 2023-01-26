@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { GiMushroom } from "react-icons/gi";
 
 import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
@@ -26,11 +27,10 @@ const Header = () => {
     { id: 1, name: "Contact", path: "contact" },
   ];
 
-  const { onTouchStart, onTouchMove, onTouchEnd, position } = useTouch({
+  const { onTouchMove, onTouchEnd, position } = useTouch({
     dragRef,
-    wrapperRef,
     cloneRef,
-    pathName,
+    wrapperRef,
   });
 
   const animation = isHomePage && {
@@ -44,38 +44,32 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...animation}
-      className={`${!isHomePage && "sticky"} top-0 w-full ${
-        isHomePage ? "bg-primary ts-color" : "bg-transparent"
-      } backdrop-blur-sm  z-50  `}
-      onTouchEnd={() => document.body.classList.remove("overflow-hidden")}
+      className={`${!isHomePage && "sticky"} top-0 left-0 w-full ${
+        isHomePage ? " bg-primary ts-color" : "bg-white"
+      } z-50  `}
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
         <nav
           id="nav"
-          className=" text-background h-14  gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center"
+          className=" text-background h-14  gap-3 md:gap-8 font-normal text-[16px] 
+          ml-auto flex items-center justify-center"
         >
-          {
-            <i
-              id={"wizard-wrapper"}
-              ref={dragRef}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
-              draggable
-              className={` peer z-10 ${
-                pathName !== "writing" ? "hidden" : ""
-              } `}
-            >
-              <Image
-                id="wizard"
-                width={50}
-                height={50}
-                alt="magic stick"
-                src={Wizard}
-              />
-            </i>
-          }
+          <i
+            id={"wizard-wrapper"}
+            ref={dragRef}
+            onTouchEnd={onTouchEnd}
+            draggable
+            className={`peer z-10 ${pathName !== "writing" && "hidden"}`}
+          >
+            <Image
+              id="wizard"
+              width={50}
+              height={50}
+              alt="magic stick"
+              src={Wizard}
+            />
+          </i>
           <i
             id={"wizard-clone-wrapper"}
             ref={cloneRef}

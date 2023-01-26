@@ -39,18 +39,16 @@ const BlogItem = ({
 
   return (
     <li
-      draggable={false}
       onDrop={() => handleDrop(idx)}
-      // onTouchEnd={() => handleDrop(idx)}
       id={post._id}
       onDragEnter={(e) => {
         handleDragEnter(e, idx);
       }}
       className={`${dragCache[idx].magic === 1 && `row-span-2 h-fit`} ${
         dragCache[idx].magic === 2 && `row-span-4 h-[500px]`
-      } dropzone relative flex flex-col w-full  max-sm:row-span-2 max-sm:h-96 rounded-lg  md:overflow-hidden drop-shadow-xl  ${
+      } dropzone relative flex flex-col w-full  max-sm:row-span-2 max-sm:h-96 rounded-lg  md:overflow-hidden   ${
         currentDragEnter === idx &&
-        "outline transition-all   duration-100 ease-in outline-green-400 dark:outline-blue-500"
+        "outline transition-all duration-100 ease-in outline-green-400 dark:outline-blue-500"
       } `}
       key={post._id}
     >
