@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { GiMushroom } from "react-icons/gi";
 
 import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
@@ -27,7 +26,7 @@ const Header = () => {
     { id: 1, name: "Contact", path: "contact" },
   ];
 
-  const { onTouchMove, onTouchEnd, position } = useTouch({
+  const { x, y } = useTouch({
     dragRef,
     cloneRef,
     wrapperRef,
@@ -45,8 +44,8 @@ const Header = () => {
       ref={wrapperRef}
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 left-0 w-full ${
-        isHomePage ? " bg-primary ts-color" : "bg-white"
-      } z-50  `}
+        isHomePage ? " bg-primary ts-color" : "bg-transparent"
+      } backdrop-blur-sm z-50 `}
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
@@ -58,7 +57,6 @@ const Header = () => {
           <i
             id={"wizard-wrapper"}
             ref={dragRef}
-            onTouchEnd={onTouchEnd}
             draggable
             className={`peer z-10 ${pathName !== "writing" && "hidden"}`}
           >
@@ -73,7 +71,7 @@ const Header = () => {
           <i
             id={"wizard-clone-wrapper"}
             ref={cloneRef}
-            style={{ top: position.y, left: position.x }}
+            style={{ top: y, left: x }}
             draggable
             className="absolute hidden opacity-80 w-20 h-20 z-0"
           />
