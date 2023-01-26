@@ -22,7 +22,7 @@ const Blogs = ({ posts }: Props) => {
       id="blogs"
       onDragOver={(e) => e.preventDefault()}
       onDragEnter={handleDragEnter}
-      className=" gap-y-4 grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense md:px-10 
+      className=" gap-y-6 grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense px-3 md:px-10 
       md:gap-10 md:gap-y-16 md:pb-24 md:h-full md:py-10 "
     >
       {posts.map((post, idx) => (

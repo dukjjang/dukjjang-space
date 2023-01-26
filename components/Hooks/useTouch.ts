@@ -11,6 +11,12 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     x: 0,
     y: 0,
   });
+  const [beforeOverEle, setBeforeOverEle] = useState<HTMLElement>();
+  const [currentOverEle, setCurrentOverEle] = useState<HTMLElement>();
+
+  if (beforeOverEle && currentOverEle === null) {
+    beforeOverEle.classList.remove("border-2");
+  }
 
   const handleTouchStart = (e: Event) => {
     e.preventDefault();
@@ -25,11 +31,16 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
       .getElementById("wizard")
       .cloneNode(true) as HTMLImageElement;
 
-    cloneImg.classList.add("absolute");
     cloneImg.id = "cloneImg";
     cloneImg.style.width = "120px";
     cloneImg.style.height = "80px";
 
+    setPosition({
+      x: dragRef.current.offsetLeft,
+      y: dragRef.current.offsetTop,
+    });
+
+    cloneImg.classList.add("absolute");
     wizardCloneWrapper.append(cloneImg);
   };
 
@@ -37,13 +48,41 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     const touch = e.touches[0];
 
     setPosition({
-      ...position,
       x: touch.clientX - cloneRef.current!.offsetWidth / 2,
       y: touch.clientY - cloneRef.current!.offsetHeight / 2,
     });
+
+    const touchOverElement = document.elementFromPoint(
+      cloneRef.current.offsetLeft - cloneRef.current.offsetWidth + 50,
+      cloneRef.current.offsetTop - cloneRef.current.offsetHeight + 100
+    );
+
+    const target = touchOverElement?.closest("ul > li") as HTMLElement;
+
+    if (target) {
+      setBeforeOverEle(target);
+      setCurrentOverEle(target);
+
+      target.classList.add("border-2");
+      target.classList.add("border-green-400");
+    } else {
+      setCurrentOverEle(null);
+    }
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e) => {
+    const touchOverElement = document.elementFromPoint(
+      cloneRef.current.offsetLeft - cloneRef.current.offsetWidth + 50,
+      cloneRef.current.offsetTop - cloneRef.current.offsetHeight + 100
+    );
+
+    const target = touchOverElement?.closest("ul > li") as HTMLElement;
+
+    if (target) {
+      target.classList.remove("border-2");
+      target.classList.remove("border-green-400");
+    }
+
     const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");
     wizardCloneWrapper.classList.add("hidden");
 

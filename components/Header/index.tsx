@@ -73,7 +73,7 @@ const Header = () => {
             ref={cloneRef}
             style={{ top: y, left: x }}
             draggable
-            className="absolute hidden opacity-80 w-20 h-20 z-0"
+            className=" absolute hidden opacity-80 w-20 h-20 z-0"
           />
 
           {LINKS.map((link) => (
