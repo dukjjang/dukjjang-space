@@ -17,14 +17,18 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
   useEffect(() => {
     const handleDocumentTouchMove = (e) => {
       console.log("도큐멘트 터치무브");
-      const touchTarget = e.target as HTMLElement;
-      if (touchTarget.hasAttribute("dragable")) e.preventDefault();
+
+      if (e.stopPropagation) e.stopPropagation();
+      // if (e.cancelable) {
+      //   console.log("캔슬러블이여서 중지함");
+      //   e.preventDefault();
+      // }
     };
 
     document.addEventListener("touchmove", handleDocumentTouchMove, {
       passive: false,
     });
-    return document.removeEventListener("touchmove", handleDocumentTouchMove);
+    // return document.removeEventListener("touchmove", handleDocumentTouchMove);
   }, []);
 
   useEffect(() => {
@@ -42,8 +46,9 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
     });
   }, []);
 
-  const onTouchStart = (e) => {
+  const onTouchStart = (e: TouchEvent) => {
     console.log(" 터치 스타트");
+    if (e.stopPropagation) e.stopPropagation();
 
     const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");
     wizardCloneWrapper.classList.remove("hidden");

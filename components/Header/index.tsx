@@ -66,8 +66,8 @@ const Header = () => {
             >
               <Image
                 id="wizard"
-                width={45}
-                height={45}
+                width={50}
+                height={50}
                 alt="magic stick"
                 src={Wizard}
               />
@@ -77,7 +77,7 @@ const Header = () => {
             id={"wizard-clone-wrapper"}
             style={{ top: position.y, left: position.x }}
             draggable
-            className="absolute hidden w-14 h-14 z-0"
+            className="absolute hidden opacity-70 w-14 h-14 z-0"
           />
 
           {LINKS.map((link) => (
