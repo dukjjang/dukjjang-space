@@ -3,10 +3,11 @@ import { RefObject, TouchEvent, useEffect, useState } from "react";
 type Props = {
   dragRef: RefObject<HTMLImageElement | HTMLElement>;
   wrapperRef: RefObject<HTMLHeadingElement | HTMLElement>;
+  cloneRef: RefObject<HTMLElement>;
+  pathName: string;
 };
 
-const useTouch = ({ dragRef, wrapperRef }: Props) => {
-  const [scrollY, setScrollY] = useState(0);
+const useTouch = ({ dragRef, wrapperRef, cloneRef, pathName }: Props) => {
   const [position, setPosition] = useState({
     x: 0,
     dx: 0,
@@ -14,22 +15,21 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
     dy: 0,
   });
 
-  useEffect(() => {
-    const handleDocumentTouchMove = (e) => {
-      console.log("도큐멘트 터치무브");
+  if (pathName === "writing") {
+    useEffect(() => {
+      const handleDocumentTouchMove = (e) => {
+        if (cloneRef.current.children.length > 0) {
+          e.preventDefault();
+        }
+      };
 
-      if (e.stopPropagation) e.stopPropagation();
-      // if (e.cancelable) {
-      //   console.log("캔슬러블이여서 중지함");
-      //   e.preventDefault();
-      // }
-    };
+      const writingPage = document.getElementById("writing");
 
-    document.addEventListener("touchmove", handleDocumentTouchMove, {
-      passive: false,
-    });
-    // return document.removeEventListener("touchmove", handleDocumentTouchMove);
-  }, []);
+      writingPage.addEventListener("touchmove", handleDocumentTouchMove, {
+        passive: false,
+      });
+    }, []);
+  }
 
   useEffect(() => {
     wrapperRef.current.addEventListener("touchstart", (e) => {
@@ -48,7 +48,10 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
 
   const onTouchStart = (e: TouchEvent) => {
     console.log(" 터치 스타트");
-    if (e.stopPropagation) e.stopPropagation();
+    if (e.stopPropagation) {
+      console.log("터치 스타트에서 스탑 프로파게이션");
+      e.stopPropagation();
+    }
 
     const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");
     wizardCloneWrapper.classList.remove("hidden");
@@ -61,6 +64,8 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
 
     cloneImg.classList.add("absolute");
     cloneImg.id = "cloneImg";
+    cloneImg.style.width = "140px";
+    cloneImg.style.height = "80px";
 
     wizardCloneWrapper.append(cloneImg);
 
@@ -78,8 +83,8 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
 
     setPosition({
       ...position,
-      x: touch.clientX - dragRef.current!.offsetWidth / 2,
-      y: touch.clientY - dragRef.current!.offsetHeight / 2,
+      x: touch.clientX - cloneRef.current!.offsetWidth / 2,
+      y: touch.clientY - cloneRef.current!.offsetHeight / 2,
     });
     console.log("포지션", position.x, position.y);
   };

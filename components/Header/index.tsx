@@ -19,6 +19,7 @@ const Header = () => {
   const isHomePage = pathName.length < 1;
   const dragRef = useRef<HTMLImageElement>(null);
   const wrapperRef = useRef<HTMLHeadingElement>(null);
+  const cloneRef = useRef<HTMLElement>(null);
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -28,6 +29,8 @@ const Header = () => {
   const { onTouchStart, onTouchMove, onTouchEnd, position } = useTouch({
     dragRef,
     wrapperRef,
+    cloneRef,
+    pathName,
   });
 
   const animation = isHomePage && {
@@ -75,9 +78,10 @@ const Header = () => {
           }
           <i
             id={"wizard-clone-wrapper"}
+            ref={cloneRef}
             style={{ top: position.y, left: position.x }}
             draggable
-            className="absolute hidden opacity-70 w-14 h-14 z-0"
+            className="absolute hidden opacity-80 w-20 h-20 z-0"
           />
 
           {LINKS.map((link) => (
