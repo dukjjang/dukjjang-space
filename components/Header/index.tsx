@@ -72,7 +72,7 @@ const Header = () => {
               // onDragStart={handleDragStart}
               // onDragEnd={handleDragEnd}
               draggable
-              className={`bg-background peer text-green-300 ${
+              className={` peer text-green-300 ${
                 pathName !== "writing" && "hidden"
               } `}
             >
