@@ -15,21 +15,22 @@ const useTouch = ({ dragRef, wrapperRef, cloneRef, pathName }: Props) => {
     dy: 0,
   });
 
-  if (pathName === "writing") {
-    useEffect(() => {
-      const handleDocumentTouchMove = (e) => {
-        if (cloneRef.current.children.length > 0) {
-          e.preventDefault();
-        }
-      };
+  useEffect(() => {
+    const handleDocumentTouchMove = (e) => {
+      if (cloneRef.current.children.length > 0) {
+        console.log("도큐먼트에서 막음");
+        e.preventDefault();
+      }
+    };
 
-      const writingPage = document.getElementById("writing");
+    const writingPage = document.getElementById("writing");
+    console.log("도큐먼트 터치무브");
 
+    if (writingPage)
       writingPage.addEventListener("touchmove", handleDocumentTouchMove, {
         passive: false,
       });
-    }, []);
-  }
+  }, []);
 
   useEffect(() => {
     wrapperRef.current.addEventListener("touchstart", (e) => {
