@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, TouchEvent, useEffect, useState } from "react";
 
 type Props = {
   dragRef: RefObject<HTMLImageElement | HTMLElement>;
@@ -15,7 +15,21 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
   });
 
   useEffect(() => {
+    const handleDocumentTouchMove = (e) => {
+      console.log("도큐멘트 터치무브");
+      const touchTarget = e.target as HTMLElement;
+      if (touchTarget.hasAttribute("dragable")) e.preventDefault();
+    };
+
+    document.addEventListener("touchmove", handleDocumentTouchMove, {
+      passive: false,
+    });
+    return document.removeEventListener("touchmove", handleDocumentTouchMove);
+  }, []);
+
+  useEffect(() => {
     wrapperRef.current.addEventListener("touchstart", (e) => {
+      document.body.classList.add("overflow-hidden");
       const { tagName } = e.target as HTMLElement;
       if (
         tagName === "H1" ||
@@ -26,15 +40,6 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
         return;
       else e.preventDefault();
     });
-
-    window.scroll(0, 0);
-
-    window.addEventListener("scroll", () => {
-      setScrollY(window.scrollY);
-    });
-    console.log(scrollY);
-
-    return window.removeEventListener("scroll", () => {});
   }, []);
 
   const onTouchStart = (e) => {
@@ -42,61 +47,31 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
 
     const nav = document.getElementById("nav");
 
+    document.body.classList.add("overflow-hidden");
+
     const cloneImg = dragRef.current.cloneNode(true) as HTMLImageElement;
     nav.append(cloneImg);
     nav.insertBefore(cloneImg, nav.firstChild);
-    // cloneImg.style.position = "absolute";
-    // cloneImg.style.top = dragRef.current.offsetTop.toString();
-    // cloneImg.style.left = dragRef.current.offsetLeft.toString();
     cloneImg.id = "cloneImg";
 
     setPosition({
-      ...position,
       x: dragRef.current.offsetLeft,
       y: dragRef.current.offsetTop,
+      dx: dragRef.current.offsetLeft,
+      dy: dragRef.current.offsetTop,
     });
 
     dragRef.current.classList.add("absolute");
   };
 
-  const onTouchMove = (e) => {
+  const onTouchMove = (e: TouchEvent) => {
     const touch = e.touches[0];
-
-    if (
-      touch.pageX < 0 + dragRef.current!.offsetWidth / 2 ||
-      touch.pageX + dragRef.current!.offsetWidth / 2 > window.screen.width
-    ) {
-      return;
-    }
-    if (
-      touch.pageY < position.dy - scrollY ||
-      touch.pageY - scrollY + dragRef.current!.offsetHeight / 2 >
-        window.screen.height
-    ) {
-      return;
-    }
 
     setPosition({
       ...position,
-      x: touch.pageX - dragRef.current!.offsetWidth / 2,
-      y: touch.pageY - scrollY - dragRef.current!.offsetHeight / 2,
+      x: touch.clientX - dragRef.current!.offsetWidth / 2,
+      y: touch.clientY - dragRef.current!.offsetHeight / 2,
     });
-
-    // const cloneImg = document.getElementById("cloneImg");
-    // cloneImg.style.top = (
-    //   touch.pageX -
-    //   dragRef.current!.offsetWidth / 2
-    // ).toString();
-    // cloneImg.style.left = (
-    //   touch.pageY -
-    //   scrollY -
-    //   dragRef.current!.offsetHeight / 2
-    // ).toString();
-
-    const target = document.elementFromPoint(
-      position.x + dragRef.current!.offsetWidth,
-      position.y + dragRef.current!.offsetHeight - 5
-    );
   };
 
   const onTouchEnd = (e) => {
@@ -105,6 +80,7 @@ const useTouch = ({ dragRef, wrapperRef }: Props) => {
 
     const cloneImg = document.getElementById("cloneImg");
     document.getElementById("nav").removeChild(cloneImg);
+    document.body.classList.remove("overflow-hidden");
   };
 
   return { onTouchStart, onTouchMove, onTouchEnd, position };

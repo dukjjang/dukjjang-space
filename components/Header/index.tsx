@@ -9,7 +9,7 @@ import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
 import Logo from "../Logo";
 import UnderLine from "../UnderLine";
-import Wizard from "/public/images/wizard.svg";
+import Wizard from "/public/images/wizard.png";
 
 import { useRef, useState } from "react";
 import useTouch from "../Hooks/useTouch";
@@ -37,7 +37,7 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
-  const handleDragStart = (e) => {
+  const handleDragStart = () => {
     setGrab(true);
   };
 
@@ -52,7 +52,8 @@ const Header = () => {
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 w-full ${
         isHomePage ? "bg-primary ts-color" : "bg-transparent"
-      } backdrop-blur-sm z-50  `}
+      } backdrop-blur-sm  z-50  `}
+      onTouchEnd={() => document.body.classList.remove("overflow-hidden")}
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
@@ -60,22 +61,24 @@ const Header = () => {
           id="nav"
           className=" text-background h-14  gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center"
         >
-          <Image
-            style={{ top: position.y, left: position.x }}
-            ref={dragRef}
-            id={"wizard"}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            draggable
-            width={35}
-            height={35}
-            alt="magic stick"
-            src={Wizard}
-            className={` peer ${pathName !== "writing" && "hidden"}    `}
-          />
+          {
+            <i
+              id={"wizard"}
+              style={{ top: position.y, left: position.x }}
+              ref={dragRef}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+              // onDragStart={handleDragStart}
+              // onDragEnd={handleDragEnd}
+              draggable
+              className={`bg-background peer text-green-300 ${
+                pathName !== "writing" && "hidden"
+              } `}
+            >
+              <Image width={45} height={45} alt="magic stick" src={Wizard} />
+            </i>
+          }
 
           {LINKS.map((link) => (
             <Link
