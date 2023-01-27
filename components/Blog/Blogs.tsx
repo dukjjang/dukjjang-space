@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { DragEvent, useState } from "react";
 import BlogItem from "./BlogItem";
 

@@ -81,6 +81,8 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     if (target) {
       target.classList.remove("border-2");
       target.classList.remove("border-green-400");
+      target.classList.add("row-span-4");
+      target.classList.add("h-[400px]");
     }
 
     const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");
