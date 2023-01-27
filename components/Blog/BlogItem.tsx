@@ -23,6 +23,7 @@ const BlogItem = ({
   setCurrentDragEnter,
 }: Props) => {
   const handleDragEnter = (e: DragEvent<HTMLLIElement>, idx: number) => {
+    console.log("엔터", idx);
     setCurrentDragEnter(idx);
     e.preventDefault();
   };
@@ -46,10 +47,8 @@ const BlogItem = ({
       }}
       className={`${dragCache[idx].magic === 1 && `row-span-2 h-fit`} ${
         dragCache[idx].magic === 2 && `row-span-4 h-[500px]`
-      } dropzone relative flex flex-col w-full rounded-lg shadow-lg   md:overflow-hidden   ${
-        currentDragEnter === idx &&
-        "outline transition-all duration-100 ease-in outline-green-400 dark:outline-blue-500 "
-      } `}
+      } dropzone relative flex flex-col w-full md:rounded-lg shadow-lg
+       overflow-hidden  box-border ${currentDragEnter === idx && "over"}  `}
       key={post._id}
     >
       <div

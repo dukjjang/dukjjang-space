@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { DragEvent, useState } from "react";
 import BlogItem from "./BlogItem";
 
@@ -18,13 +17,15 @@ const Blogs = ({ posts }: Props) => {
     if (target.tagName === "UL") setCurrentDragEnter(-1);
   };
 
+  console.log("블로그 랜더링");
+
   return (
     <ul
       id="blogs"
       onDragOver={(e) => e.preventDefault()}
       onDragEnter={handleDragEnter}
       className=" gap-y-6 grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense md:px-10 
-      md:gap-10 md:gap-y-16 md:pb-24 md:h-full md:py-10 "
+      md:gap-10 md:gap-y-16 md:pb-24 md:h-full md:py-10 box-border "
     >
       {posts.map((post, idx) => (
         <BlogItem

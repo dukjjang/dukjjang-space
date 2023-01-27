@@ -44,7 +44,7 @@ const Header = () => {
       ref={wrapperRef}
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 left-0 w-full ${
-        isHomePage ? " bg-primary ts-color" : "bg-transparent"
+        isHomePage ? " bg-primary ts-color" : "bg-primary"
       } backdrop-blur-sm z-50 `}
     >
       <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">

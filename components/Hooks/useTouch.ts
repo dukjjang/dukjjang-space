@@ -14,10 +14,6 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
   const [beforeOverEle, setBeforeOverEle] = useState<HTMLElement>();
   const [currentOverEle, setCurrentOverEle] = useState<HTMLElement>();
 
-  if (beforeOverEle && currentOverEle === null) {
-    beforeOverEle.classList.remove("border-2");
-  }
-
   const handleTouchStart = (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
@@ -60,15 +56,20 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     const target = touchOverElement?.closest("ul > li") as HTMLElement;
 
     if (target) {
+      if (target.dataset.dragCache === "full") return;
+
       setBeforeOverEle(target);
       setCurrentOverEle(target);
 
-      target.classList.add("border-2");
-      target.classList.add("border-green-400");
+      target.classList.add("over");
     } else {
       setCurrentOverEle(null);
     }
   };
+
+  if (beforeOverEle && currentOverEle === null) {
+    beforeOverEle.classList.remove("over");
+  }
 
   const handleTouchEnd = (e) => {
     const touchOverElement = document.elementFromPoint(
@@ -79,10 +80,10 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     const target = touchOverElement?.closest("ul > li") as HTMLElement;
 
     if (target) {
-      target.classList.remove("border-2");
-      target.classList.remove("border-green-400");
+      target.classList.remove("over");
       target.classList.add("row-span-4");
       target.classList.add("h-[400px]");
+      target.dataset.dragCache = "full";
     }
 
     const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");

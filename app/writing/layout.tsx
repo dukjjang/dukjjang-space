@@ -1,4 +1,3 @@
-import Header from "../../components/Header";
 import { Providers } from "../Provider";
 
 export default function RootLayout({

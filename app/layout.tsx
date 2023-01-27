@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body className=" overflow-auto">
+      <body>
         <Providers>
           <Header />
           {children}
