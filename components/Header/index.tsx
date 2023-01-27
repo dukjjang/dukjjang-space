@@ -11,8 +11,9 @@ import Logo from "../Logo";
 import UnderLine from "../UnderLine";
 import Wizard from "/public/images/wizard.png";
 
-import { useRef } from "react";
-import useTouch from "../Hooks/useTouch";
+import { useEffect, useRef, useState } from "react";
+import useTouch from "../../Hooks/useTouch";
+import { useScrollDirection } from "../../Hooks/useScrollDirection";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
@@ -20,6 +21,44 @@ const Header = () => {
   const dragRef = useRef<HTMLImageElement>(null);
   const wrapperRef = useRef<HTMLHeadingElement>(null);
   const cloneRef = useRef<HTMLElement>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolling, setScrolling] = useState(false);
+
+  const scrollDirection = useScrollDirection();
+
+  console.log("스크롤디렉션", scrollDirection);
+
+  useEffect(() => {
+    document.addEventListener("scroll", (event) => {
+      setScrolling(true);
+    });
+
+    createScrollStopListener(
+      window,
+      function () {
+        console.log("터치 끝@");
+        setScrolling(false);
+      },
+      150
+    );
+  }, []);
+
+  console.log(scrollDirection);
+
+  function createScrollStopListener(element, callback, timeout) {
+    let handle = null;
+    let onScroll = function () {
+      if (handle) {
+        clearTimeout(handle);
+      }
+      handle = setTimeout(callback, timeout || 200); // default 200 ms
+      setLastScrollY(element.scrollY);
+    };
+    element.addEventListener("scroll", onScroll);
+    return function () {
+      element.removeEventListener("scroll", onScroll);
+    };
+  }
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -44,10 +83,12 @@ const Header = () => {
       ref={wrapperRef}
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 left-0 w-full ${
-        isHomePage ? " bg-primary ts-color" : "bg-primary"
-      } backdrop-blur-sm z-50 `}
+        isHomePage ? " bg-primary ts-color" : "bg-transparent"
+      } backdrop-blur-sm z-50   ${
+        scrolling && !isHomePage && scrollDirection === "down" && "invisible"
+      }  visible`}
     >
-      <div className=" text-background mx-auto flex py-8 px-5 md:px-20 lg:px-64 w-full items-center">
+      <div className=" text-background mx-auto flex py-5 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
         <nav
           id="nav"

@@ -1,4 +1,4 @@
-import { RefObject, TouchEventHandler, useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 type Props = {
   dragRef: RefObject<HTMLImageElement | HTMLElement>;
