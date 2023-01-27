@@ -67,9 +67,11 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     }
   };
 
-  if (beforeOverEle && currentOverEle === null) {
-    beforeOverEle.dataset.over = "false";
-  }
+  useEffect(() => {
+    if (beforeOverEle && currentOverEle === null) {
+      beforeOverEle.dataset.over = "false";
+    }
+  }, [currentOverEle]);
 
   const handleTouchEnd = (e) => {
     const touchOverElement = document.elementFromPoint(
@@ -80,9 +82,8 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     const target = touchOverElement?.closest("ul > li") as HTMLElement;
 
     if (target) {
+      target.classList.add("h-96");
       target.dataset.over = "false";
-      target.classList.add("row-span-4");
-      target.classList.add("h-[400px]");
       target.dataset.dragCache = "full";
     }
 

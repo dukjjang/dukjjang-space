@@ -21,12 +21,9 @@ const Header = () => {
   const dragRef = useRef<HTMLImageElement>(null);
   const wrapperRef = useRef<HTMLHeadingElement>(null);
   const cloneRef = useRef<HTMLElement>(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [scrolling, setScrolling] = useState(false);
 
   const scrollDirection = useScrollDirection();
-
-  console.log("스크롤디렉션", scrollDirection);
 
   useEffect(() => {
     document.addEventListener("scroll", (event) => {
@@ -36,14 +33,11 @@ const Header = () => {
     createScrollStopListener(
       window,
       function () {
-        console.log("터치 끝@");
         setScrolling(false);
       },
       150
     );
   }, []);
-
-  console.log(scrollDirection);
 
   function createScrollStopListener(element, callback, timeout) {
     let handle = null;
@@ -52,7 +46,6 @@ const Header = () => {
         clearTimeout(handle);
       }
       handle = setTimeout(callback, timeout || 200); // default 200 ms
-      setLastScrollY(element.scrollY);
     };
     element.addEventListener("scroll", onScroll);
     return function () {
@@ -84,9 +77,9 @@ const Header = () => {
       {...animation}
       className={`${!isHomePage && "sticky"} top-0 left-0 w-full ${
         isHomePage ? " bg-primary ts-color" : "bg-transparent"
-      } backdrop-blur-sm z-50   ${
+      } backdrop-blur-sm z-50 ${
         scrolling && !isHomePage && scrollDirection === "down" && "invisible"
-      }  visible`}
+      } `}
     >
       <div className=" text-background mx-auto flex py-5 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
