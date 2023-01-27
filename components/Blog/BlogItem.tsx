@@ -42,13 +42,16 @@ const BlogItem = ({
     <li
       onDrop={() => handleDrop(idx)}
       id={post._id}
+      data-over={false}
       onDragEnter={(e) => {
         handleDragEnter(e, idx);
       }}
       className={`${dragCache[idx].magic === 1 && `row-span-2 h-fit`} ${
         dragCache[idx].magic === 2 && `row-span-4 h-[500px]`
       } dropzone relative flex flex-col w-full md:rounded-lg shadow-lg
-       overflow-hidden  box-border ${currentDragEnter === idx && "over"}  `}
+       overflow-hidden box-border data-[over=true]:over ${
+         currentDragEnter === idx && "over"
+       }  `}
       key={post._id}
     >
       <div

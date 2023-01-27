@@ -18,6 +18,8 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     e.preventDefault();
     e.stopPropagation();
 
+    document.body.style.touchAction = "none";
+
     const wizardCloneWrapper = document.getElementById("wizard-clone-wrapper");
     wizardCloneWrapper.classList.remove("hidden");
 
@@ -49,26 +51,24 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     });
 
     const touchOverElement = document.elementFromPoint(
-      cloneRef.current.offsetLeft - cloneRef.current.offsetWidth + 50,
+      cloneRef.current.offsetLeft + cloneRef.current.offsetWidth,
       cloneRef.current.offsetTop - cloneRef.current.offsetHeight + 100
     );
-
     const target = touchOverElement?.closest("ul > li") as HTMLElement;
 
     if (target) {
       if (target.dataset.dragCache === "full") return;
-
       setBeforeOverEle(target);
       setCurrentOverEle(target);
 
-      target.classList.add("over");
+      target.dataset.over = "true";
     } else {
       setCurrentOverEle(null);
     }
   };
 
   if (beforeOverEle && currentOverEle === null) {
-    beforeOverEle.classList.remove("over");
+    beforeOverEle.dataset.over = "false";
   }
 
   const handleTouchEnd = (e) => {
@@ -80,7 +80,7 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     const target = touchOverElement?.closest("ul > li") as HTMLElement;
 
     if (target) {
-      target.classList.remove("over");
+      target.dataset.over = "false";
       target.classList.add("row-span-4");
       target.classList.add("h-[400px]");
       target.dataset.dragCache = "full";
@@ -98,6 +98,7 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     });
 
     document.body.classList.remove("overflow-hidden");
+    document.body.style.touchAction = "auto";
   };
 
   useEffect(() => {
