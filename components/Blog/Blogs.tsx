@@ -8,6 +8,8 @@ type Props = {
 };
 
 const Blogs = ({ posts }: Props) => {
+  console.log("포스트", posts, posts.length);
+
   const initialDragCache = posts.map((post) => ({ id: post._id, magic: 0 }));
   const [dragCache, setDragCache] = useState(initialDragCache);
   const [currentDragEnter, setCurrentDragEnter] = useState(-1);

@@ -22,9 +22,7 @@ const Header = () => {
   const wrapperRef = useRef<HTMLHeadingElement>(null);
   const cloneRef = useRef<HTMLElement>(null);
   const [scrolling, setScrolling] = useState(false);
-
   const scrollDirection = useScrollDirection();
-  console.log(pathName.match("studio"));
 
   useEffect(() => {
     document.addEventListener("scroll", (event) => {

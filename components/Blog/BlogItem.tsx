@@ -1,5 +1,3 @@
-"use client";
-
 import Img from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { DragEvent } from "react";
@@ -13,7 +11,6 @@ type Props = {
   currentDragEnter: number;
   setCurrentDragEnter: Dispatch<SetStateAction<number>>;
 };
-
 const BlogItem = ({
   post,
   idx,
@@ -54,35 +51,39 @@ const BlogItem = ({
        }  `}
       key={post._id}
     >
+      {post.mainImage.asset && (
+        <div
+          className={`${
+            dragCache[idx].magic === 2 ? "md:block" : "md:hidden"
+          } relative h-full w-full`}
+        >
+          <Img
+            className="object-cover "
+            src={urlFor(post.mainImage).url()}
+            alt={post.author.name}
+            fill
+          />
+        </div>
+      )}
       <div
-        className={`${
-          dragCache[idx].magic === 2 ? "md:block" : "md:hidden"
-        } relative h-full w-full`}
-      >
-        <Img
-          className="object-cover "
-          src={urlFor(post.mainImage).url()}
-          alt={post.author.name}
-          fill
-        />
-      </div>
-      <div
-        className="  w-full h-fit 
+        className="w-full h-fit 
              bg-white dark:bg-[#222222] text-white flex flex-col justify-between 
               px-5 py-3  "
       >
         <div className="text-background ">
           <div className="flex justify-between mb-2">
-            <p className="text-xl md:text-2xl">{post.title}</p>
-            {post.categories.map((category) => (
-              <div
-                key={category._id}
-                className="text-md font-bold text-green-400 dark:text-blue-400"
-              >
-                <p>{category.title}</p>
-              </div>
-            ))}
+            <p className="text-xl md:text-2xl">{post.title && post.title}</p>
+            {post.categories[0] &&
+              post.categories.map((category) => (
+                <div
+                  key={category._id}
+                  className="text-md font-bold text-green-400 dark:text-blue-400"
+                >
+                  <p>{category.title}</p>
+                </div>
+              ))}
           </div>
+
           <div
             className={`${
               dragCache[idx].magic > 0 ? "h-[140px]" : "h-[50px]"
@@ -93,9 +94,10 @@ const BlogItem = ({
               {post.description && `${post.description} | `}
             </p>
             <p className=" inline">
-              {post.body
-                .find((item) => item._type === "block")
-                .children.map((child) => child.text)}
+              {post.body &&
+                post.body
+                  .find((item) => item._type === "block")
+                  .children.map((child) => child.text)}
             </p>
           </div>
           <p className="text-sm font-sans text-gray-600">

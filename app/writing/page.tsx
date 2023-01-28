@@ -11,14 +11,14 @@ const query = groq`
   ...,
   author->,
   categories[]->
-  | order(_createdAt desc)
-}
+} | order(_createdAt desc)
 `;
 
 const Writing = async () => {
   const posts = await client.fetch(query);
 
   if (previewData()) {
+    console.log("포스트", posts);
     return (
       <PreviewSuspense
         fallback={
