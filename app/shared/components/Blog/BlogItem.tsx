@@ -57,6 +57,7 @@ const BlogItem = ({
           } `}
         >
           <Img
+            draggable="false"
             className="object-cover"
             src={urlFor(post.mainImage).url()}
             alt={post.author.name}

@@ -9,11 +9,11 @@ import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
 import Logo from "../Logo";
 import UnderLine from "../UnderLine";
-import Wizard from "/public/images/wizard.png";
+import Wizard from "/public/images/Wizard.png";
 
 import { useEffect, useRef, useState } from "react";
-import useTouch from "../../Hooks/useTouch";
-import { useScrollDirection } from "../../Hooks/useScrollDirection";
+import useTouch from "../../hooks/useTouch";
+import { useScrollDirection } from "../../hooks/useScrollDirection";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
@@ -25,7 +25,7 @@ const Header = () => {
   const scrollDirection = useScrollDirection();
 
   useEffect(() => {
-    document.addEventListener("scroll", (event) => {
+    document.addEventListener("scroll", () => {
       setScrolling(true);
     });
 
@@ -38,13 +38,17 @@ const Header = () => {
     );
   }, []);
 
-  function createScrollStopListener(element, callback, timeout) {
+  function createScrollStopListener(
+    element: any,
+    callback: () => void,
+    timeout: number
+  ) {
     let handle = null;
     let onScroll = function () {
       if (handle) {
         clearTimeout(handle);
       }
-      handle = setTimeout(callback, timeout || 200); // default 200 ms
+      handle = setTimeout(callback, timeout || 200);
     };
     element.addEventListener("scroll", onScroll);
     return function () {
@@ -74,17 +78,19 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...animation}
-      className={`${!isHomePage && "sticky"} ${
-        pathName.match("studio") && "hidden"
-      } ${isHomePage ? " bg-primary ts-color" : "bg-transparent"} ${
-        scrolling && scrollDirection === "down" && "opacity-0"
-      } opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full transition-opacity duration-500 ease-in-out `}
+      className={`opacity-1 backdrop-blur-sm  z-50 top-0 left-0 w-full transition-transform duration-500 ease-in-out
+        ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
+        isHomePage ? " bg-primary ts-color" : "bg-transparent"
+      } ${scrolling && scrollDirection === "down" && "-translate-y-24"} `}
     >
-      <div className=" text-background mx-auto flex py-5 px-5 md:px-20 lg:px-64 w-full items-center">
-        <Logo />
+      <div className="text-background mx-auto flex py-5 px-5 md:px-20 lg:px-64 w-full items-center">
+        <Link href="/" scroll={false}>
+          <Logo />
+        </Link>
         <nav
           id="nav"
-          className=" text-background h-14  gap-3 md:gap-8 font-normal text-[16px] ml-auto flex items-center justify-center"
+          className="text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
+          flex items-center justify-center"
         >
           <i
             id={"wizard-wrapper"}
@@ -101,18 +107,18 @@ const Header = () => {
             />
           </i>
           <i
-            id={"wizard-clone-wrapper"}
+            id={"clone-wizard"}
             ref={cloneRef}
             style={{ top: y, left: x }}
             draggable
-            className=" absolute hidden opacity-80 w-20 h-20 z-0"
+            className="absolute hidden opacity-80 w-20 h-20 z-0"
           />
-
           {LINKS.map((link) => (
             <Link
               key={link.id}
               className="md:p-2 rounded"
               href={`/${link.path}`}
+              scroll={false}
             >
               <h6 className="relative">
                 {link.name}

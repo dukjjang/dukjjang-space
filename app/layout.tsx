@@ -1,7 +1,6 @@
 import { Providers } from "./Provider";
 import "../styles/global.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "./shared/components/Header";
 
 export default function RootLayout({
   children,

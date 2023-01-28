@@ -1,6 +1,6 @@
 import { previewData } from "next/headers";
-import Footer from "../components/Footer";
-import Resume from "../components/Resume";
+import Footer from "./shared/components/Footer";
+import Resume from "./shared/components/Resume";
 
 const Home = () => {
   if (!previewData) return <div>not Data</div>;
