@@ -17,8 +17,6 @@ const Blogs = ({ posts }: Props) => {
     if (target.tagName === "UL") setCurrentDragEnter(-1);
   };
 
-  console.log("블로그 랜더링");
-
   return (
     <ul
       id="blogs"

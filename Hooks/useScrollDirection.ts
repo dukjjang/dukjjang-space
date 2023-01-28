@@ -1,14 +1,14 @@
-import * as React from "react";
+import { useEffect, useRef, useState } from "react";
 
 const THRESHOLD = 0;
 
 const useScrollDirection = () => {
-  const [scrollDirection, setScrollDirection] = React.useState("up");
+  const [scrollDirection, setScrollDirection] = useState("up");
 
-  const blocking = React.useRef(false);
-  const prevScrollY = React.useRef(0);
+  const blocking = useRef(false);
+  const prevScrollY = useRef(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     prevScrollY.current = window.pageYOffset;
 
     const updateScrollDirection = () => {
