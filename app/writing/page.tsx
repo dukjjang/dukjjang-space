@@ -18,7 +18,6 @@ const Writing = async () => {
   const posts = await client.fetch(query);
 
   if (previewData()) {
-    console.log("포스트", posts);
     return (
       <PreviewSuspense
         fallback={

@@ -34,7 +34,7 @@ const Header = () => {
       function () {
         setScrolling(false);
       },
-      150
+      300
     );
   }, []);
 
@@ -76,11 +76,9 @@ const Header = () => {
       {...animation}
       className={`${!isHomePage && "sticky"} ${
         pathName.match("studio") && "hidden"
-      } top-0 left-0 w-full ${
-        isHomePage ? " bg-primary ts-color" : "bg-transparent"
-      } backdrop-blur-sm z-50 ${
-        scrolling && !isHomePage && scrollDirection === "down" && "invisible"
-      } `}
+      } ${isHomePage ? " bg-primary ts-color" : "bg-transparent"} ${
+        scrolling && scrollDirection === "down" && "opacity-0"
+      } opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full transition-opacity duration-500 ease-in-out `}
     >
       <div className=" text-background mx-auto flex py-5 px-5 md:px-20 lg:px-64 w-full items-center">
         <Logo />
