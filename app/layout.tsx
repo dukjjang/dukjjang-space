@@ -1,6 +1,7 @@
 import { Providers } from "./Provider";
 import "../styles/global.css";
 import Header from "./shared/components/Header";
+import { ServerThemeProvider } from "next-themes";
 
 export default function RootLayout({
   children,
@@ -8,13 +9,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
-      </body>
-    </html>
+    <ServerThemeProvider attribute="class">
+      <html lang="en">
+        <body>
+          <Providers>
+            <Header />
+            {children}
+          </Providers>
+        </body>
+      </html>
+    </ServerThemeProvider>
   );
 }
