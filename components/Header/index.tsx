@@ -24,6 +24,7 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
 
   const scrollDirection = useScrollDirection();
+  console.log(pathName.match("studio"));
 
   useEffect(() => {
     document.addEventListener("scroll", (event) => {
@@ -75,7 +76,9 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...animation}
-      className={`${!isHomePage && "sticky"} top-0 left-0 w-full ${
+      className={`${!isHomePage && "sticky"} ${
+        pathName.match("studio") && "hidden"
+      } top-0 left-0 w-full ${
         isHomePage ? " bg-primary ts-color" : "bg-transparent"
       } backdrop-blur-sm z-50 ${
         scrolling && !isHomePage && scrollDirection === "down" && "invisible"

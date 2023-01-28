@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { previewData } from "next/headers";
 import Footer from "../components/Footer";
 import Resume from "../components/Resume";
