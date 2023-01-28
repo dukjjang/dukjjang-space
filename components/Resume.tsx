@@ -5,22 +5,28 @@ import UnderLine from "./UnderLine";
 
 const Resume = () => {
   return (
-    <section className=" ts-color w-full px-5 lg:px-56 bg-white h-[1000px] bg-background  ">
+    <section className="ts-color w-full px-5 lg:px-56 bg-white h-[1000px] bg-background">
       <div>
         <motion.div
           initial={{ opacity: 0, translateY: 30 }}
           animate={{ opacity: 1, translateY: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          <h1 className=" text-[24px] w-fit mb-10 text-black dark:text-neutral-200 md:text-4xl lg:text-6xl font-bold  ">
-            안녕하세요,{" "}
+          <h1
+            className="text-[24px] w-fit mb-10 text-black dark:text-neutral-200 
+            md:text-4xl lg:text-6xl font-bold"
+          >
+            안녕하세요,
             <span className="relative w-fit z-20">
               진현덕 <UnderLine />
             </span>
             입니다
             <span className="text-[#C3FA07] dark:text-blue-500">.</span>
           </h1>
-          <h2 className=" text-black dark:text-neutral-200 relative w-fit mb-4 font-bold text-2xl">
+          <h2
+            className="text-black dark:text-neutral-200 relative w-fit 
+            mb-4 font-bold text-2xl"
+          >
             Introduce
             <UnderLine />
           </h2>
@@ -31,16 +37,13 @@ const Resume = () => {
               학습하고 적용하는 것을 좋아하며,{" "}
             </p>
             <span className="relative w-fit">
-              <h6 className="inline-block">
-                {" "}
-                적응력과 개발속도가 빠른 편입니다
-              </h6>
+              <p className="inline-block">적응력과 개발속도가 빠른 편입니다</p>
               <UnderLine />
             </span>
             <p className="inline">
               . 확장성과 유지보수성이 높은 코드를 지향하며 리팩토링과 클린코드,
-              디자인 패턴에 관심이 많습니다.{" "}
-            </p>{" "}
+              디자인 패턴에 관심이 많습니다.
+            </p>
           </div>
         </motion.div>
       </div>

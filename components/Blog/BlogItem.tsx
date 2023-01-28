@@ -20,7 +20,6 @@ const BlogItem = ({
   setCurrentDragEnter,
 }: Props) => {
   const handleDragEnter = (e: DragEvent<HTMLLIElement>, idx: number) => {
-    console.log("엔터", idx);
     setCurrentDragEnter(idx);
     e.preventDefault();
   };
@@ -53,12 +52,12 @@ const BlogItem = ({
     >
       {post.mainImage.asset && (
         <div
-          className={`${
+          className={`relative h-full w-full ${
             dragCache[idx].magic === 2 ? "md:block" : "md:hidden"
-          } relative h-full w-full`}
+          } `}
         >
           <Img
-            className="object-cover "
+            className="object-cover"
             src={urlFor(post.mainImage).url()}
             alt={post.author.name}
             fill
@@ -66,9 +65,8 @@ const BlogItem = ({
         </div>
       )}
       <div
-        className="w-full h-fit 
-             bg-white dark:bg-[#222222] text-white flex flex-col justify-between 
-              px-5 py-3  "
+        className="w-full h-fit bg-white dark:bg-[#222222] text-white flex 
+        flex-col justify-between px-5 py-3"
       >
         <div className="text-background ">
           <div className="flex justify-between mb-2">
