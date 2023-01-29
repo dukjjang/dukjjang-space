@@ -9,23 +9,20 @@ import { useEffect, useRef, useState } from "react";
 import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
 import Logo from "../Logo";
-import UnderLine from "../UnderLine";
 import Wizard from "/public/images/Wizard.png";
 import Broom from "public/images/Broom.png";
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 import { useScrollDirection } from "../../hooks/useScrollDirection";
-import { useDrag } from "../../../DragContext";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
   const isHomePage = pathName.length < 1;
-  const dragRef = useRef<HTMLImageElement>(null);
+  const wizardRef = useRef<HTMLImageElement>(null);
   const wrapperRef = useRef<HTMLHeadingElement>(null);
-  const cloneRef = useRef<HTMLElement>(null);
+  const cloneBoxRef = useRef<HTMLDivElement>(null);
   const [scrolling, setScrolling] = useState(false);
   const scrollDirection = useScrollDirection();
   const broomRef = useRef<HTMLImageElement>(null);
-  const [drag, setDrag] = useDrag();
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -64,10 +61,9 @@ const Header = () => {
     { id: 1, name: "Contact", path: "contact" },
   ];
 
-  const { position, onDrags } = useDragAndDrop({
-    dragRef,
-    cloneRef,
-    wrapperRef,
+  const { position, onDrags, onTouches } = useDragAndDrop({
+    wizardRef,
+    cloneBoxRef,
     broomRef,
   });
 
@@ -103,12 +99,12 @@ const Header = () => {
           className="text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
           flex items-center justify-center"
         >
-          <i
+          <div
             id={"wizard-icon"}
-            ref={dragRef}
+            ref={wizardRef}
             className={`peer z-20 ${pathName !== "writing" && "hidden"}`}
             draggable
-            onDragOver={(e) => e.preventDefault()}
+            {...onTouches}
             {...onDrags}
           >
             <Image
@@ -118,19 +114,20 @@ const Header = () => {
               alt="magic stick"
               src={Wizard}
             />
-          </i>
-          <i
+          </div>
+          <div
             id={"broom-icon"}
             ref={broomRef}
             className={`peer z-20 ${pathName !== "writing" && "hidden"}`}
             draggable
+            {...onTouches}
             {...onDrags}
           >
             <Image id="broom" width={50} height={50} alt="broom" src={Broom} />
-          </i>
-          <i
-            id={"clone-wizard"}
-            ref={cloneRef}
+          </div>
+          <div
+            id={"clone-box"}
+            ref={cloneBoxRef}
             style={{ top: position.y, left: position.x }}
             className="absolute hidden opacity-80 w-20 h-20 z-20"
             draggable

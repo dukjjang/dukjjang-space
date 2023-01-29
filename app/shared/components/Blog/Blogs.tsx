@@ -1,5 +1,3 @@
-"use client";
-
 import BlogItem from "./BlogItem";
 
 type Props = {
@@ -10,7 +8,6 @@ const Blogs = ({ posts }: Props) => {
   return (
     <ul
       id="blogs"
-      onDragOver={(e) => e.preventDefault()}
       className=" gap-y-6 grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense 
       md:px-16 md:gap-10 md:gap-y-16 md:pb-24 md:h-full md:py-10 box-border "
     >

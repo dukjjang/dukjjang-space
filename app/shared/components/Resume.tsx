@@ -1,13 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useDrag } from "../../DragContext";
 import UnderLine from "./UnderLine";
 
 const Resume = () => {
-  const [overId, setOverId] = useDrag();
-
-  console.log("리줌", overId);
   return (
     <section className="ts-color w-full px-5 lg:px-56 bg-white h-[1000px] bg-background">
       <div>

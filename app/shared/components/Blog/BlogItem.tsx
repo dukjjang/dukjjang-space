@@ -1,7 +1,6 @@
 "use client";
 
 import Img from "next/image";
-import { Dispatch, SetStateAction } from "react";
 import urlFor from "../../lib/urlFor";
 import { useDrag } from "../../../DragContext";
 
@@ -16,6 +15,9 @@ const BlogItem = ({ post, idx }: Props) => {
     <li
       id={post._id}
       data-idx={idx}
+      onDragOver={(e) => {
+        e.preventDefault();
+      }}
       className={` dropzone relative flex flex-col w-full h-full md:rounded-lg shadow-lg
        overflow-hidden box-border ${drag.overId === post._id && "over"} ${
         drag.cache[idx] === 1 && `row-span-2 h-96`

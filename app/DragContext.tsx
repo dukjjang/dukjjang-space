@@ -33,6 +33,7 @@ export function DragProvider({ children }: { children: React.ReactNode }) {
       setDrag({ ...drag, cache: posts.map(() => 0) });
     })();
   }, []);
+
   return (
     <DragContext.Provider value={[drag, setDrag]}>
       {children}
