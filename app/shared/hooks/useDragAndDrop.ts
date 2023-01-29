@@ -1,23 +1,30 @@
 "use client";
 
-import { RefObject, useEffect, useState } from "react";
+import {
+  DragEvent,
+  DragEventHandler,
+  RefObject,
+  useEffect,
+  useState,
+} from "react";
 import { useDrag } from "../../DragContext";
 
 type Props = {
   dragRef: RefObject<HTMLImageElement | HTMLElement>;
+  broomRef: RefObject<HTMLImageElement | HTMLElement>;
   cloneRef: RefObject<HTMLElement>;
   wrapperRef: RefObject<HTMLElement>;
 };
 
-const useTouch = ({ dragRef, cloneRef }: Props) => {
+const useDragAndDrop = ({ dragRef, cloneRef, broomRef }: Props) => {
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
   });
 
-  const [beforeOverElementId, setBeforeOverElementId] = useState<string>("");
-  const [currentOverElementId, setCurrentOverElementId] = useState<string>("");
-  const [overId, setOverId] = useDrag();
+  const [drag, setDrag] = useDrag();
+
+  console.log("hook drag", drag);
 
   const cloneWizard = () => {
     const cloneWizardWrapper = document.getElementById("clone-wizard");
@@ -62,12 +69,9 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
       .find((ele) => ele.nodeName === "LI");
 
     if (touchOverElement) {
-      setOverId(touchOverElement.id);
-      // setCurrentOverElementId(touchOverElement.id);
-      // setBeforeOverElementId(touchOverElement.id);
+      setDrag({ ...drag, overId: touchOverElement.id });
     } else {
-      setOverId("");
-      // setCurrentOverElementId("");
+      setDrag({ ...drag, overId: "" });
     }
   };
 
@@ -80,9 +84,7 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
       .find((ele) => ele.nodeName === "LI") as HTMLElement;
 
     if (target) {
-      setCurrentOverElementId("");
-      setBeforeOverElementId("");
-      setOverId("");
+      setDrag({ ...drag, overId: "" });
       target.classList.add("h-96");
       target.dataset.dragCache = "full";
       target.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -103,19 +105,39 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     document.body.style.touchAction = "auto";
   };
 
-  const addTouchOverStyle = (before: string, current: string) => {
-    if (typeof window !== "object") return;
-    const overElement = document.getElementById(current) ?? null;
-    const prevOverElement = document.getElementById(before) ?? null;
+  const handleDrag = (e: DragEvent): void => {
+    console.log("handleDrag", e);
+    const dragOverElement = document
+      .elementsFromPoint(e.clientX, e.clientY)
+      .find((ele) => ele.nodeName === "LI");
 
-    if (overElement && overElement.dataset.dragCache !== "full") {
-      overElement.dataset.over = "true";
-    } else if (before !== current) {
-      prevOverElement.dataset.over = "false";
+    if (dragOverElement) {
+      setDrag({ overId: dragOverElement.id, cache: drag.cache });
+    } else {
+      setDrag({ overId: "", cache: drag.cache });
     }
   };
 
-  // addTouchOverStyle(beforeOverElementId, currentOverElementId);
+  const handleDragEnd = (e: DragEvent): void => {
+    const overElement = document
+      .elementsFromPoint(e.clientX, e.clientY)
+      .find((ele) => ele.nodeName === "LI") as HTMLElement;
+
+    console.log(e.currentTarget);
+
+    if (overElement) {
+      setDrag({
+        overId: "",
+        cache: drag.cache.map((count, index) => {
+          if (e.currentTarget.id === "wizard-icon") {
+            return Number(overElement.dataset.idx) === index && count < 2
+              ? (count += 1)
+              : count;
+          } else return Number(overElement.dataset.idx) === index ? 0 : count;
+        }),
+      });
+    }
+  };
 
   useEffect(() => {
     dragRef.current.addEventListener("touchstart", handleTouchStart);
@@ -123,7 +145,10 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     dragRef.current.addEventListener("touchend", handleTouchEnd);
   }, []);
 
-  return position;
+  return {
+    position,
+    onDrags: { onDrag: handleDrag, onDragEnd: handleDragEnd },
+  };
 };
 
-export default useTouch;
+export default useDragAndDrop;

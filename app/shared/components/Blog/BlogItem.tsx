@@ -2,61 +2,30 @@
 
 import Img from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import { DragEvent } from "react";
 import urlFor from "../../lib/urlFor";
 import { useDrag } from "../../../DragContext";
 
 type Props = {
   post: Post;
   idx: number;
-  dragCache: { id: string; magic: number }[];
-  setDragCache: Dispatch<SetStateAction<{ id: string; magic: number }[]>>;
-  currentDragEnter: number;
-  setCurrentDragEnter: Dispatch<SetStateAction<number>>;
 };
-const BlogItem = ({
-  post,
-  idx,
-  dragCache,
-  setDragCache,
-  currentDragEnter,
-  setCurrentDragEnter,
-}: Props) => {
-  const [overId] = useDrag();
-
-  const handleDragEnter = (e: DragEvent<HTMLLIElement>, idx: number) => {
-    setCurrentDragEnter(idx);
-    e.preventDefault();
-  };
-
-  const handleDrop = (idx: number): void => {
-    setCurrentDragEnter(-1);
-
-    if (dragCache[idx].magic === 2) return;
-
-    const temp = [...dragCache];
-    temp[idx].magic += 1;
-    setDragCache(temp);
-  };
+const BlogItem = ({ post, idx }: Props) => {
+  const [drag] = useDrag();
 
   return (
     <li
-      onDrop={() => handleDrop(idx)}
       id={post._id}
-      data-over={false}
-      onDragEnter={(e) => {
-        handleDragEnter(e, idx);
-      }}
-      className={`${dragCache[idx].magic === 1 && `row-span-2 h-fit`} ${
-        dragCache[idx].magic === 2 && `row-span-4 h-[500px]`
-      } dropzone relative flex flex-col w-full md:rounded-lg shadow-lg
-       overflow-hidden box-border ${overId === post._id && "over"}  `}
+      data-idx={idx}
+      className={` dropzone relative flex flex-col w-full h-full md:rounded-lg shadow-lg
+       overflow-hidden box-border ${drag.overId === post._id && "over"} ${
+        drag.cache[idx] === 1 && `row-span-2 h-96`
+      } ${drag.cache[idx] === 2 && ` row-span-4 h-[500px]`}  `}
       key={post._id}
     >
       {post.mainImage.asset && (
         <div
           className={`relative h-full w-full ${
-            dragCache[idx].magic === 2 ? "md:block" : "md:hidden"
+            drag.cache[idx] > 0 ? "md:block" : "md:hidden"
           } `}
         >
           <Img
@@ -88,14 +57,14 @@ const BlogItem = ({
 
           <div
             className={`${
-              dragCache[idx].magic > 0 ? "h-[140px]" : "h-[50px]"
+              drag.cache[idx] > 1 ? "h-[140px]" : "h-[50px]"
             } text-primary flex-1 text-md md:text-[16px]
                   w-full overflow-hidden mb-2 `}
           >
             <p className="text-background inline">
               {post.description && `${post.description} | `}
             </p>
-            <p className=" inline">
+            <p className="h-fit inline">
               {post.body &&
                 post.body
                   .find((item) => item._type === "block")

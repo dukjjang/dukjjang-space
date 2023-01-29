@@ -11,8 +11,10 @@ import Waves from "../Waves";
 import Logo from "../Logo";
 import UnderLine from "../UnderLine";
 import Wizard from "/public/images/Wizard.png";
-import useTouch from "../../hooks/useTouch";
+import Broom from "public/images/Broom.png";
+import useDragAndDrop from "../../hooks/useDragAndDrop";
 import { useScrollDirection } from "../../hooks/useScrollDirection";
+import { useDrag } from "../../../DragContext";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
@@ -22,6 +24,8 @@ const Header = () => {
   const cloneRef = useRef<HTMLElement>(null);
   const [scrolling, setScrolling] = useState(false);
   const scrollDirection = useScrollDirection();
+  const broomRef = useRef<HTMLImageElement>(null);
+  const [drag, setDrag] = useDrag();
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -60,10 +64,11 @@ const Header = () => {
     { id: 1, name: "Contact", path: "contact" },
   ];
 
-  const { x, y } = useTouch({
+  const { position, onDrags } = useDragAndDrop({
     dragRef,
     cloneRef,
     wrapperRef,
+    broomRef,
   });
 
   const headerSlideAnimation = isHomePage && {
@@ -98,26 +103,13 @@ const Header = () => {
           className="text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
           flex items-center justify-center"
         >
-          <motion.i
-            initial={{
-              opacity: 0,
-              scale: 0,
-              scaleX: -1,
-              x: -60,
-            }}
-            animate={{
-              opacity: [0, 1, 1, 1, 1],
-              scale: [0, 1, 1, 1, 1],
-              scaleX: [-1, -1, -1, -1, -1, 1],
-              x: [-60, -60, -40, -20, 0],
-              rotateZ: [0, 0, 10, 0, 10, 0],
-            }}
-            exit={{ scaleX: 1 }}
-            transition={{ delay: 1, duration: 6 }}
-            id={"wizard-wrapper"}
+          <i
+            id={"wizard-icon"}
             ref={dragRef}
+            className={`peer z-20 ${pathName !== "writing" && "hidden"}`}
             draggable
-            className={`peer z-10 ${pathName !== "writing" && "hidden"}`}
+            onDragOver={(e) => e.preventDefault()}
+            {...onDrags}
           >
             <Image
               id="wizard"
@@ -126,52 +118,25 @@ const Header = () => {
               alt="magic stick"
               src={Wizard}
             />
-          </motion.i>
-          <motion.i
-            initial={{
-              opacity: 1,
-              scaleX: -1,
-              x: 0,
-            }}
-            animate={{
-              opacity: [1, 1, 1, 1, 0],
-              scaleX: -1,
-              scale: [1, 1, 1, 1, 1, 0],
-              x: 60,
-            }}
-            transition={{ duration: 5 }}
-            id={"wizard-wrapper"}
+          </i>
+          <i
+            id={"broom-icon"}
+            ref={broomRef}
+            className={`peer z-20 ${pathName !== "writing" && "hidden"}`}
             draggable
-            className={`peer z-10 ${pathName.match("writing") && "hidden"} `}
+            {...onDrags}
           >
-            <Image
-              id="wizard"
-              width={60}
-              height={60}
-              alt="magic stick"
-              src={Wizard}
-            />
-          </motion.i>
+            <Image id="broom" width={50} height={50} alt="broom" src={Broom} />
+          </i>
           <i
             id={"clone-wizard"}
             ref={cloneRef}
-            style={{ top: y, left: x }}
+            style={{ top: position.y, left: position.x }}
+            className="absolute hidden opacity-80 w-20 h-20 z-20"
             draggable
-            className="absolute hidden opacity-80 w-20 h-20 z-0"
           />
           <div className="flex relative items-center gap-2">
-            <motion.div
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: [0, 1, 1, 1, 0, 0] }}
-              transition={{ delay: isHomePage ? 2 : 0, duration: 6 }}
-              className={`w-14 h-14 bg-white absolute opacity-80 
-               rounded-t-2xl ${
-                 isHomePage
-                   ? "lg:-left-8 -left-4 "
-                   : "lg:-left-[150px] -left-[130px]"
-               } -z-10 border-4 border-blue-500`}
-            />
-            {LINKS.map((link) => (
+            {/* {LINKS.map((link) => (
               <Link
                 key={link.id}
                 className="md:p-2 rounded"
@@ -183,7 +148,7 @@ const Header = () => {
                   {pathName === link.path && <UnderLine />}
                 </h6>
               </Link>
-            ))}
+            ))}*/}
           </div>
           <ThemeToggleButton />
         </nav>

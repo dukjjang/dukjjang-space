@@ -1,16 +1,40 @@
 "use client";
 
-import React from "react";
+import { groq } from "next-sanity";
+import React, { useEffect } from "react";
+import { client } from "./shared/lib/sanity.client";
+
+type Drag = {
+  overId: string;
+  cache: number[];
+};
+
+const query = groq`
+  *[_type=='post'] {
+  ...,
+  author->,
+  categories[]->
+} | order(_createdAt desc)
+`;
 
 const DragContext = React.createContext<
-  [string, React.Dispatch<React.SetStateAction<string>>] | undefined
+  [Drag, React.Dispatch<React.SetStateAction<Drag>>] | undefined
 >(undefined);
 
 export function DragProvider({ children }: { children: React.ReactNode }) {
-  const [overId, setOverId] = React.useState("진현덕");
-  console.log("컨텍스트에서 overId:", overId);
+  const [drag, setDrag] = React.useState({
+    overId: "",
+    cache: [],
+  });
+
+  useEffect(() => {
+    (async () => {
+      const posts = await client.fetch(query);
+      setDrag({ ...drag, cache: posts.map(() => 0) });
+    })();
+  }, []);
   return (
-    <DragContext.Provider value={[overId, setOverId]}>
+    <DragContext.Provider value={[drag, setDrag]}>
       {children}
     </DragContext.Provider>
   );
