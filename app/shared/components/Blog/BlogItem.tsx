@@ -23,8 +23,6 @@ const BlogItem = ({
   setCurrentDragEnter,
 }: Props) => {
   const [overId] = useDrag();
-  console.log("블로그에서 overId:", overId);
-  console.log(overId === post._id);
 
   const handleDragEnter = (e: DragEvent<HTMLLIElement>, idx: number) => {
     setCurrentDragEnter(idx);
