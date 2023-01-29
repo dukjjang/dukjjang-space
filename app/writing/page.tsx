@@ -4,6 +4,7 @@ import { client } from "../shared/lib/sanity.client";
 import PreviewBlogs from "../shared/components/Blog/PreviewBlogs";
 import PreviewSuspense from "../shared/components/Blog/PreviewSuspense";
 import Blogs from "../shared/components/Blog/Blogs";
+import Header from "../shared/components/Header";
 
 const query = groq`
   *[_type=='post'] {
@@ -32,6 +33,7 @@ const Writing = async () => {
 
   return (
     <main id="writing" className="h-full bg-background">
+      <Header />
       <section className="bg-background h-full w-full lg:px-[180px]">
         <Blogs posts={posts} />
       </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { RefObject, useEffect, useState } from "react";
+import { useDrag } from "../../DragContext";
 
 type Props = {
   dragRef: RefObject<HTMLImageElement | HTMLElement>;
@@ -16,6 +17,7 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
 
   const [beforeOverElementId, setBeforeOverElementId] = useState<string>("");
   const [currentOverElementId, setCurrentOverElementId] = useState<string>("");
+  const [overId, setOverId] = useDrag();
 
   const cloneWizard = () => {
     const cloneWizardWrapper = document.getElementById("clone-wizard");
@@ -60,10 +62,12 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
       .find((ele) => ele.nodeName === "LI");
 
     if (touchOverElement) {
-      setCurrentOverElementId(touchOverElement.id);
-      setBeforeOverElementId(touchOverElement.id);
+      setOverId(touchOverElement.id);
+      // setCurrentOverElementId(touchOverElement.id);
+      // setBeforeOverElementId(touchOverElement.id);
     } else {
-      setCurrentOverElementId("");
+      setOverId("");
+      // setCurrentOverElementId("");
     }
   };
 
@@ -78,7 +82,7 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     if (target) {
       setCurrentOverElementId("");
       setBeforeOverElementId("");
-      target.dataset.over = "false";
+      setOverId("");
       target.classList.add("h-96");
       target.dataset.dragCache = "full";
       target.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -111,7 +115,7 @@ const useTouch = ({ dragRef, cloneRef }: Props) => {
     }
   };
 
-  addTouchOverStyle(beforeOverElementId, currentOverElementId);
+  // addTouchOverStyle(beforeOverElementId, currentOverElementId);
 
   useEffect(() => {
     dragRef.current.addEventListener("touchstart", handleTouchStart);

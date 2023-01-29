@@ -1,7 +1,10 @@
+"use client";
+
 import Img from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { DragEvent } from "react";
 import urlFor from "../../lib/urlFor";
+import { useDrag } from "../../../DragContext";
 
 type Props = {
   post: Post;
@@ -19,6 +22,10 @@ const BlogItem = ({
   currentDragEnter,
   setCurrentDragEnter,
 }: Props) => {
+  const [overId] = useDrag();
+  console.log("블로그에서 overId:", overId);
+  console.log(overId === post._id);
+
   const handleDragEnter = (e: DragEvent<HTMLLIElement>, idx: number) => {
     setCurrentDragEnter(idx);
     e.preventDefault();
@@ -45,9 +52,7 @@ const BlogItem = ({
       className={`${dragCache[idx].magic === 1 && `row-span-2 h-fit`} ${
         dragCache[idx].magic === 2 && `row-span-4 h-[500px]`
       } dropzone relative flex flex-col w-full md:rounded-lg shadow-lg
-       overflow-hidden box-border data-[over=true]:over ${
-         currentDragEnter === idx && "over"
-       }  `}
+       overflow-hidden box-border ${overId === post._id && "over"}  `}
       key={post._id}
     >
       {post.mainImage.asset && (

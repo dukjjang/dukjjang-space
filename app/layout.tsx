@@ -12,10 +12,7 @@ export default function RootLayout({
     <ServerThemeProvider attribute="class">
       <html lang="en">
         <body>
-          <Providers>
-            <Header />
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ServerThemeProvider>
