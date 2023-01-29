@@ -73,15 +73,19 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
+  console.log(isHomePage);
+
   return (
     <motion.header
       id="header"
       ref={wrapperRef}
       {...animation}
-      className={`opacity-1 backdrop-blur-sm  z-50 top-0 left-0 w-full transition-transform duration-500 ease-in-out
+      className={`opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full transition-transform duration-500 ease-in-out
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
-        isHomePage ? " bg-primary ts-color" : "bg-transparent"
-      } ${scrolling && scrollDirection === "down" && "-translate-y-24"} `}
+        isHomePage
+          ? " bg-primary transition-colors duration-1000"
+          : "bg-transparent"
+      } ${scrolling && scrollDirection === "down" && "-translate-y-24"}`}
     >
       <div className="text-background mx-auto flex py-5 px-5 md:px-20 lg:px-64 w-full items-center">
         <Link href="/" scroll={false}>
