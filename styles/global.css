@@ -43,8 +43,9 @@
 }
 
 @layer base {
+  html,
   body {
-    @apply bg-primary h-full overflow-x-hidden transition-all duration-1000 ease-in-out;
+    @apply bg-white dark:bg-[#0E141B] h-full overflow-x-hidden;
   }
 
   footer {

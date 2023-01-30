@@ -32,12 +32,9 @@ const Writing = async () => {
   }
 
   return (
-    <main
-      id="writing"
-      className="h-[1000px] ts-color bg-[#CAE4F5] dark:bg-[#0E141B]  "
-    >
+    <main id="writing" className="h-full ts-color bg-background">
       <Header />
-      <section className=" bg-background h-fit w-full lg:px-[180px]">
+      <section className=" bg-background h-full w-full lg:px-[180px]">
         <Blogs posts={posts} />
       </section>
     </main>

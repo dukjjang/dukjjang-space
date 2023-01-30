@@ -105,8 +105,8 @@ const Header = () => {
           transition-transform duration-500 ease-in-out 
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
         isHomePage
-          ? " bg-primary transition-colors duration-1000"
-          : "bg-primary"
+          ? " bg-primary "
+          : "bg-transparent"
       } ${scrolling && scrollDirection === "down" && "-translate-y-24"}
 `}
     >
@@ -229,7 +229,7 @@ const Header = () => {
         <div
           className={`${
             showSlideMenu === true ? "scale-100" : "scale-0"
-          } p-5 md:hidden flex flex-col  w-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out`}
+          } p-5 md:hidden flex flex-col w-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out`}
         >
           <ul className=" flex items-end justify-center  ">
             {LINKS.map((link) => (
@@ -239,7 +239,7 @@ const Header = () => {
                   href={`/${link.path}`}
                   scroll={false}
                 >
-                  <h6 className=" relative text-lg w-fit h-fit ">
+                  <h6 className=" relative text-lg w-fit ">
                     {link.name}
                     {pathName === link.path && <UnderLine />}
                   </h6>
