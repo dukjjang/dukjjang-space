@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <ServerThemeProvider attribute="class">
       <html lang="en">
-        <body>
+        <body className="bg-background">
           <Providers>{children}</Providers>
         </body>
       </html>
