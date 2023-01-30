@@ -27,8 +27,9 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const scrollDirection = useScrollDirection();
   const broomRef = useRef<HTMLImageElement>(null);
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [showSlideMenu, setShowSlideMenu] = useState(false);
+  const sunRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -79,8 +80,20 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
-  const toggleSlideMenu = () => {
+  const toggleSlideMenu = (e) => {
     setShowSlideMenu(!showSlideMenu);
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" || theme === "system" ? "dark" : "light");
+  };
+
+  const handleTouchSun = (e) => {
+    sunRef.current.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+    });
+    e.preventDefault();
+    toggleTheme();
   };
 
   return (
@@ -88,7 +101,7 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...headerSlideAnimation}
-      className={`relative opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full 
+      className={` relative opacity-1 backdrop-blur-sm  top-0 left-0 w-full 
           transition-transform duration-500 ease-in-out overflow-hidden
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
         isHomePage
@@ -107,26 +120,43 @@ const Header = () => {
           <Logo />
         </Link>
         <div
-          className={`-z-20 relative ml-10 lg:ml-36 flex justify-center items-center 
+          className={` relative ml-10 lg:ml-36 flex justify-center items-center 
              ${isHomePage ? "block" : "hidden"}`}
         >
           <motion.div
-            animate={{ translateY: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-            className={`sun will-change-transform w-10 h-10 ${
-              isHomePage && "md:w-12 md:h-12"
-            } rounded-full absolute top-0`}
-          />
+            className="z-30"
+            animate={{
+              translateY: showSlideMenu ? 20 : 0,
+              translateX: showSlideMenu ? 70 : 0,
+            }}
+            transition={{ duration: 1 }}
+          >
+            <motion.div
+              ref={sunRef}
+              onClick={toggleTheme}
+              onTouchStart={handleTouchSun}
+              animate={{
+                translateY: [0, 10, 0],
+              }}
+              transition={{ repeat: showSlideMenu ? 0 : Infinity, duration: 3 }}
+              className={`${
+                theme === "light" ? "sun" : "moon"
+              } z-30 will-change-transform w-10 h-10 ${
+                isHomePage && "md:w-12 md:h-12"
+              } rounded-full absolute top-0 left-0 `}
+            />
+          </motion.div>
         </div>
+
         <nav
           id="nav"
-          className="text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
+          className=" text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
           flex items-center justify-center"
         >
           <div
             id={"wizard-icon"}
             ref={wizardRef}
-            className={`peer z-20 ${pathName !== "writing" && "hidden"}`}
+            className={`peer ${pathName !== "writing" && "hidden"}`}
             draggable
             {...onTouches}
             {...onDrags}
@@ -137,12 +167,13 @@ const Header = () => {
               height={45}
               alt="magic stick"
               src={Wizard}
+              className=""
             />
           </div>
           <div
             id={"broom-icon"}
             ref={broomRef}
-            className={`peer z-20 ${pathName !== "writing" && "hidden"}`}
+            className={`peer ${pathName !== "writing" && "hidden"}`}
             draggable
             {...onTouches}
             {...onDrags}
@@ -153,7 +184,7 @@ const Header = () => {
             id={"clone-box"}
             ref={cloneBoxRef}
             style={{ top: position.y, left: position.x }}
-            className="absolute hidden opacity-80 w-20 h-20 z-20"
+            className="absolute hidden opacity-80 w-20 h-20"
             draggable
           />
           <div className={` hidden md:flex relative items-center gap-2`}>
@@ -171,32 +202,8 @@ const Header = () => {
               </Link>
             ))}
           </div>
-          <div
-            className={`${
-              showSlideMenu === true ? "translate-x-0" : "translate-x-full"
-            } p-5 md:hidden flex flex-col h-full w-full fixed top-0 right-0 bg-background z-50 transition-all duration-1000 ease-in-out  `}
-          >
-            <ul className="flex items-end justify-center  ">
-              {LINKS.map((link) => (
-                <li key={link.id} className="p-3 ">
-                  <Link
-                    className="md:p-2 rounded"
-                    href={`/${link.path}`}
-                    scroll={false}
-                  >
-                    <h6 className="relative text-lg w-fit h-fit ">
-                      {link.name}
-                      {pathName === link.path && <UnderLine />}
-                    </h6>
-                  </Link>
-                </li>
-              ))}
-              <li className="p-3">
-                <ThemeToggleButton />
-              </li>
-            </ul>
-          </div>
-          <div className="z-50">
+
+          <div className="z-50 transition-all duration-200">
             {showSlideMenu ? (
               <MdOutlineClose size={30} onClick={toggleSlideMenu} />
             ) : (
@@ -208,6 +215,32 @@ const Header = () => {
             )}
           </div>
         </nav>
+        {/*slideMenu */}
+        <div
+          className={`${
+            showSlideMenu === true ? "translate-x-0" : "translate-x-full hidden"
+          } p-5 md:hidden flex flex-col  w-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out  `}
+        >
+          <ul className=" flex items-end justify-center  ">
+            {LINKS.map((link) => (
+              <li key={link.id} className="p-3 ">
+                <Link
+                  className="md:p-2 rounded"
+                  href={`/${link.path}`}
+                  scroll={false}
+                >
+                  <h6 className=" relative text-lg w-fit h-fit ">
+                    {link.name}
+                    {pathName === link.path && <UnderLine />}
+                  </h6>
+                </Link>
+              </li>
+            ))}
+            <li className="p-3">
+              <ThemeToggleButton />
+            </li>
+          </ul>
+        </div>
       </motion.div>
       <Waves />
     </motion.header>
