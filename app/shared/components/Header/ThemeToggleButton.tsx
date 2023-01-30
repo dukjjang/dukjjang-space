@@ -18,7 +18,7 @@ const ThemeToggleButton = () => {
       onClick={onClick}
       className="transition-all ease-in-out group md:active:translate-y-3 inline-flex 
       items-center border-0 p-1 rounded text-orange-400 dark:text-yellow-400
-        md:hover:scale-150 text-blue dark:hover:text-yellow-500 relative"
+        md:hover:scale-150 text-blue dark:hover:text-yellow-500 relative z-40"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

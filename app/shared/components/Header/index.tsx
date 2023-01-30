@@ -84,29 +84,14 @@ const Header = () => {
     setShowSlideMenu(!showSlideMenu);
   };
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" || theme === "system" ? "dark" : "light");
-  };
-
-  const handleTouchSun = (e) => {
-    const preventTouchEvent = (e) => e.preventDefault();
-
-    sunRef.current.addEventListener("touchstart", preventTouchEvent);
-    toggleTheme();
-    return sunRef.current.removeEventListener("touchstart", preventTouchEvent);
-  };
-
   return (
     <motion.header
       id="header"
       ref={wrapperRef}
       {...headerSlideAnimation}
       className={` z-50 relative opacity-1 backdrop-blur-sm  top-0 left-0 w-full 
-          transition-transform duration-500 ease-in-out 
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
-        isHomePage
-          ? " bg-primary "
-          : "bg-transparent"
+        isHomePage ? " bg-primary " : "bg-transparent"
       } ${scrolling && scrollDirection === "down" && "-translate-y-24"}
 `}
     >
@@ -132,9 +117,6 @@ const Header = () => {
             transition={{ duration: 1 }}
           >
             <motion.div
-              ref={sunRef}
-              onClick={toggleTheme}
-              onTouchStart={handleTouchSun}
               animate={{
                 translateY: [0, 10, 0],
               }}
@@ -144,9 +126,6 @@ const Header = () => {
               } rounded-full absolute top-0 left-0 `}
             />
             <motion.div
-              ref={sunRef}
-              onClick={toggleTheme}
-              onTouchStart={handleTouchSun}
               animate={{
                 translateY: [0, 10, 0],
               }}
@@ -212,6 +191,7 @@ const Header = () => {
               </Link>
             ))}
           </div>
+          <ThemeToggleButton />
 
           <div className="z-50 transition-all duration-200">
             {showSlideMenu ? (
@@ -246,12 +226,10 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-            <li className="p-3">
-              <ThemeToggleButton />
-            </li>
           </ul>
         </div>
       </motion.div>
+
       <Waves />
     </motion.header>
   );
