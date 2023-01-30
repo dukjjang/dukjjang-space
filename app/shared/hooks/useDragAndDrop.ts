@@ -111,9 +111,8 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
           } else return targetIndex === index ? 0 : count;
         }),
       });
+      dragOverElement.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-
-    dragOverElement.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   useEffect(() => {

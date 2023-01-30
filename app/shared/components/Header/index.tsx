@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdOutlineClose } from "react-icons/md";
 
 import ThemeToggleButton from "./ThemeToggleButton";
 import Waves from "../Waves";
@@ -26,6 +28,7 @@ const Header = () => {
   const scrollDirection = useScrollDirection();
   const broomRef = useRef<HTMLImageElement>(null);
   const { theme } = useTheme();
+  const [showSlideMenu, setShowSlideMenu] = useState(false);
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -76,17 +79,23 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
+  const toggleSlideMenu = () => {
+    setShowSlideMenu(!showSlideMenu);
+  };
+
   return (
     <motion.header
       id="header"
       ref={wrapperRef}
       {...headerSlideAnimation}
-      className={`relative opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full transition-transform duration-500 ease-in-out
+      className={`relative opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full 
+          transition-transform duration-500 ease-in-out overflow-hidden
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
         isHomePage
           ? " bg-primary transition-colors duration-1000"
-          : "bg-primary"
-      } ${scrolling && scrollDirection === "down" && "-translate-y-24"}`}
+          : "bg-transparent"
+      } ${scrolling && scrollDirection === "down" && "-translate-y-24"}
+`}
     >
       <motion.div
         initial={{ opacity: 0, translateY: -20 }}
@@ -97,23 +106,18 @@ const Header = () => {
         <Link href="/" scroll={false}>
           <Logo />
         </Link>
-        <div className="-z-20 relative ml-10 lg:ml-36 flex justify-center items-center ">
+        <div
+          className={`-z-20 relative ml-10 lg:ml-36 flex justify-center items-center 
+             ${isHomePage ? "block" : "hidden"}`}
+        >
           <motion.div
             animate={{ translateY: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 3 }}
             className={`sun will-change-transform w-10 h-10 ${
               isHomePage && "md:w-12 md:h-12"
-            } rounded-full absolute dark:hidden -top-8`}
-          />
-          <motion.div
-            animate={{ translateY: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-            className={`moon will-change-transform w-10 h-10 ${
-              isHomePage && "md:w-12 md:h-12"
-            } rounded-full absolute  dark:block hidden -top-20 dark:-top-8`}
+            } rounded-full absolute top-0`}
           />
         </div>
-
         <nav
           id="nav"
           className="text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
@@ -152,7 +156,7 @@ const Header = () => {
             className="absolute hidden opacity-80 w-20 h-20 z-20"
             draggable
           />
-          <div className="flex relative items-center gap-2">
+          <div className={` hidden md:flex relative items-center gap-2`}>
             {LINKS.map((link) => (
               <Link
                 key={link.id}
@@ -167,7 +171,42 @@ const Header = () => {
               </Link>
             ))}
           </div>
-          <ThemeToggleButton />
+          <div
+            className={`${
+              showSlideMenu === true ? "translate-x-0" : "translate-x-full"
+            } p-5 md:hidden flex flex-col h-full w-full fixed top-0 right-0 bg-background z-50 transition-all duration-1000 ease-in-out  `}
+          >
+            <ul className="flex items-end justify-center  ">
+              {LINKS.map((link) => (
+                <li key={link.id} className="p-3 ">
+                  <Link
+                    className="md:p-2 rounded"
+                    href={`/${link.path}`}
+                    scroll={false}
+                  >
+                    <h6 className="relative text-lg w-fit h-fit ">
+                      {link.name}
+                      {pathName === link.path && <UnderLine />}
+                    </h6>
+                  </Link>
+                </li>
+              ))}
+              <li className="p-3">
+                <ThemeToggleButton />
+              </li>
+            </ul>
+          </div>
+          <div className="z-50">
+            {showSlideMenu ? (
+              <MdOutlineClose size={30} onClick={toggleSlideMenu} />
+            ) : (
+              <RxHamburgerMenu
+                className="md:hidden"
+                onClick={toggleSlideMenu}
+                size={20}
+              />
+            )}
+          </div>
         </nav>
       </motion.div>
       <Waves />
