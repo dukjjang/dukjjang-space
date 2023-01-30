@@ -71,7 +71,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
           else return index === targetIndex ? (count = 0) : count;
         }),
       });
-      dragOverElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      document.body.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     cloneBoxRef.current.classList.add("hidden");

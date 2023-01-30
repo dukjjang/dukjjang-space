@@ -6,7 +6,7 @@ const Waves = () => {
   return (
     <section>
       <motion.svg
-        className={`md:h-[150px] h-[100px] max-h-[200px] ts-color bg-primary 
+        className={`md:h-[150px] h-[100px] max-h-[200px] ts-color bg-primary ;
          w-full ${!isHomePage && "hidden"}`}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"

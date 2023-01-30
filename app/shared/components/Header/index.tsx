@@ -13,6 +13,8 @@ import Wizard from "/public/images/Wizard.png";
 import Broom from "public/images/Broom.png";
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 import { useScrollDirection } from "../../hooks/useScrollDirection";
+import UnderLine from "../UnderLine";
+import { useTheme } from "next-themes";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
@@ -23,6 +25,7 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const scrollDirection = useScrollDirection();
   const broomRef = useRef<HTMLImageElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -78,7 +81,7 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...headerSlideAnimation}
-      className={`opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full transition-transform duration-500 ease-in-out
+      className={`relative opacity-1 backdrop-blur-sm z-50 top-0 left-0 w-full transition-transform duration-500 ease-in-out
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
         isHomePage
           ? " bg-primary transition-colors duration-1000"
@@ -86,14 +89,31 @@ const Header = () => {
       } ${scrolling && scrollDirection === "down" && "-translate-y-24"}`}
     >
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, translateY: -20 }}
+        animate={{ opacity: 1, translateY: 0 }}
         exit={{ display: "hidden" }}
         className=" text-background mx-auto flex py-5 px-5 md:px-20 lg:px-64 w-full items-center"
       >
         <Link href="/" scroll={false}>
           <Logo />
         </Link>
+        <div className="-z-20 relative ml-10 lg:ml-36 flex justify-center items-center ">
+          <motion.div
+            animate={{ translateY: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 3 }}
+            className={`sun will-change-transform w-10 h-10 ${
+              isHomePage && "md:w-12 md:h-12"
+            } rounded-full absolute dark:hidden -top-8`}
+          />
+          <motion.div
+            animate={{ translateY: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 3 }}
+            className={`moon will-change-transform w-10 h-10 ${
+              isHomePage && "md:w-12 md:h-12"
+            } rounded-full absolute  dark:block hidden -top-20 dark:-top-8`}
+          />
+        </div>
+
         <nav
           id="nav"
           className="text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
@@ -109,8 +129,8 @@ const Header = () => {
           >
             <Image
               id="wizard"
-              width={60}
-              height={60}
+              width={45}
+              height={45}
               alt="magic stick"
               src={Wizard}
             />
@@ -123,7 +143,7 @@ const Header = () => {
             {...onTouches}
             {...onDrags}
           >
-            <Image id="broom" width={50} height={50} alt="broom" src={Broom} />
+            <Image id="broom" width={40} height={40} alt="broom" src={Broom} />
           </div>
           <div
             id={"clone-box"}
@@ -133,7 +153,7 @@ const Header = () => {
             draggable
           />
           <div className="flex relative items-center gap-2">
-            {/* {LINKS.map((link) => (
+            {LINKS.map((link) => (
               <Link
                 key={link.id}
                 className="md:p-2 rounded"
@@ -145,7 +165,7 @@ const Header = () => {
                   {pathName === link.path && <UnderLine />}
                 </h6>
               </Link>
-            ))}*/}
+            ))}
           </div>
           <ThemeToggleButton />
         </nav>
