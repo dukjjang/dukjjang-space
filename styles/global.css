@@ -29,10 +29,6 @@
     @apply hover:underline-offset-8 hover:underline;
   }
 
-  .ts-color {
-    @apply transition-colors ease-in-out duration-1000;
-  }
-
   .text-primary {
     @apply text-slate-500 dark:text-neutral-200;
   }

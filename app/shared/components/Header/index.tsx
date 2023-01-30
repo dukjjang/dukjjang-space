@@ -209,7 +209,7 @@ const Header = () => {
         <div
           className={`${
             showSlideMenu === true ? "scale-100" : "scale-0"
-          } p-5 md:hidden flex flex-col w-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out`}
+          } p-5 md:hidden flex flex-col w-full h-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out`}
         >
           <ul className=" flex items-end justify-center  ">
             {LINKS.map((link) => (
