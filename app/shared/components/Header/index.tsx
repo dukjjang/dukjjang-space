@@ -101,12 +101,12 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...headerSlideAnimation}
-      className={`overflow-x-hidden z-50 relative opacity-1 backdrop-blur-sm  top-0 left-0 w-full 
+      className={` z-50 relative opacity-1 backdrop-blur-sm  top-0 left-0 w-full 
           transition-transform duration-500 ease-in-out 
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
         isHomePage
           ? " bg-primary transition-colors duration-1000"
-          : "bg-transparent"
+          : "bg-primary"
       } ${scrolling && scrollDirection === "down" && "-translate-y-24"}
 `}
     >
@@ -139,7 +139,7 @@ const Header = () => {
                 translateY: [0, 10, 0],
               }}
               transition={{ repeat: showSlideMenu ? 0 : Infinity, duration: 3 }}
-              className={`block dark:hidden sun z-30 will-change-transform w-10 h-10 ${
+              className={`cursor-pointer block dark:hidden sun z-30 will-change-transform w-10 h-10 ${
                 isHomePage && "md:w-12 md:h-12"
               } rounded-full absolute top-0 left-0 `}
             />
@@ -151,7 +151,7 @@ const Header = () => {
                 translateY: [0, 10, 0],
               }}
               transition={{ repeat: showSlideMenu ? 0 : Infinity, duration: 3 }}
-              className={`hidden dark:block moon z-30 will-change-transform w-10 h-10 ${
+              className={` cursor-pointer hidden dark:block moon z-30 will-change-transform w-10 h-10 ${
                 isHomePage && "md:w-12 md:h-12"
               } rounded-full absolute top-0 left-0 `}
             />
@@ -228,8 +228,8 @@ const Header = () => {
         {/*slideMenu */}
         <div
           className={`${
-            showSlideMenu === true ? "translate-x-0" : "translate-x-full"
-          } p-5 md:hidden flex flex-col  w-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out  `}
+            showSlideMenu === true ? "scale-100" : "scale-0"
+          } p-5 md:hidden flex flex-col  w-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out`}
         >
           <ul className=" flex items-end justify-center  ">
             {LINKS.map((link) => (
