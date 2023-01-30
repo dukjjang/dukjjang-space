@@ -89,11 +89,11 @@ const Header = () => {
   };
 
   const handleTouchSun = (e) => {
-    sunRef.current.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-    });
-    e.preventDefault();
+    const preventTouchEvent = (e) => e.preventDefault();
+
+    sunRef.current.addEventListener("touchstart", preventTouchEvent);
     toggleTheme();
+    return sunRef.current.removeEventListener("touchstart", preventTouchEvent);
   };
 
   return (
@@ -101,8 +101,8 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...headerSlideAnimation}
-      className={` relative opacity-1 backdrop-blur-sm  top-0 left-0 w-full 
-          transition-transform duration-500 ease-in-out overflow-hidden
+      className={`overflow-x-hidden z-50 relative opacity-1 backdrop-blur-sm  top-0 left-0 w-full 
+          transition-transform duration-500 ease-in-out 
         ${!isHomePage && "sticky"} ${pathName.match("studio") && "hidden"} ${
         isHomePage
           ? " bg-primary transition-colors duration-1000"
@@ -139,9 +139,19 @@ const Header = () => {
                 translateY: [0, 10, 0],
               }}
               transition={{ repeat: showSlideMenu ? 0 : Infinity, duration: 3 }}
-              className={`${
-                theme === "light" ? "sun" : "moon"
-              } z-30 will-change-transform w-10 h-10 ${
+              className={`block dark:hidden sun z-30 will-change-transform w-10 h-10 ${
+                isHomePage && "md:w-12 md:h-12"
+              } rounded-full absolute top-0 left-0 `}
+            />
+            <motion.div
+              ref={sunRef}
+              onClick={toggleTheme}
+              onTouchStart={handleTouchSun}
+              animate={{
+                translateY: [0, 10, 0],
+              }}
+              transition={{ repeat: showSlideMenu ? 0 : Infinity, duration: 3 }}
+              className={`hidden dark:block moon z-30 will-change-transform w-10 h-10 ${
                 isHomePage && "md:w-12 md:h-12"
               } rounded-full absolute top-0 left-0 `}
             />
@@ -184,7 +194,7 @@ const Header = () => {
             id={"clone-box"}
             ref={cloneBoxRef}
             style={{ top: position.y, left: position.x }}
-            className="absolute hidden opacity-80 w-20 h-20"
+            className="z-50 absolute hidden opacity-80 w-20 h-20"
             draggable
           />
           <div className={` hidden md:flex relative items-center gap-2`}>
@@ -205,12 +215,12 @@ const Header = () => {
 
           <div className="z-50 transition-all duration-200">
             {showSlideMenu ? (
-              <MdOutlineClose size={30} onClick={toggleSlideMenu} />
+              <MdOutlineClose size={25} onClick={toggleSlideMenu} />
             ) : (
               <RxHamburgerMenu
                 className="md:hidden"
                 onClick={toggleSlideMenu}
-                size={20}
+                size={25}
               />
             )}
           </div>
@@ -218,7 +228,7 @@ const Header = () => {
         {/*slideMenu */}
         <div
           className={`${
-            showSlideMenu === true ? "translate-x-0" : "translate-x-full hidden"
+            showSlideMenu === true ? "translate-x-0" : "translate-x-full"
           } p-5 md:hidden flex flex-col  w-full absolute top-0 right-0 bg-primary transition-all duration-1000 ease-in-out  `}
         >
           <ul className=" flex items-end justify-center  ">

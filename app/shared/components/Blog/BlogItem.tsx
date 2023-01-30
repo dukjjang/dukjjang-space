@@ -18,7 +18,7 @@ const BlogItem = ({ post, idx }: Props) => {
       onDragOver={(e) => {
         e.preventDefault();
       }}
-      className={` dropzone relative flex flex-col w-full h-full md:rounded-lg shadow-lg
+      className={` -z-0 dropzone relative flex flex-col w-full h-full md:rounded-lg shadow-lg
        overflow-hidden box-border ${drag.overId === post._id && "over"} ${
         drag.cache[idx] === 1 && `row-span-2 h-96`
       } ${drag.cache[idx] === 2 && ` row-span-4 h-[500px]`}  `}

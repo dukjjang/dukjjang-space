@@ -1,5 +1,3 @@
-"use client";
-
 import { ThemeProvider } from "next-themes";
 import { DragProvider } from "./DragContext";
 import "../styles/global.css";

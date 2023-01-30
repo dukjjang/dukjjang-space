@@ -5,7 +5,7 @@ import UnderLine from "./UnderLine";
 
 const Resume = () => {
   return (
-    <section className="ts-color w-full px-5 lg:px-56 bg-white h-[1000px] bg-background">
+    <section className="ts-color w-full px-5 lg:px-56 bg-white dark:bg-[#0E141B] h-[1000px] ">
       <div>
         <motion.div
           initial={{ opacity: 0, translateY: 30 }}
