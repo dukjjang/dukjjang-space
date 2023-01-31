@@ -84,7 +84,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
     });
   };
 
-  const handleDrag = (e: DragEvent): void => {
+  const handleDrag = (e: DragEvent<HTMLDivElement>): void => {
     const dragOverElement = document
       .elementsFromPoint(e.clientX, e.clientY)
       .find((ele) => ele.nodeName === "LI");
@@ -96,7 +96,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
     }
   };
 
-  const handleDragEnd = (e: DragEvent): void => {
+  const handleDragEnd = (e: DragEvent<HTMLDivElement>): void => {
     const dragOverElement = document
       .elementsFromPoint(e.clientX, e.clientY)
       .find((ele) => ele.nodeName === "LI") as HTMLElement;
