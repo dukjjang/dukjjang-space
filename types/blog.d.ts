@@ -67,3 +67,10 @@ interface Title {
   _type: "string";
   current: string;
 }
+
+interface Code {
+  _key: string;
+  _type: "code";
+  code: string;
+  language: string;
+}

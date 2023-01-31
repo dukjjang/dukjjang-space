@@ -12,7 +12,7 @@ const StarsWrapper = ({ headerRef }: { headerRef: RefObject<HTMLElement> }) => {
         return {
           x: (Math.random() * headerRef.current.offsetWidth).toFixed(0),
           y: pathName.match("writing")
-            ? (Math.random() * headerRef.current.offsetHeight).toFixed(0)
+            ? (Math.random() * document.body.offsetHeight).toFixed(0)
             : ((Math.random() * headerRef.current.offsetHeight) / 2).toFixed(0),
         };
       })

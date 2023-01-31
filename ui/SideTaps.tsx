@@ -12,7 +12,7 @@ const SideTaps = ({ LINKS, showSlideMenu }: Props) => {
   return (
     <div
       className={`${showSlideMenu === true ? "scale-100" : "scale-0"} ${
-        pathName.match("writing") ? "bg-white dark:bg-[#151E27]" : "bg-primary"
+        pathName.match("writing") ? "bg-background" : "bg-primary"
       } p-5 md:hidden flex flex-col w-full absolute top-0 right-0 
         transition-transform duration-500 ease-in-out`}
     >
@@ -26,7 +26,7 @@ const SideTaps = ({ LINKS, showSlideMenu }: Props) => {
             >
               <h6 className=" relative text-lg w-fit ">
                 {link.name}
-                {pathName === link.path && <UnderLine />}
+                {pathName.match(link.path) && <UnderLine />}
               </h6>
             </Link>
           </li>

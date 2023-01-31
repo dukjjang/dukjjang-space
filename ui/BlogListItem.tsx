@@ -8,7 +8,7 @@ type Props = {
   post: Post;
   idx: number;
 };
-const BlogItem = ({ post, idx }: Props) => {
+const BlogListItem = ({ post, idx }: Props) => {
   const [drag] = useDrag();
 
   return (
@@ -86,4 +86,4 @@ const BlogItem = ({ post, idx }: Props) => {
   );
 };
 
-export default BlogItem;
+export default BlogListItem;
