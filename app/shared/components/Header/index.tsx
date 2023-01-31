@@ -23,10 +23,9 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const scrollDirection = useScrollDirection();
   const [showSideTaps, setShowSideTaps] = useState(false);
-  const [stars, setStars] = useState([]);
 
   useEffect(() => {
-    document.addEventListener("scroll", () => {
+    window.addEventListener("scroll", () => {
       setScrolling(true);
     });
 
@@ -35,7 +34,7 @@ const Header = () => {
       function () {
         setScrolling(false);
       },
-      300
+      200
     );
   }, []);
 
@@ -68,6 +67,9 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
+  console.log(scrolling);
+  console.log(scrollDirection);
+
   return (
     <motion.header
       id="header"
@@ -76,8 +78,8 @@ const Header = () => {
       className={` z-50 relative opacity-1 backdrop-blur-sm top-0 left-0 w-full 
         ${pathName.match("writing") && "sticky"} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-transparent"} ${
-        scrolling && scrollDirection === "down" && "-translate-y-24"
+      } ${!pathName ? " bg-primary " : "bg-background"} ${
+        scrolling && "-translate-y-24"
       }
 `}
     >

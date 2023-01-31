@@ -18,7 +18,10 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
 
   const cloneDragElement = (target: HTMLElement) => {
     const cloneElement = target.cloneNode(true) as HTMLImageElement;
-    cloneElement.id = "cloneImg";
+    const cloneImg = cloneElement.firstChild as HTMLElement;
+    cloneElement.id = "cloneElement";
+    cloneImg.style.width = "70px";
+    cloneImg.style.height = "70px";
     cloneBoxRef.current.append(cloneElement);
     cloneBoxRef.current.classList.remove("hidden");
   };
@@ -75,8 +78,8 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
     }
 
     cloneBoxRef.current.classList.add("hidden");
-    const cloneImg = document.getElementById("cloneImg");
-    cloneBoxRef.current.removeChild(cloneImg);
+    const cloneElement = document.getElementById("cloneElement");
+    cloneBoxRef.current.removeChild(cloneElement);
 
     setPosition({
       x: e.currentTarget.offsetLeft,
