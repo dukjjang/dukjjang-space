@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const Star = ({ x, y }: { x: number; y: number }) => {
   return (
     <motion.div
-      initial={{ x: x, y: y }}
+      initial={{ x: x, y: y, opacity: 0 }}
       animate={{ x: x, y: y, opacity: [0, 1, 0] }}
       transition={{
         repeat: Infinity,
