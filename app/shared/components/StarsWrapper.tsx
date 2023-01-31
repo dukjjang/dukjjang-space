@@ -3,6 +3,7 @@ import Star from "./Star";
 
 const StarsWrapper = ({ headerRef }: { headerRef: RefObject<HTMLElement> }) => {
   const [stars, setStars] = useState([]);
+  const windowWidth = window.innerWidth ?? document.body.offsetWidth;
 
   useEffect(() => {
     setStars(
@@ -13,7 +14,7 @@ const StarsWrapper = ({ headerRef }: { headerRef: RefObject<HTMLElement> }) => {
         };
       })
     );
-  }, [window.innerWidth]);
+  }, [windowWidth]);
 
   return (
     <div className="hidden dark:block absolute left-0 top-0 right-0 h-full w-full bg-transparent">

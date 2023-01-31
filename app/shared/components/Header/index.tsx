@@ -13,48 +13,14 @@ import SunMoon from "../SunMoon";
 import Nav from "../Nav";
 import SunMoonWrapper from "../SunMoonWrapper";
 import NavWrapper from "../NavWrapper";
-import Star from "../Star";
 import StarsWrapper from "../StarsWrapper";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
   const headerRef = useRef<HTMLElement>(null);
   const wavesRef = useRef<HTMLElement>(null);
-  const [scrolling, setScrolling] = useState(false);
   const scrollDirection = useScrollDirection();
   const [showSideTaps, setShowSideTaps] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScrolling(true);
-    });
-
-    createScrollStopListener(
-      window,
-      function () {
-        setScrolling(false);
-      },
-      200
-    );
-  }, []);
-
-  function createScrollStopListener(
-    element: any,
-    callback: () => void,
-    timeout: number
-  ) {
-    let handle = null;
-    let onScroll = function () {
-      if (handle) {
-        clearTimeout(handle);
-      }
-      handle = setTimeout(callback, timeout || 200);
-    };
-    element.addEventListener("scroll", onScroll);
-    return function () {
-      element.removeEventListener("scroll", onScroll);
-    };
-  }
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -67,9 +33,6 @@ const Header = () => {
     transition: { duration: 0.7 },
   };
 
-  console.log(scrolling);
-  console.log(scrollDirection);
-
   return (
     <motion.header
       id="header"
@@ -78,10 +41,7 @@ const Header = () => {
       className={` z-50 relative opacity-1 backdrop-blur-sm top-0 left-0 w-full 
         ${pathName.match("writing") && "sticky"} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-background"} ${
-        scrolling && "-translate-y-24"
-      }
-`}
+      } ${!pathName ? " bg-primary " : "bg-background"} `}
     >
       <StarsWrapper headerRef={headerRef} />
       <NavWrapper>

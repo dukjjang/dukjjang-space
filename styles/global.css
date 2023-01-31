@@ -41,7 +41,7 @@
 @layer base {
   html,
   body {
-    @apply bg-white dark:bg-[#0E141B] h-full;
+    @apply bg-white dark:bg-[#0E141B] h-full overflow-x-hidden;
   }
 
   footer {
