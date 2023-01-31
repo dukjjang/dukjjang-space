@@ -16,7 +16,6 @@ const DragIcon = ({
   iconRef,
   iconName,
 }: Props) => {
-  console.log(iconName);
   return (
     <div
       id={`${iconName}-icon`}

@@ -7,8 +7,7 @@ const Home = () => {
   if (!previewData) return <div>not Data</div>;
 
   return (
-    <main className=" h-full w-full bg-background">
-      <Header />
+    <main className="h-full w-full bg-background">
       <Resume />
       <Footer />
     </main>

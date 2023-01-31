@@ -1,6 +1,7 @@
 import { Providers } from "./Provider";
 import "../styles/global.css";
 import { ServerThemeProvider } from "next-themes";
+import Header from "./shared/components/Header";
 
 export default function RootLayout({
   children,
@@ -10,8 +11,11 @@ export default function RootLayout({
   return (
     <ServerThemeProvider attribute="class">
       <html lang="en">
-        <body className="bg-background">
-          <Providers>{children}</Providers>
+        <body>
+          <Providers>
+            <Header />
+            {children}
+          </Providers>
         </body>
       </html>
     </ServerThemeProvider>

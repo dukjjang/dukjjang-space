@@ -69,10 +69,10 @@ const Header = () => {
       id="header"
       ref={wrapperRef}
       {...headerSlideAnimation}
-      className={` z-50 relative opacity-1 backdrop-blur-sm  top-0 left-0 w-full 
+      className={` z-50 relative opacity-1 backdrop-blur-sm top-0 left-0 w-full 
         ${pathName.match("writing") && "sticky"} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-background"} ${
+      } ${!pathName ? " bg-primary " : "bg-transparent"} ${
         scrolling && scrollDirection === "down" && "-translate-y-24"
       }
 `}
