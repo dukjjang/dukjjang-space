@@ -1,6 +1,6 @@
 "use client";
 
-import { usePreview } from "../../lib/sanity.preview";
+import { usePreview } from "../lib/sanity.preview";
 import Blogs from "./Blogs";
 
 type Props = {

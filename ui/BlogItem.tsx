@@ -1,8 +1,8 @@
 "use client";
 
 import Img from "next/image";
-import urlFor from "../../lib/urlFor";
-import { useDrag } from "../../../DragContext";
+import urlFor from "../lib/urlFor";
+import { useDrag } from "../app/DragContext";
 
 type Props = {
   post: Post;

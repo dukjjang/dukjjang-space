@@ -1,7 +1,7 @@
 import { motion, useMotionValue } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useSpring } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 type Props = {
   showSideTaps: boolean;
@@ -16,7 +16,6 @@ const SunMoon = ({ showSideTaps, sunOrMoon }: Props) => {
   const y = useMotionValue(0);
   useSpring(x, { stiffness: 1000, damping: 10 });
   useSpring(y, { stiffness: 1000, damping: 10 });
-
 
   return (
     <motion.div

@@ -1,4 +1,4 @@
-import DefaultTags from "../shared/DefaultTags";
+import DefaultTags from "../DefaultTags";
 
 export default function Head({ params }: { params: { slug: string } }) {
   return (

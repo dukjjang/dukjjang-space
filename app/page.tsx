@@ -1,5 +1,5 @@
 import { previewData } from "next/headers";
-import Resume from "./shared/components/Resume";
+import Resume from "../ui/Resume";
 
 const Home = () => {
   if (!previewData) return <div>not Data</div>;

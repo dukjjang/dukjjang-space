@@ -1,7 +1,7 @@
 import { Providers } from "./Provider";
-import "../styles/global.css";
 import { ServerThemeProvider } from "next-themes";
-import Header from "./shared/components/Header";
+import "../styles/global.css";
+import Header from "../ui/Header";
 
 export default function RootLayout({
   children,

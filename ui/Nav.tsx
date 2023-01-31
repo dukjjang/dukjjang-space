@@ -1,8 +1,8 @@
 import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction, useRef } from "react";
-import useDragAndDrop from "../hooks/useDragAndDrop";
+import useDragAndDrop from "../app/hooks/useDragAndDrop";
 import DragIcon from "./DragIcon";
-import ThemeToggleButton from "./Header/ThemeToggleButton";
+import ThemeToggleButton from "./ThemeToggleButton";
 import MenuButton from "./MenuButton";
 import Taps from "./Taps";
 
