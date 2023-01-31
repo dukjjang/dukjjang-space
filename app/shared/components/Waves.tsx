@@ -1,11 +1,12 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { RefObject } from "react";
 
-const Waves = () => {
+const Waves = ({ wavesRef }: { wavesRef: RefObject<HTMLElement> }) => {
   const isHomePage = usePathname() === "/";
   return (
-    <section>
+    <section ref={wavesRef}>
       <svg
         className={`md:h-[150px] h-[100px] max-h-[200px]  bg-primary  ;
          w-full ${!isHomePage && "hidden"}`}

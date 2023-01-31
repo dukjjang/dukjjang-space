@@ -36,10 +36,15 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
 
   const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     const touch = e.touches[0];
+    console.log(e.view);
 
     setPosition({
-      x: touch.clientX - cloneBoxRef.current!.offsetWidth / 2,
-      y: touch.clientY - cloneBoxRef.current!.offsetHeight / 2,
+      x:
+        touch.clientX -
+        cloneBoxRef.current!.offsetWidth -
+        window.innerWidth / 2 -
+        20,
+      y: touch.clientY - cloneBoxRef.current!.offsetHeight / 2 - 20,
     });
 
     const touchOverElement = document
@@ -84,7 +89,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
     });
   };
 
-  const handleDrag = (e: DragEvent): void => {
+  const handleDrag = (e: DragEvent<HTMLDivElement>): void => {
     const dragOverElement = document
       .elementsFromPoint(e.clientX, e.clientY)
       .find((ele) => ele.nodeName === "LI");
@@ -96,7 +101,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
     }
   };
 
-  const handleDragEnd = (e: DragEvent): void => {
+  const handleDragEnd = (e: DragEvent<HTMLDivElement>): void => {
     const dragOverElement = document
       .elementsFromPoint(e.clientX, e.clientY)
       .find((ele) => ele.nodeName === "LI") as HTMLElement;

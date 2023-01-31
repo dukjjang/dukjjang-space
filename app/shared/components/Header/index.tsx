@@ -13,13 +13,17 @@ import SunMoon from "../SunMoon";
 import Nav from "../Nav";
 import SunMoonWrapper from "../SunMoonWrapper";
 import NavWrapper from "../NavWrapper";
+import Star from "../Star";
+import StarsWrapper from "../StarsWrapper";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
-  const wrapperRef = useRef<HTMLHeadingElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const wavesRef = useRef<HTMLElement>(null);
   const [scrolling, setScrolling] = useState(false);
   const scrollDirection = useScrollDirection();
   const [showSideTaps, setShowSideTaps] = useState(false);
+  const [stars, setStars] = useState([]);
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -67,7 +71,7 @@ const Header = () => {
   return (
     <motion.header
       id="header"
-      ref={wrapperRef}
+      ref={headerRef}
       {...headerSlideAnimation}
       className={` z-50 relative opacity-1 backdrop-blur-sm top-0 left-0 w-full 
         ${pathName.match("writing") && "sticky"} ${
@@ -77,6 +81,7 @@ const Header = () => {
       }
 `}
     >
+      <StarsWrapper headerRef={headerRef} />
       <NavWrapper>
         <Link href="/" scroll={false}>
           <Logo />
@@ -94,7 +99,7 @@ const Header = () => {
         <SideTaps LINKS={LINKS} showSlideMenu={showSideTaps} />
       </NavWrapper>
 
-      <Waves />
+      <Waves wavesRef={wavesRef} />
     </motion.header>
   );
 };
