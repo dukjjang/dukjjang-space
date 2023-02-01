@@ -1,4 +1,4 @@
-import DefaultTags from "./DefaultTags";
+import DefaultTags from "./shard/DefaultTags";
 
 export default function Head({ params }: { params: { slug: string } }) {
   return (

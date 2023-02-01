@@ -1,4 +1,5 @@
-import Link from "next/link";
+"use client";
+
 import BlogListItem from "./BlogListItem";
 
 type Props = {
@@ -13,13 +14,7 @@ const Blogs = ({ posts }: Props) => {
       md:px-16 md:gap-10 md:gap-y-16 md:pb-24 md:h-fit md:py-10 box-border "
     >
       {posts.map((post, idx) => (
-        <Link
-          key={post._id}
-          href={`/writing/${post.slug.current}`}
-          className="h-fit"
-        >
-          <BlogListItem post={post} idx={idx} />
-        </Link>
+        <BlogListItem post={post} idx={idx} />
       ))}
     </ul>
   );

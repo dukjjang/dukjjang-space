@@ -14,8 +14,8 @@ const SunMoon = ({ showSideTaps, sunOrMoon }: Props) => {
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  useSpring(x, { stiffness: 1000, damping: 10 });
-  useSpring(y, { stiffness: 1000, damping: 10 });
+  useSpring(x, { stiffness: 0, damping: 0 });
+  useSpring(y, { stiffness: 0, damping: 0 });
 
   return (
     <motion.div

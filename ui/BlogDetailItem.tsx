@@ -10,11 +10,11 @@ const BlogDetailItem = ({ post }: Props) => {
   return (
     <article
       id={post._id}
-      className={` z-40 relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4`}
+      className={`z-40 relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4`}
     >
       {/* Main Image */}
       {post.mainImage.asset && (
-        <div className={`relative h-32 `}>
+        <div className={`relative h-32`}>
           <Img
             draggable="false"
             className="object-cover"
@@ -31,7 +31,7 @@ const BlogDetailItem = ({ post }: Props) => {
         </p>
       </div>
 
-      <div className={` mb-2 `}>
+      <div className={`mb-2`}>
         {/* description */}
         <p className="text-background text-xl inline">
           {post.description && `${post.description} `}

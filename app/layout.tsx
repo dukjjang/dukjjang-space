@@ -1,4 +1,4 @@
-import { Providers } from "./Provider";
+import { Providers } from "./shard/Provider";
 import { ServerThemeProvider } from "next-themes";
 import "../styles/global.css";
 import Header from "../ui/Header";

@@ -2,7 +2,7 @@
 
 import { groq } from "next-sanity";
 import React, { useEffect } from "react";
-import { client } from "../lib/sanity.client";
+import { client } from "../../lib/sanity.client";
 
 type Drag = {
   overId: string;

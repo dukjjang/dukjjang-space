@@ -1,7 +1,7 @@
 "use client";
 
 import { DragEvent, RefObject, useEffect, useState, TouchEvent } from "react";
-import { useDrag } from "../../app/DragContext";
+import { useDrag } from "../shard/DragContext";
 
 type Props = {
   wizardRef: RefObject<HTMLImageElement | HTMLElement>;
