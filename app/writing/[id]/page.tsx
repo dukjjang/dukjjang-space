@@ -8,7 +8,6 @@ const BlogDetail = async ({ params }) => {
   categories[]->
 } `);
 
-  console.log("포스트", post);
   return <BlogDetailItem post={post[0]} />;
 };
 

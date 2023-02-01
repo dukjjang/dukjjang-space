@@ -2,8 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import urlFor from "../lib/urlFor";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 const PortableTextComponents = {
   types: {
+    code: ({ value }) => {
+      console.log(value);
+      return (
+        <SyntaxHighlighter language={value.language}>
+          {value.code}
+        </SyntaxHighlighter>
+      );
+    },
     image: ({ value }: any) => {
       return (
         <div className="relative w-full h-96 mx-auto">
@@ -15,9 +26,6 @@ const PortableTextComponents = {
           />
         </div>
       );
-    },
-    code: ({ value }: any) => {
-      <div>{value.code}</div>;
     },
   },
   list: {

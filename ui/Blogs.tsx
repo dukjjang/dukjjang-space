@@ -6,7 +6,6 @@ type Props = {
 };
 
 const Blogs = ({ posts }: Props) => {
-  console.log(posts[2].slug.current);
   return (
     <ul
       id="blogs"
