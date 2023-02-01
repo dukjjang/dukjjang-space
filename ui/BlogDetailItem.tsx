@@ -13,7 +13,7 @@ const BlogDetailItem = ({ post }: Props) => {
       className={`z-40 relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4`}
     >
       {/* Main Image */}
-      {post.mainImage.asset && (
+      {post.mainImage && (
         <div className={`relative h-32`}>
           <Img
             draggable="false"
@@ -59,7 +59,7 @@ const BlogDetailItem = ({ post }: Props) => {
           </p>
         </div>
         {/* category */}
-        {post.categories[0] &&
+        {post.categories &&
           post.categories.map((category) => (
             <div
               key={category._id}

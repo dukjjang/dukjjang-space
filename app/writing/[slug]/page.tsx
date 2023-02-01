@@ -19,7 +19,7 @@ export async function generateStaticParams() {
   });
 }
 
-const BlogDetail = async ({ params }: any) => {
+const DetailPage = async ({ params }: any) => {
   const post = await client.fetch(`*[slug.current == "${params.slug}"][0]{
   ...,
   author->,
@@ -29,4 +29,4 @@ const BlogDetail = async ({ params }: any) => {
   return <BlogDetailItem post={post} />;
 };
 
-export default BlogDetail;
+export default DetailPage;
