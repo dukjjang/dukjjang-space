@@ -13,8 +13,21 @@
     box-shadow: -0 0 2em #f5f4f6, 0 0 1.2em #f5f4f6;
   }
 
+  .box {
+    --mask: radial-gradient(145.34px at 50% 195px, #000 99%, #0000 101%)
+        calc(50% - 130px) 0/260px 100%,
+      radial-gradient(145.34px at 50% -130px, #0000 99%, #000 101%) 50% 65px/260px
+        100% repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+  }
+
   .bg-primary {
     @apply bg-[#CAE4F5] dark:bg-[#151E27];
+  }
+
+  .moon-shadow {
+    box-shadow: 0px 1px 15px 5px #fda085;
   }
 
   .bg-background {

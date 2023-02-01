@@ -1,3 +1,5 @@
+"use client";
+
 import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction, useRef } from "react";
 import useDragAndDrop from "../app/hooks/useDragAndDrop";

@@ -1,8 +1,8 @@
-"use client";
-
 import Img from "next/image";
 import urlFor from "../lib/urlFor";
 import { useDrag } from "../app/shard/DragContext";
+import { PortableText } from "@portabletext/react";
+import BlogListTextStyle from "./BlogListTextStyle";
 
 type Props = {
   post: Post;
@@ -10,7 +10,6 @@ type Props = {
 };
 const BlogListItem = ({ post, idx }: Props) => {
   const [drag] = useDrag();
-
   return (
     <li
       id={post._id}
@@ -18,12 +17,13 @@ const BlogListItem = ({ post, idx }: Props) => {
       onDragOver={(e) => {
         e.preventDefault();
       }}
-      className={` group -z-0 pb-5 dropzone relative flex flex-col w-full h-full md:rounded-lg shadow-lg
+      className={` z-20 bg-opacity-25 group pb-5 dropzone relative flex flex-col w-full h-full md:rounded-lg shadow-lg
        overflow-hidden box-border ${drag.overId === post._id && "over"} ${
         drag.cache[idx] === 1 && `row-span-2 h-96`
       } ${drag.cache[idx] === 2 && ` row-span-4 h-[500px]`}  `}
       key={post._id}
     >
+      {/* Image */}
       {post.mainImage && (
         <div
           className={` relative h-full w-full ${
@@ -39,9 +39,11 @@ const BlogListItem = ({ post, idx }: Props) => {
           />
         </div>
       )}
+
+      {/* text */}
       <div
-        className="w-full h-fit bg-white dark:bg-[#222222] group-hover:bg-white/25 text-white dark:text-black flex 
-        flex-col justify-between px-5 py-3"
+        className=" w-full h-fit bg-white dark:bg-[#222222] md:group-hover:bg-white/25 
+        text-white dark:text-black flex flex-col justify-between px-5 py-3"
       >
         <div className="text-background ">
           <div className="flex justify-between mb-2">
@@ -59,19 +61,26 @@ const BlogListItem = ({ post, idx }: Props) => {
 
           <div
             className={`${
-              drag.cache[idx] > 1 ? "h-[140px]" : "h-[50px]"
-            } relative text-primary flex-1 text-md md:text-[16px]
-                  w-full overflow-hidden mb-2 `}
+              !post.mainImage && drag.cache[idx] > 1 ? "h-[290px]" : "h-[50px]"
+            } ${post.mainImage && drag.cache[idx] > 1 && "h-[140px]"}
+            relative text-primary flex-1 text-md md:text-[16px] w-full overflow-hidden mb-2 
+`}
           >
             <p className="text-background inline">
               {post.description && `${post.description} | `}
             </p>
-            <p className="h-fit inline text-md">
-              {post.body &&
-                post.body
-                  .find((item) => item._type === "block")
-                  .children.map((child) => child.text)}
-            </p>
+            <div className="h-fit inline text-sm  ">
+              {post.body.map((block) => {
+                if (block._type === "block")
+                  return (
+                    <PortableText
+                      key={block._key}
+                      value={block}
+                      components={BlogListTextStyle}
+                    />
+                  );
+              })}
+            </div>
           </div>
           <p className="text-sm font-sans text-gray-600">
             {new Date(post._createdAt).toLocaleDateString("ko-KR", {

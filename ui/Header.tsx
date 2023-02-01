@@ -12,7 +12,7 @@ import SunMoon from "./SunMoon";
 import Nav from "./Nav";
 import SunMoonWrapper from "./SunMoonWrapper";
 import NavWrapper from "./NavWrapper";
-import StarsWrapper from "./StarsWrapper";
+import Stars from "./Stars";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
@@ -36,12 +36,12 @@ const Header = () => {
       id="header"
       ref={headerRef}
       {...headerSlideAnimation}
-      className={` z-50 relative opacity-1 backdrop-blur-sm top-0 left-0 w-full 
+      className={`z-20 relative opacity-1 backdrop-blur-sm top-0 left-0 w-full 
         ${pathName.match("writing") && "sticky"} ${
         pathName.match("studio") && "hidden"
       } ${!pathName ? " bg-primary " : "bg-background"} `}
     >
-      <StarsWrapper headerRef={headerRef} />
+      <Stars parentRef={headerRef} />
       <NavWrapper>
         <Link href="/" scroll={false}>
           <Logo />

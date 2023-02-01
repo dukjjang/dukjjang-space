@@ -3,7 +3,7 @@ import Link from "next/link";
 import urlFor from "../lib/urlFor";
 import CodeBlock from "./CodeBlock";
 
-const PortableTextComponents = {
+const BlogDetailTextStyle = {
   types: {
     code: ({ value }) => {
       return <CodeBlock value={value} />;
@@ -66,4 +66,4 @@ const PortableTextComponents = {
   },
 };
 
-export default PortableTextComponents;
+export default BlogDetailTextStyle;
