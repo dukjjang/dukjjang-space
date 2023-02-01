@@ -1,18 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import urlFor from "../lib/urlFor";
-
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
+import CodeBlock from "./CodeBlock";
 
 const PortableTextComponents = {
   types: {
     code: ({ value }) => {
-      return (
-        <SyntaxHighlighter language={value.language} style={nord}>
-          {value.code}
-        </SyntaxHighlighter>
-      );
+      return <CodeBlock value={value} />;
     },
     image: ({ value }: any) => {
       return (

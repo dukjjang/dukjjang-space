@@ -1,5 +1,3 @@
-"use client";
-
 import Img from "next/image";
 import urlFor from "../lib/urlFor";
 import { PortableText } from "@portabletext/react";
@@ -12,7 +10,7 @@ const BlogDetailItem = ({ post }: Props) => {
   return (
     <article
       id={post._id}
-      className={` z-40  relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4`}
+      className={` z-40 relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4`}
     >
       {/* Main Image */}
       {post.mainImage.asset && (
@@ -75,7 +73,7 @@ const BlogDetailItem = ({ post }: Props) => {
       <div>
         {post.body.map((block: Block) => {
           return (
-            <div className="my-5">
+            <div key={block._key} className="my-5">
               <PortableText value={block} components={PortableTextComponents} />
             </div>
           );
