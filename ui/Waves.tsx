@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { RefObject } from "react";
 
@@ -8,8 +7,16 @@ const Waves = ({ wavesRef }: { wavesRef: RefObject<HTMLElement> }) => {
   const isHomePage = usePathname() === "/";
   return (
     <section ref={wavesRef}>
-      <motion.div className=" -z-10 w-full h-6 moon-shadow md:h-16 bg-[#FF8C74] opacity-5 absolute backdrop-sepia bottom-9  " />
-      <motion.div className=" -z-10 w-full h-6 moon-shadow md:h-16 bg-[#ED952A] opacity-5 absolute backdrop-sepia bottom-16  " />
+      <div
+        className={`${
+          isHomePage ? "block" : "hidden"
+        } -z-10 w-full h-3 moon-shadow md:h-8 bg-[#FF8C74] opacity-5 absolute  bottom-6  `}
+      />
+      <div
+        className={`${
+          isHomePage ? "block" : "hidden"
+        } -z-10 w-full h-3 moon-shadow md:h-8 bg-[#ED952A] opacity-5 absolute  bottom-10  `}
+      />
       <svg
         className={`  md:h-[150px] h-[100px] max-h-[200px]  bg-transparent  ;
          w-full ${!isHomePage && "hidden"}`}
