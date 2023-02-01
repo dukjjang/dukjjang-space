@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 import { client } from "../../../lib/sanity.client";
 import BlogDetailItem from "../../../ui/BlogDetailItem";
 
-const allPostQuery = groq`
+const query = groq`
   *[_type=='post'] {
   ...,
   author->,
@@ -10,16 +10,8 @@ const allPostQuery = groq`
 } | order(_createdAt desc)
 `;
 
-const postQuery = groq`
-*[_type=='post' && slug.current == $slug][0]{
-  ...,
-  author->,
-  categories[]->
-} 
-`;
-
 export async function generateStaticParams() {
-  const posts = await client.fetch(allPostQuery);
+  const posts = await client.fetch(query);
 
   // Generate two pages at build time and the rest (3-100) on-demand
   return posts.map((post: Post) => {
@@ -28,7 +20,11 @@ export async function generateStaticParams() {
 }
 
 const BlogDetail = async ({ params }: any) => {
-  const post = await client.fetch(postQuery, params.slug);
+  const post = await client.fetch(`*[slug.current == "${params.slug}"][0]{
+  ...,
+  author->,
+  categories[]->
+} `);
 
   return <BlogDetailItem post={post} />;
 };
