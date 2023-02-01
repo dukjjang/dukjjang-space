@@ -9,7 +9,6 @@ type Props = {
   post: Post;
 };
 const BlogDetailItem = ({ post }: Props) => {
-  console.log(post.body);
   return (
     <article
       id={post._id}
@@ -75,7 +74,6 @@ const BlogDetailItem = ({ post }: Props) => {
       {/* body */}
       <div>
         {post.body.map((block: Block) => {
-          console.log(block);
           return (
             <div className="my-5">
               <PortableText value={block} components={PortableTextComponents} />
