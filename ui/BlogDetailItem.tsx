@@ -74,7 +74,14 @@ const BlogDetailItem = ({ post }: Props) => {
       </div>
       {/* body */}
       <div>
-        <PortableText value={post.body} components={PortableTextComponents} />
+        {post.body.map((block: Block) => {
+          console.log(block);
+          return (
+            <div className="my-5">
+              <PortableText value={block} components={PortableTextComponents} />
+            </div>
+          );
+        })}
       </div>
     </article>
   );

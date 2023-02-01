@@ -3,14 +3,13 @@ import Link from "next/link";
 import urlFor from "../lib/urlFor";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const PortableTextComponents = {
   types: {
     code: ({ value }) => {
-      console.log(value);
       return (
-        <SyntaxHighlighter language={value.language}>
+        <SyntaxHighlighter language={value.language} style={nord}>
           {value.code}
         </SyntaxHighlighter>
       );
@@ -30,7 +29,7 @@ const PortableTextComponents = {
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="ml-10 py-5 list-disc space-y-5">{children}</ul>
+      <ul className="ml-10 py-5 list-disc space-y-10">{children}</ul>
     ),
     number: ({ children }: any) => (
       <ol className="mt-lg list-decimal">{children}</ol>
