@@ -59,17 +59,22 @@ const BlogListItem = ({ post, idx }: Props) => {
         text-white dark:text-black flex flex-col justify-between px-5 py-3"
         >
           <div className="text-background ">
-            <div className="flex justify-between mb-2">
+            <div className="flex justify-between items-center mb-2">
+              {/* title */}
               <p className="text-xl md:text-xl ">{post.title && post.title}</p>
-              {post.categories &&
-                post.categories.slice(0, 1).map((category) => (
-                  <div
-                    key={category._id}
-                    className="text-md font-bold text-green-400 dark:text-blue-400"
-                  >
-                    <p>{category.title}</p>
-                  </div>
-                ))}
+
+              {/* categories */}
+              <div className="  ">
+                {post.categories &&
+                  post.categories.slice(0, 1).map((category) => (
+                    <p
+                      className="text-sm md:text-md font-bold text-green-400 dark:text-blue-400"
+                      key={category._id}
+                    >
+                      {category.title}
+                    </p>
+                  ))}
+              </div>
             </div>
             <div
               className={` h-fit relative text-primary flex-1 text-md 

@@ -60,15 +60,17 @@ const BlogDetailItem = ({ post }: Props) => {
           </p>
         </div>
         {/* category */}
-        {post.categories &&
-          post.categories.map((category) => (
-            <div
-              key={category._id}
-              className="text-md font-bold text-green-400 dark:text-blue-400 mb-14"
-            >
-              <p>{category.title}</p>
-            </div>
-          ))}
+        <div className=" ">
+          {post.categories &&
+            post.categories.map((category) => (
+              <p
+                className="text-md font-bold text-green-400 dark:text-blue-400"
+                key={category._id}
+              >
+                {category.title}
+              </p>
+            ))}
+        </div>
       </div>
       {/* body */}
       <div className="w-full m-auto">
