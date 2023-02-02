@@ -36,7 +36,7 @@ const Header = () => {
       id="header"
       ref={headerRef}
       {...headerSlideAnimation}
-      className={`z-40 relative opacity-1  top-0 left-0 w-full 
+      className={`z-50 relative opacity-1  top-0 left-0 w-full 
         ${pathName.match("writing") && "sticky"} ${
         pathName.match("studio") && "hidden"
       } ${!pathName ? " bg-primary " : "bg-background"} `}

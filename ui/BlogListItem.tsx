@@ -30,7 +30,7 @@ const BlogListItem = ({ post, idx }: Props) => {
         onDragOver={(e) => {
           e.preventDefault();
         }}
-        className={`z-30 md:z-40  bg-opacity-25 dropzone relative flex flex-col 
+        className={`z-30 md:z-40   dropzone relative flex flex-col 
         w-full h-fit md:rounded-lg shadow-lg overflow-hidden box-border ${
           drag.overId === post._id && "over"
         }   `}
@@ -55,7 +55,7 @@ const BlogListItem = ({ post, idx }: Props) => {
 
         {/* text */}
         <div
-          className=" w-full h-fit bg-white dark:bg-[#222222] 
+          className=" w-full h-fit bg-white dark:bg-[#222222]/25 bg-opacity-30 backdrop-blur-sm 
         text-white dark:text-black flex flex-col justify-between px-5 py-3"
         >
           <div className="text-background ">
