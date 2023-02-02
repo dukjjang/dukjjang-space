@@ -30,7 +30,7 @@ const BlogListItem = ({ post, idx }: Props) => {
         onDragOver={(e) => {
           e.preventDefault();
         }}
-        className={`z-30 md:z-40   dropzone relative flex flex-col 
+        className={`z-30 md:z-40 dropzone relative flex flex-col 
         w-full h-fit md:rounded-lg shadow-lg overflow-hidden box-border ${
           drag.overId === post._id && "over"
         }   `}
@@ -61,7 +61,7 @@ const BlogListItem = ({ post, idx }: Props) => {
           <div className="text-background ">
             <div className="flex justify-between items-center mb-2">
               {/* title */}
-              <p className="text-xl md:text-xl ">{post.title && post.title}</p>
+              <p className="text-xl md:text-xl">{post.title && post.title}</p>
 
               {/* categories */}
               <div className="  ">
@@ -83,7 +83,7 @@ const BlogListItem = ({ post, idx }: Props) => {
               <p className="text-background inline text-md text-gray-700">
                 {post.description && `${post.description}  `}
               </p>
-              <div className="h-fit inline text-sm">
+              <div className="h-fit inline text-[14px]">
                 {isNotEmpyBlock.slice(0, drag.cache[idx] + 1).map((block) => {
                   if (block._type === "block")
                     return (
