@@ -25,7 +25,6 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
     cloneBoxRef.current.append(cloneElement);
     cloneBoxRef.current.classList.remove("hidden");
   };
-
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
 
@@ -70,7 +69,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
         cache: drag.cache.map((count, index) => {
           const targetIndex = Number(dragOverElement.dataset.idx);
           if (e.currentTarget.id === "wizard-icon")
-            return index === targetIndex && count < 2 ? (count += 2) : count;
+            return index === targetIndex && count < 3 ? (count += 1) : count;
           else return index === targetIndex ? (count = 0) : count;
         }),
       });
@@ -110,7 +109,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
         cache: drag.cache.map((count, index) => {
           const targetIndex = Number(dragOverElement.dataset.idx);
           if (e.currentTarget.id === "wizard-icon") {
-            return targetIndex === index && count < 2 ? (count += 1) : count;
+            return targetIndex === index && count < 3 ? (count += 1) : count;
           } else return targetIndex === index ? 0 : count;
         }),
       });

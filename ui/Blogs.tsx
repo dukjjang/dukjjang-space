@@ -12,10 +12,14 @@ const Blogs = ({ posts }: Props) => {
     <ul
       id="blogs"
       className="h-fit gap-y-6 grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense 
-      md:px-16 md:gap-10 md:gap-y-16 md:pb-24 md:h-fit md:py-10 box-border "
+      md:px-16 md:gap-x-8 md:gap-y-14 md:pb-24 md:h-fit md:py-10 box-border "
     >
       {posts.map((post, idx) => (
-        <Link key={post._id} href={`/writing/${post.slug.current}`}>
+        <Link
+          className="h-fit"
+          key={post._id}
+          href={`/writing/${post.slug.current}`}
+        >
           <BlogListItem post={post} idx={idx} />
         </Link>
       ))}
