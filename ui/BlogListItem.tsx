@@ -61,7 +61,9 @@ const BlogListItem = ({ post, idx }: Props) => {
           <div className="text-background ">
             <div className="flex justify-between items-center mb-2">
               {/* title */}
-              <p className="text-xl md:text-xl">{post.title && post.title}</p>
+              <p className="text-xl md:text-2xl font-bold">
+                {post.title && post.title}
+              </p>
 
               {/* categories */}
               <div className="  ">
@@ -83,7 +85,7 @@ const BlogListItem = ({ post, idx }: Props) => {
               <p className="text-background inline text-md text-gray-700">
                 {post.description && `${post.description}  `}
               </p>
-              <div className="h-fit inline text-[14px]">
+              <div className="h-fit inline text-[15px]">
                 {isNotEmpyBlock.slice(0, drag.cache[idx] + 1).map((block) => {
                   if (block._type === "block")
                     return (
