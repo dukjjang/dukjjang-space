@@ -30,7 +30,7 @@ const BlogListItem = ({ post, idx }: Props) => {
         onDragOver={(e) => {
           e.preventDefault();
         }}
-        className={`z-20 bg-opacity-25 dropzone relative flex flex-col 
+        className={`z-30 md:z-40  bg-opacity-25 dropzone relative flex flex-col 
         w-full h-fit md:rounded-lg shadow-lg overflow-hidden box-border ${
           drag.overId === post._id && "over"
         }   `}
@@ -87,10 +87,8 @@ const BlogListItem = ({ post, idx }: Props) => {
                 {isNotEmpyBlock.slice(0, drag.cache[idx] + 1).map((block) => {
                   if (block._type === "block")
                     return (
-                      <div className="py-2">
-                        {" "}
+                      <div key={block._key} className="py-2">
                         <PortableText
-                          key={block._key}
                           value={block}
                           components={BlogListTextStyle}
                         />

@@ -15,7 +15,7 @@ const Waves = ({ wavesRef }: { wavesRef: RefObject<HTMLElement> }) => {
       <div
         className={`${
           isHomePage ? "block" : "hidden"
-        } -z-10 w-full h-3 moon-shadow md:h-8 bg-[#ED952A] opacity-5 absolute  bottom-10  `}
+        }  -z-10 w-full h-3 moon-shadow md:h-8 bg-[#ED952A] opacity-5 absolute  bottom-10  `}
       />
       <svg
         className={`  md:h-[150px] h-[100px] max-h-[200px]  bg-transparent  ;
