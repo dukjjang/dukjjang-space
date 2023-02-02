@@ -14,7 +14,7 @@
   }
 
   .bg-primary {
-    @apply bg-[#CAE4F5] dark:bg-[#151E27];
+    @apply bg-[#CAE4F5]/90 dark:bg-[#151E27];
   }
 
   .moon-shadow {

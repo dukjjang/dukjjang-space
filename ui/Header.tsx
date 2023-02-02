@@ -37,10 +37,10 @@ const Header = () => {
       id="header"
       ref={headerRef}
       {...headerSlideAnimation}
-      className={`z-50 relative opacity-1  shadow-sm top-0 left-0 w-full border-b dark:border-none 
-        ${pathName.match("writing") && "sticky"} ${
+      className={`z-50 relative opacity-1 top-0 left-0 w-full  
+        ${pathName.match("writing") && "sticky border-b dark:border-none shadow-sm "} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-background"} `}
+      } ${!pathName ? " bg-primary " : "bg-background"} border-none `}
     >
       <Stars parentRef={headerRef} />
       <NavWrapper>
