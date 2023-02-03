@@ -39,7 +39,7 @@ const Header = () => {
       className={`z-20  top-0   
         ${pathName.match("writing") && "sticky shadow-sm"} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-background"} border-none `}
+      } ${!pathName ? " bg-primary " : "bg-background"} relative border-none `}
     >
       <Stars parentRef={headerRef} />
       <NavWrapper>
