@@ -7,6 +7,7 @@ import DragIcon from "./DragIcon";
 import ThemeToggleButton from "./ThemeToggleButton";
 import MenuButton from "./MenuButton";
 import Taps from "./Taps";
+import SoundToggleButton from "./SoundToggleButton";
 
 type Props = {
   showSideTaps: boolean;
@@ -58,6 +59,7 @@ const Nav = ({ showSideTaps, setShowSideTaps, LINKS }: Props) => {
         draggable
       />
       <Taps pathName={pathName} LINKS={LINKS} />
+      <SoundToggleButton />
       <ThemeToggleButton />
       <MenuButton showSideTaps={showSideTaps} toggleSideTaps={toggleSideTaps} />
     </nav>

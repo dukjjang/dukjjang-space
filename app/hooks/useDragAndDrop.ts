@@ -1,7 +1,9 @@
 "use client";
 
 import { DragEvent, RefObject, useEffect, useState, TouchEvent } from "react";
+import useSound from "use-sound";
 import { useDrag } from "../shard/DragContext";
+import { useSettingSound } from "../shard/SoundContext";
 
 type Props = {
   wizardRef: RefObject<HTMLImageElement | HTMLElement>;
@@ -11,6 +13,17 @@ type Props = {
 
 const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
   const [drag, setDrag] = useDrag();
+  const [sound, setSound] = useSettingSound();
+  const [playbackRate, setPlaybackRate] = useState(0.8);
+  const [playMagic] = useSound("/sounds/magic.mp3", {
+    playbackRate,
+    volume: sound === true ? 0.5 : 0,
+  });
+
+  const [playBroom] = useSound("/sounds/broom.mp3", {
+    playbackRate,
+    volume: sound === true ? 0.7 : 0,
+  });
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
@@ -63,11 +76,13 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       )
       .find((ele) => ele.nodeName === "LI") as HTMLElement;
 
+    const targetIndex = Number(dragOverElement.dataset.idx);
+    const targetIcon = e.currentTarget.id;
+
     if (dragOverElement) {
       setDrag({
         overId: "",
         cache: drag.cache.map((count, index) => {
-          const targetIndex = Number(dragOverElement.dataset.idx);
           if (e.currentTarget.id === "wizard-icon")
             return index === targetIndex && count < 3 ? (count += 1) : count;
           else return index === targetIndex ? (count = 0) : count;
@@ -84,6 +99,25 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       x: e.currentTarget.offsetLeft,
       y: e.currentTarget.offsetTop,
     });
+
+    playSound({ targetIndex, targetIcon });
+  };
+
+  const playSound = ({
+    targetIndex,
+    targetIcon,
+  }: {
+    targetIndex: number;
+    targetIcon: string;
+  }) => {
+    if (drag.cache[targetIndex] < 3 && targetIcon === "wizard-icon") {
+      playMagic();
+      setPlaybackRate(playbackRate + 0.1);
+    }
+    if (drag.cache[targetIndex] > 0 && targetIcon === "broom-icon") {
+      playBroom();
+      setPlaybackRate(0.9);
+    }
   };
 
   const handleDrag = (e: DragEvent): void => {
@@ -103,17 +137,28 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       .elementsFromPoint(e.clientX, e.clientY)
       .find((ele) => ele.nodeName === "LI") as HTMLElement;
 
+    const targetIndex = Number(dragOverElement.dataset.idx);
+    const targetIcon = e.currentTarget.id;
+
     if (dragOverElement) {
       setDrag({
         overId: "",
         cache: drag.cache.map((count, index) => {
-          const targetIndex = Number(dragOverElement.dataset.idx);
-          if (e.currentTarget.id === "wizard-icon") {
+          if (targetIcon === "wizard-icon") {
             return targetIndex === index && count < 3 ? (count += 1) : count;
           } else return targetIndex === index ? 0 : count;
         }),
       });
       dragOverElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    if (drag.cache[targetIndex] < 3 && targetIcon === "wizard-icon") {
+      playMagic();
+      setPlaybackRate(playbackRate + 0.1);
+    }
+    if (drag.cache[targetIndex] > 0 && targetIcon === "broom-icon") {
+      playBroom();
+      setPlaybackRate(0.9);
     }
   };
 

@@ -22,15 +22,15 @@ const CodeBlock = ({ value }: any) => {
 
   return (
     <div
-      className="bg-[#303136]/60 dark:bg-[#303136]/70  h-fit p-3 
+      className="bg-neutral-100 dark:bg-[#303136]/70 h-fit p-3 
       rounded-md w-full flex flex-col justify-center pb-6 [&_code]:!text-[0.9rem] [&_code]:!font-semibold "
     >
       <button
         type="button"
-        className="self-end mr-5 px-2 py-1 bg-transparent  "
+        className="self-end mr-5 px-2 py-1 bg-transparent"
         onClick={handleCopyCode}
       >
-        <h4 className="text-gradient opacity-60 hover:opacity-100  text-md">
+        <h4 className="text-green-400 dark:text-blue-400 text-md font-bold">
           {isCopied ? "copied" : "copy"}
         </h4>
       </button>

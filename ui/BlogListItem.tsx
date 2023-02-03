@@ -3,7 +3,9 @@ import urlFor from "../lib/urlFor";
 import { useDrag } from "../app/shard/DragContext";
 import { PortableText } from "@portabletext/react";
 import BlogListTextStyle from "./BlogListTextStyle";
-import { useMemo } from "react";
+import { useMemo, MouseEvent } from "react";
+import useSound from "use-sound";
+import { useSettingSound } from "../app/shard/SoundContext";
 
 type Props = {
   post: Post;
@@ -11,6 +13,8 @@ type Props = {
 };
 const BlogListItem = ({ post, idx }: Props) => {
   const [drag] = useDrag();
+  const [sound] = useSettingSound();
+  const [play] = useSound("/sounds/tick.mp3", { volume: 1 });
 
   const isNotEmpyBlock = useMemo(
     () =>
@@ -22,6 +26,11 @@ const BlogListItem = ({ post, idx }: Props) => {
     [post]
   );
 
+  const handleHoverSound = (e: MouseEvent<HTMLLIElement>) => {
+    const relatedTarget = e.relatedTarget as HTMLElement;
+    if (relatedTarget.id !== "wizard" && sound === true) play();
+  };
+
   if (isNotEmpyBlock)
     return (
       <li
@@ -30,8 +39,9 @@ const BlogListItem = ({ post, idx }: Props) => {
         onDragOver={(e) => {
           e.preventDefault();
         }}
-        className={`z-30 md:z-40 dropzone relative flex flex-col 
-        w-full h-fit md:rounded-lg shadow-lg overflow-hidden box-border ${
+        onMouseEnter={handleHoverSound}
+        className={`group z-30 md:z-40 dropzone relative flex flex-col 
+        w-full h-fit md:rounded-lg shadow-xl overflow-hidden box-border ${
           drag.overId === post._id && "over"
         }   `}
         key={post._id}
@@ -55,13 +65,13 @@ const BlogListItem = ({ post, idx }: Props) => {
 
         {/* text */}
         <div
-          className=" w-full h-fit bg-white dark:bg-[#222222]/60 bg-opacity-30 backdrop-blur-sm 
+          className=" w-full h-fit bg-white dark:bg-[#222222] rounded-lg  
         text-white dark:text-black flex flex-col justify-between px-5 py-3"
         >
           <div className="text-background ">
             <div className="flex justify-between items-center mb-2">
               {/* title */}
-              <p className="text-xl md:text-2xl font-bold">
+              <p className="group-hover:text-gradient  text-xl md:text-2xl font-bold">
                 {post.title && post.title}
               </p>
 
