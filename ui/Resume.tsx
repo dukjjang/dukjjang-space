@@ -5,7 +5,7 @@ import UnderLine from "./UnderLine";
 
 const Resume = () => {
   return (
-    <section className="z-40 w-full px-5 lg:px-56 bg-white dark:bg-[#0E141B] h-[1000px] ">
+    <section className="-z-10 w-full px-5 lg:px-56 bg-white dark:bg-[#0E141B] h-[1000px] ">
       <div>
         <motion.div
           initial={{ opacity: 0, translateY: 30 }}
@@ -13,7 +13,7 @@ const Resume = () => {
           transition={{ delay: 0.5, duration: 1 }}
         >
           <h1
-            className="text-[24px] w-fit mb-10 text-black dark:text-neutral-200 
+            className=" text-[24px] w-fit mb-10 text-black dark:text-neutral-200 
             md:text-4xl lg:text-6xl font-bold"
           >
             안녕하세요,

@@ -14,7 +14,7 @@ const SunMoonWrapper = ({ children, showSideTaps }: Props) => {
              ${pathName.match("writing") ? "hidden" : "block"}`}
     >
       <motion.div
-        className="z-30"
+        className="z-50"
         animate={{
           translateY: showSideTaps ? 20 : 0,
           translateX: showSideTaps ? 70 : 0,

@@ -13,8 +13,8 @@ const SideTaps = ({ LINKS, showSlideMenu }: Props) => {
     <div
       className={`${showSlideMenu === true ? "scale-100" : "scale-0"} ${
         pathName.match("writing") ? "bg-background" : "bg-primary"
-      } p-5 md:hidden flex flex-col w-full absolute top-0 right-0 
-        transition-transform duration-500 ease-in-out`}
+      } p-5 md:hidden flex flex-col w-full absolute top-0 right-0  
+       z-30 transition-transform duration-500 ease-in-out`}
     >
       <ul className=" flex items-end justify-center  ">
         {LINKS.map((link) => (
