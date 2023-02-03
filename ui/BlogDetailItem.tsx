@@ -10,7 +10,7 @@ const BlogDetailItem = ({ post }: Props) => {
   return (
     <article
       id={post._id}
-      className={`z-20 relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] 
+      className={`relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] 
       auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4`}
     >
       {/* Main Image */}
