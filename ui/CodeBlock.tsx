@@ -22,7 +22,7 @@ const CodeBlock = ({ value }: any) => {
 
   return (
     <div
-      className="bg-[#303136] dark:bg-[#303136]/70  h-fit p-3 
+      className="bg-[#303136]/60 dark:bg-[#303136]/70  h-fit p-3 
       rounded-md w-full flex flex-col justify-center pb-6 [&_code]:!text-[0.9rem] [&_code]:!font-semibold "
     >
       <button
