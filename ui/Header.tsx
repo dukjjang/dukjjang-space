@@ -13,7 +13,6 @@ import Nav from "./Nav";
 import SunMoonWrapper from "./SunMoonWrapper";
 import NavWrapper from "./NavWrapper";
 import Stars from "./Stars";
-import { useOnScroll } from "sanity";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
@@ -38,9 +37,12 @@ const Header = () => {
       ref={headerRef}
       {...headerSlideAnimation}
       className={`z-50 relative opacity-1 top-0 left-0 w-full  
-        ${pathName.match("writing") && "sticky border-b dark:border-none shadow-sm "} ${
-        pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-background"} border-none `}
+        ${
+          pathName.match("writing") &&
+          "sticky border-b dark:border-none shadow-sm "
+        } ${pathName.match("studio") && "hidden"} ${
+        !pathName ? " bg-primary " : "bg-background"
+      } border-none `}
     >
       <Stars parentRef={headerRef} />
       <NavWrapper>

@@ -13,7 +13,7 @@ type Props = {
 
 const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
   const [drag, setDrag] = useDrag();
-  const [sound, setSound] = useSettingSound();
+  const [sound] = useSettingSound();
   const [playbackRate, setPlaybackRate] = useState(0.8);
   const [playMagic] = useSound("/sounds/magic.mp3", {
     playbackRate,
@@ -76,7 +76,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       )
       .find((ele) => ele.nodeName === "LI") as HTMLElement;
 
-    const targetIndex = Number(dragOverElement.dataset.idx);
+    const targetIndex = Number(dragOverElement?.dataset.idx);
     const targetIcon = e.currentTarget.id;
 
     if (dragOverElement) {
@@ -137,7 +137,7 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       .elementsFromPoint(e.clientX, e.clientY)
       .find((ele) => ele.nodeName === "LI") as HTMLElement;
 
-    const targetIndex = Number(dragOverElement.dataset.idx);
+    const targetIndex = Number(dragOverElement?.dataset.idx);
     const targetIcon = e.currentTarget.id;
 
     if (dragOverElement) {
