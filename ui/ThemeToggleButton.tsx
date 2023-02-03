@@ -2,14 +2,16 @@
 
 import { useTheme } from "next-themes";
 import useSound from "use-sound";
+import { useSettingSound } from "../app/shard/SoundContext";
 
 const ThemeToggleButton = () => {
   const { theme, setTheme } = useTheme();
+  const [sound] = useSettingSound();
   const [play] = useSound("/sounds/bulb.mp3", { volume: 0.2 });
 
   const onClick = () => {
     setTheme(theme === "light" ? "dark" : "light");
-    play();
+    sound === true && play();
   };
 
   return (
