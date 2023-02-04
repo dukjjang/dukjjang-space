@@ -20,6 +20,7 @@ const Header = () => {
   const headerRef = useRef<HTMLElement>(null);
   const wavesRef = useRef<HTMLElement>(null);
   const [showSideTaps, setShowSideTaps] = useState(false);
+
   const { scrolling } = useScroll();
   const { theme } = useTheme();
 
@@ -28,19 +29,19 @@ const Header = () => {
     { id: 1, name: "Contact", path: "contact" },
   ];
 
+  console.log("theme", theme);
   return (
     <header
       id="header"
       ref={headerRef}
-      className={`z-20 top-0 w-full 
-      transition-[transform,opacity] duration-1000 ease-in-out   
-        fixed ${pathName.match("studio") && "hidden"} ${
-        !pathName ? "block bg-primary relative  " : "bg-background"
-      } ${
+      className={`z-20 top-0 w-full transition-[transform,opacity] 
+        duration-700 delay-300 ease-in-out fixed ${
+          pathName.match("studio") && "hidden"
+        } ${!pathName ? "block bg-primary relative " : "bg-background"} ${
         pathName.match("writing") && scrolling
           ? "-translate-y-32 opacity-0 "
           : "translate-y-0 opacity-100"
-      }   `}
+      }`}
     >
       {!pathName && <Stars />}
       <NavWrapper>

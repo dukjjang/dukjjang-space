@@ -65,7 +65,7 @@ const BlogListItem = ({ post, idx }: Props) => {
 
         {/* text */}
         <div
-          className="w-full h-fit bg-white dark:bg-[#222222] rounded-lg  
+          className="w-full h-fit bg-white dark:bg-[#222222] md:rounded-lg  
         text-white dark:text-black flex flex-col justify-between px-5 py-3"
         >
           <div className="text-background ">

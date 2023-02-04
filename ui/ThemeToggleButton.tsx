@@ -8,7 +8,11 @@ const ThemeToggleButton = () => {
   const [play] = useSound("/sounds/bulb.mp3", { volume: 0.2 });
 
   const onClick = () => {
-    setTheme(theme === "light" || theme === "system" ? "dark" : "light");
+    setTheme(
+      theme === "light" || theme === undefined || theme === "system"
+        ? "dark"
+        : "light"
+    );
     sound === true && play();
   };
 

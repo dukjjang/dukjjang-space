@@ -1,5 +1,5 @@
-const loading = () => {
-  return <div className="bg-background w-full h-full">loading...</div>;
+const Loading = () => {
+  return <div className="bg-background w-screen h-screen">loading...</div>;
 };
 
-export default loading;
+export default Loading;
