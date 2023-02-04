@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { RefObject, useEffect, useState } from "react";
+import { memo, RefObject, useEffect, useState } from "react";
 import { useWindowSize } from "../app/hooks/useWindowSize";
 import Star from "./Star";
 
@@ -25,7 +25,7 @@ const StarsWrapper = ({ parentRef }: { parentRef: RefObject<HTMLElement> }) => {
         };
       })
     );
-  }, [pathName]);
+  }, [windowSize]);
 
   return (
     <div className=" z-0 hidden dark:block absolute left-0 top-0 right-0 h-full w-full bg-transparent">
@@ -36,4 +36,4 @@ const StarsWrapper = ({ parentRef }: { parentRef: RefObject<HTMLElement> }) => {
   );
 };
 
-export default StarsWrapper;
+export default memo(StarsWrapper);

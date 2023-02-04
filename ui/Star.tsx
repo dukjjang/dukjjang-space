@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 const Star = ({ x, y }: { x: number; y: number }) => {
   return (
@@ -11,9 +12,9 @@ const Star = ({ x, y }: { x: number; y: number }) => {
         delay: Number((Math.random() * 10).toFixed(0)),
       }}
       key={crypto.randomUUID()}
-      className={` max-sm:-z-50 absolute w-1 h-1 rounded-full bg-white transition-transform duration-300  `}
+      className={` max-sm:-z-50 absolute w-1 h-1 rounded-full bg-white   `}
     />
   );
 };
 
-export default Star;
+export default memo(Star);
