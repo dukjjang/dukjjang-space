@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import { useTheme } from "next-themes";
 
 import Waves from "./Waves";
 import Logo from "./Logo";
@@ -21,6 +21,7 @@ const Header = () => {
   const wavesRef = useRef<HTMLElement>(null);
   const [showSideTaps, setShowSideTaps] = useState(false);
   const { scrolling } = useScroll();
+  const { theme } = useTheme();
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -34,7 +35,7 @@ const Header = () => {
       className={`z-20 top-0 w-full 
       transition-[transform,opacity] duration-1000 ease-in-out   
         fixed ${pathName.match("studio") && "hidden"} ${
-        !pathName ? "block bg-primary relative " : "bg-background"
+        !pathName ? "block bg-primary relative  " : "bg-background"
       } ${
         pathName.match("writing") && scrolling
           ? "-translate-y-32 opacity-0 "
