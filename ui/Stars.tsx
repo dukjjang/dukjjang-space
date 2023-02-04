@@ -1,31 +1,40 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { memo, RefObject, useEffect, useState } from "react";
+import { memo, RefObject, useEffect, useRef, useState } from "react";
 import { useWindowSize } from "../app/hooks/useWindowSize";
 import Star from "./Star";
 
-const StarsWrapper = ({ parentRef }: { parentRef: RefObject<HTMLElement> }) => {
+const StarsWrapper = () => {
   const pathName = usePathname();
   const [stars, setStars] = useState([]);
+  const starsRef = useRef<HTMLDivElement>(null);
+  const parentElement = starsRef.current?.parentElement;
+
+  console.log(parentElement);
 
   const { windowSize } = useWindowSize();
 
   useEffect(() => {
-    const writingPage = document.getElementById("writing");
-
     setStars(
-      Array.from(new Array(20), (_) => {
+      Array.from(new Array(30), (_) => {
         return {
-          x: (Math.random() * writingPage.offsetWidth).toFixed(0),
-          y: (Math.random() * writingPage.offsetHeight).toFixed(0),
+          x: Number((Math.random() * parentElement?.offsetWidth).toFixed(0)),
+          y: pathName.match("writing")
+            ? Number((Math.random() * parentElement?.offsetHeight).toFixed(0))
+            : Number(
+                ((Math.random() * parentElement?.offsetHeight) / 2).toFixed(0)
+              ),
         };
       })
     );
-  }, [pathName]);
+  }, [parentElement]);
 
   return (
-    <div className=" z-0 hidden dark:block absolute left-0 top-0 right-0 h-full w-full bg-transparent">
+    <div
+      ref={starsRef}
+      className=" z-0 hidden dark:block absolute left-0 top-0 right-0 bottom-0 h-full w-full bg-transparent"
+    >
       {stars.map((star) => (
         <Star key={crypto.randomUUID()} x={Number(star.x)} y={Number(star.y)} />
       ))}

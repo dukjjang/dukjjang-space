@@ -38,15 +38,16 @@ const Header = () => {
       id="header"
       ref={headerRef}
       {...headerSlideAnimation}
-      className={`z-20  top-0   
-        ${pathName.match("writing") && "sticky shadow-sm"} ${
+      className={`z-20 top-0  w-full 
+        ${pathName.match("writing") && "fixed shadow-sm"} ${
         pathName.match("studio") && "hidden"
       } ${!pathName ? " bg-primary " : "bg-background"} ${
-        pathName.match("writing") && direction === "down"
+        pathName.match("writing") && scrolling
           ? "-translate-y-32 opacity-0 "
           : "translate-y-0 opacity-100"
-      } relative border-none transition-transform ease-in`}
+      } border-none transition-transform duration-150 ease-in bg-opacity-70 delay-200`}
     >
+      {!pathName && <Stars />}
       <NavWrapper>
         <Link href="/" scroll={false}>
           <Logo />
@@ -63,7 +64,6 @@ const Header = () => {
         />
         <SideTaps LINKS={LINKS} showSlideMenu={showSideTaps} />
       </NavWrapper>
-
       <Waves wavesRef={wavesRef} />
     </motion.header>
   );
