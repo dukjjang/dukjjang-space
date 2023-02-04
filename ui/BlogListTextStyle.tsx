@@ -4,7 +4,6 @@ const BlogListTextStyle = {
   ),
   marks: {
     strong: ({ children, value }: any) => {
-      console.log(children, value);
       return <strong>{children}</strong>;
     },
   },

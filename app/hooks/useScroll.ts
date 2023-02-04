@@ -8,6 +8,12 @@ export const useScroll = () => {
   const [direction, setDirection] = useState<"down" | "up" | null>();
 
   const handleScroll = (e: Event): void => {
+    if (window.scrollY < 100) {
+      setScrolling(false);
+      setDirection(null);
+      return;
+    }
+
     if (window.scrollY === 0) {
       setScrollY(0);
       setScrolling(false);
@@ -34,7 +40,7 @@ export const useScroll = () => {
       if (scrollY > window.scrollY) setDirection("up");
       if (scrollY < window.scrollY) setDirection("down");
       else setDirection(null);
-    }, 200);
+    }, 700);
 
     const checkScroll = setInterval(() => {
       if (scrollY === window.scrollY) {
@@ -42,10 +48,8 @@ export const useScroll = () => {
       }
       clearInterval(checkScroll);
       clearInterval(checkDirection);
-    }, 200);
+    }, 900);
   }, [scrollY, scrolling, direction]);
-
-  console.log(direction, scrollY, scrolling);
 
   return { scrolling, direction };
 };

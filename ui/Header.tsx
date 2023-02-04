@@ -38,14 +38,15 @@ const Header = () => {
       id="header"
       ref={headerRef}
       {...headerSlideAnimation}
-      className={`z-20 top-0  w-full backdrop-blur-sm transition-transform duration-150 ease-in-out bg-opacity-50  
-        ${pathName.match("writing") && "fixed shadow-sm"} ${
+      className={`z-20 top-0 w-full backdrop-blur-sm 
+      transition-[transform,opacity] duration-1000 ease-in-out   
+        ${pathName.match("writing") && "fixed shadow-sm bg-opacity-50"} ${
         pathName.match("studio") && "hidden"
       } ${!pathName ? " bg-primary " : "bg-background"} ${
         pathName.match("writing") && scrolling
           ? "-translate-y-32 opacity-0 "
           : "translate-y-0 opacity-100"
-      } border-none `}
+      }   `}
     >
       {!pathName && <Stars />}
       <NavWrapper>
