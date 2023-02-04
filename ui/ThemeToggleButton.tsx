@@ -11,7 +11,7 @@ const ThemeToggleButton = () => {
 
   const onClick = () => {
     setTheme(theme === "light" || theme === "system" ? "dark" : "light");
-    // sound === true && play();
+    sound === true && play();
   };
 
   return (

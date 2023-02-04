@@ -1,14 +1,16 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const useScroll = () => {
   const [scrolling, setScrolling] = useState<Boolean>(false);
   const [scrollY, setScrollY] = useState<Number>(0);
   const [direction, setDirection] = useState<"down" | "up" | null>();
+  const pathName = usePathname();
 
   const handleScroll = (e: Event): void => {
-    if (window.scrollY < 100) {
+    if (window.scrollY < 200) {
       setScrolling(false);
       setDirection(null);
       return;
@@ -49,7 +51,7 @@ export const useScroll = () => {
       clearInterval(checkScroll);
       clearInterval(checkDirection);
     }, 900);
-  }, [scrollY, scrolling, direction]);
+  }, [scrollY, scrolling, direction, pathName]);
 
-  return { scrolling, direction };
+  return { scrolling, direction, scrollY };
 };

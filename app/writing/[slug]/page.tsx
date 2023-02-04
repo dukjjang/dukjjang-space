@@ -28,7 +28,7 @@ const DetailPage = async ({ params }: any) => {
 } `);
 
   return (
-    <main className="relatvie ">
+    <main className="relatvie pt-[88px] overflow-x-hidden">
       <Stars />
       <BlogDetailItem post={post} />
     </main>

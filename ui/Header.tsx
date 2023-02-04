@@ -20,7 +20,7 @@ const Header = () => {
   const headerRef = useRef<HTMLElement>(null);
   const wavesRef = useRef<HTMLElement>(null);
   const [showSideTaps, setShowSideTaps] = useState(false);
-  const { scrolling, direction } = useScroll();
+  const { scrolling } = useScroll();
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -38,11 +38,11 @@ const Header = () => {
       id="header"
       ref={headerRef}
       {...headerSlideAnimation}
-      className={`z-20 top-0 w-full relative backdrop-blur-[1px]
+      className={`z-20 top-0 w-full 
       transition-[transform,opacity] duration-1000 ease-in-out   
-        ${pathName.match("writing") && "fixed shadow-sm bg-opacity-50"} ${
+        ${pathName.match("writing") && "fixed "} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-transparent"} ${
+      } ${!pathName ? " bg-primary relative " : "bg-background"} ${
         pathName.match("writing") && scrolling
           ? "-translate-y-32 opacity-0 "
           : "translate-y-0 opacity-100"
