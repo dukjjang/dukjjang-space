@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { memo } from "react";
 
 const Star = ({ x, y }: { x: number; y: number }) => {
   return (
@@ -17,4 +16,4 @@ const Star = ({ x, y }: { x: number; y: number }) => {
   );
 };
 
-export default memo(Star);
+export default Star;

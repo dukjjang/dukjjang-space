@@ -19,6 +19,7 @@ const Blogs = ({ posts }: Props) => {
           className="h-fit"
           key={post._id}
           href={`/writing/${post.slug.current}`}
+          scroll={false}
         >
           <BlogListItem post={post} idx={idx} />
         </Link>

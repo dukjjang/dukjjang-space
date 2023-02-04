@@ -25,7 +25,7 @@ const StarsWrapper = ({ parentRef }: { parentRef: RefObject<HTMLElement> }) => {
         };
       })
     );
-  }, [windowSize]);
+  }, [pathName]);
 
   return (
     <div className=" z-0 hidden dark:block absolute left-0 top-0 right-0 h-full w-full bg-transparent">

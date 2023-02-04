@@ -45,7 +45,7 @@ const Header = () => {
         pathName.match("writing") && direction === "down"
           ? "-translate-y-32 opacity-0 "
           : "translate-y-0 opacity-100"
-      } relative border-none transition-transform duration-300 ease-in   `}
+      } relative border-none transition-transform ease-in`}
     >
       <Stars parentRef={headerRef} />
       <NavWrapper>
