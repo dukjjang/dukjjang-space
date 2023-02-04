@@ -13,12 +13,14 @@ import Nav from "./Nav";
 import SunMoonWrapper from "./SunMoonWrapper";
 import NavWrapper from "./NavWrapper";
 import Stars from "./Stars";
+import { useScroll } from "../app/hooks/useScroll";
 
 const Header = () => {
   const pathName = usePathname().slice(1);
   const headerRef = useRef<HTMLElement>(null);
   const wavesRef = useRef<HTMLElement>(null);
   const [showSideTaps, setShowSideTaps] = useState(false);
+  const { scrolling, direction } = useScroll();
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -39,7 +41,11 @@ const Header = () => {
       className={`z-20  top-0   
         ${pathName.match("writing") && "sticky shadow-sm"} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-background"} relative border-none `}
+      } ${!pathName ? " bg-primary " : "bg-background"} ${
+        pathName.match("writing") && direction === "down"
+          ? "-translate-y-32 opacity-0 "
+          : "translate-y-0 opacity-100"
+      } relative border-none transition ease-in-out   `}
     >
       <Stars parentRef={headerRef} />
       <NavWrapper>
