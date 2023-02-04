@@ -38,11 +38,11 @@ const Header = () => {
       id="header"
       ref={headerRef}
       {...headerSlideAnimation}
-      className={`z-20 top-0 w-full backdrop-blur-sm 
+      className={`z-20 top-0 w-full backdrop-blur-[1px]
       transition-[transform,opacity] duration-1000 ease-in-out   
         ${pathName.match("writing") && "fixed shadow-sm bg-opacity-50"} ${
         pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary " : "bg-background"} ${
+      } ${!pathName ? " bg-primary " : "bg-transparent"} ${
         pathName.match("writing") && scrolling
           ? "-translate-y-32 opacity-0 "
           : "translate-y-0 opacity-100"

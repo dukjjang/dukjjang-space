@@ -15,7 +15,7 @@ const BlogDetailItem = ({ post }: Props) => {
     >
       {/* Main Image */}
       {post.mainImage && (
-        <div className={`relative h-32`}>
+        <div className={`!col-start-1 !col-end-4 relative h-52`}>
           <Img
             draggable="false"
             className="object-cover"

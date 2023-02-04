@@ -28,7 +28,7 @@ const DetailPage = async ({ params }: any) => {
 } `);
 
   return (
-    <main className="relatvie  pt-32">
+    <main className="relatvie ">
       <Stars />
       <BlogDetailItem post={post} />
     </main>

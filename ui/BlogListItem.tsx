@@ -40,7 +40,7 @@ const BlogListItem = ({ post, idx }: Props) => {
           e.preventDefault();
         }}
         onMouseEnter={handleHoverSound}
-        className={` group dropzone relative flex flex-col 
+        className={`group dropzone relative flex flex-col 
         w-full h-fit md:rounded-lg shadow-xl overflow-hidden box-border ${
           drag.overId === post._id && "over"
         }   `}
@@ -71,7 +71,7 @@ const BlogListItem = ({ post, idx }: Props) => {
           <div className="text-background ">
             <div className="flex justify-between items-center mb-2">
               {/* title */}
-              <p className="group-hover:text-gradient  text-xl md:text-2xl font-bold">
+              <p className="md:text-2xl group-hover:text-gradient text-xl  font-bold">
                 {post.title && post.title}
               </p>
 
