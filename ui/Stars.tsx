@@ -12,16 +12,13 @@ const StarsWrapper = ({ parentRef }: { parentRef: RefObject<HTMLElement> }) => {
   const { windowSize } = useWindowSize();
 
   useEffect(() => {
+    const writingPage = document.getElementById("writing");
+
     setStars(
       Array.from(new Array(20), (_) => {
         return {
-          x: (Math.random() * parentRef.current.offsetWidth).toFixed(0),
-          y:
-            pathName.match("writing") && document.body.offsetWidth > 500
-              ? (Math.random() * document.body.offsetHeight).toFixed(0)
-              : ((Math.random() * parentRef.current.offsetHeight) / 2).toFixed(
-                  0
-                ),
+          x: (Math.random() * writingPage.offsetWidth).toFixed(0),
+          y: (Math.random() * writingPage.offsetHeight).toFixed(0),
         };
       })
     );

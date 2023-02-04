@@ -1,6 +1,7 @@
 import { groq } from "next-sanity";
 import { client } from "../../../lib/sanity.client";
 import BlogDetailItem from "../../../ui/BlogDetailItem";
+import Stars from "../../../ui/Stars";
 
 const allPostQuery = groq`
   *[_type=='post'] {
@@ -26,7 +27,11 @@ const DetailPage = async ({ params }: any) => {
   categories[]->
 } `);
 
-  return <BlogDetailItem post={post} />;
+  return (
+    <main>
+      <BlogDetailItem post={post} />
+    </main>
+  );
 };
 
 export default DetailPage;

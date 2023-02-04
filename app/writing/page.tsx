@@ -4,6 +4,7 @@ import { client } from "../../lib/sanity.client";
 import PreviewBlogs from "../../ui/PreviewBlogs";
 import PreviewSuspense from "../../ui/PreviewSuspense";
 import Blogs from "../../ui/Blogs";
+import Stars from "../../ui/Stars";
 
 const query = groq`
   *[_type=='post'] {

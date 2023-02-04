@@ -47,7 +47,6 @@ const Header = () => {
           : "translate-y-0 opacity-100"
       } relative border-none transition-transform ease-in`}
     >
-      <Stars parentRef={headerRef} />
       <NavWrapper>
         <Link href="/" scroll={false}>
           <Logo />
