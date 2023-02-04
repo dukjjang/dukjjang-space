@@ -1,5 +1,5 @@
 const loading = () => {
-  return <div>loading...</div>;
+  return <div className="bg-background w-full h-full">loading...</div>;
 };
 
 export default loading;

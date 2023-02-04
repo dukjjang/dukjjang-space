@@ -27,22 +27,15 @@ const Header = () => {
     { id: 1, name: "Contact", path: "contact" },
   ];
 
-  const headerSlideAnimation = pathName.length < 1 && {
-    initial: { opacity: 0, y: -200 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.7 },
-  };
-
   return (
-    <motion.header
+    <header
       id="header"
       ref={headerRef}
-      {...headerSlideAnimation}
       className={`z-20 top-0 w-full 
       transition-[transform,opacity] duration-1000 ease-in-out   
-        ${pathName.match("writing") && "fixed "} ${
-        pathName.match("studio") && "hidden"
-      } ${!pathName ? " bg-primary relative " : "bg-background"} ${
+        fixed ${pathName.match("studio") && "hidden"} ${
+        !pathName ? "block bg-primary relative " : "bg-background"
+      } ${
         pathName.match("writing") && scrolling
           ? "-translate-y-32 opacity-0 "
           : "translate-y-0 opacity-100"
@@ -66,7 +59,7 @@ const Header = () => {
         <SideTaps LINKS={LINKS} showSlideMenu={showSideTaps} />
       </NavWrapper>
       <Waves wavesRef={wavesRef} />
-    </motion.header>
+    </header>
   );
 };
 
