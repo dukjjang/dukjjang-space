@@ -51,7 +51,7 @@ export const useScroll = () => {
       clearInterval(checkScroll);
       clearInterval(checkDirection);
     }, 900);
-  }, [scrollY, scrolling, direction, pathName]);
+  }, [scrollY, scrolling, direction]);
 
   return { scrolling, direction, scrollY };
 };
