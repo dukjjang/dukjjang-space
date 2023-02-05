@@ -1,13 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import useSound from "use-sound";
 import BlogListItem from "./BlogListItem";
+import { useSettingSound } from "../app/shard/SoundContext";
 
 type Props = {
   posts: Post[];
 };
 
 const Blogs = ({ posts }: Props) => {
+  const [sound] = useSettingSound();
+  const [playClick] = useSound("/sounds/click.mp3", {
+    volume: sound === true ? 0.8 : 0,
+  });
+
   return (
     <ul
       id="blogs"
@@ -17,6 +24,7 @@ const Blogs = ({ posts }: Props) => {
     >
       {posts.map((post, idx) => (
         <Link
+          onClick={() => playClick()}
           className="h-fit"
           key={post._id}
           href={`/writing/${post.slug.current}`}
