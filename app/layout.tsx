@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <ServerThemeProvider attribute="class">
       <html lang="en">
-        <body className="bg-background overflow-x-hidden">
+        <body className=" overflow-x-hidden">
           <Providers>
             <Header />
             {children}
