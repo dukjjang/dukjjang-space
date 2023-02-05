@@ -2,13 +2,19 @@ import Img from "next/image";
 import urlFor from "../lib/urlFor";
 import { PortableText } from "@portabletext/react";
 import BlogDetailTextStyle from "./BlogDetailTextStyle";
+import ArrowLinks from "./ArrowLinks";
+
+type Slug = {
+  _type: string;
+  current: string;
+};
 
 type Props = {
   post: Post;
+  nextPath: string;
+  prevPath: string;
 };
-const BlogDetailItem = ({ post }: Props) => {
-  console.log(post);
-
+const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
   return (
     <article
       id={post._id}
@@ -34,14 +40,12 @@ const BlogDetailItem = ({ post }: Props) => {
           {post.title && post.title}
         </p>
       </div>
-
       <div className={`mb-2`}>
         {/* description */}
         <p className="text-background text-xl inline">
           {post.description && `${post.description} `}
         </p>
       </div>
-
       <div className="flex justify-between px-5 md:px-0">
         <div className="flex justify-center items-center ">
           {/* author */}
@@ -85,6 +89,7 @@ const BlogDetailItem = ({ post }: Props) => {
           );
         })}
       </div>
+      <ArrowLinks nextPath={nextPath} prevPath={prevPath} />
     </article>
   );
 };

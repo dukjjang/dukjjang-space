@@ -1,4 +1,4 @@
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@wits/next-themes";
 import { DragProvider } from "./DragContext";
 import "../../styles/global.css";
 import { SoundProvider } from "./SoundContext";

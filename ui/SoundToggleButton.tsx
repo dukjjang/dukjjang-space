@@ -4,8 +4,8 @@ import { useSettingSound } from "../app/shard/SoundContext";
 
 const SoundToggleButton = () => {
   const [sound, setSound] = useSettingSound();
-  const [playVolumeUp] = useSound("/sounds/volumeUp.mp3", { volume: 0.5 });
-  const [playMute] = useSound("/sounds/mute.mp3", { volume: 0.5 });
+  const [playVolumeUp] = useSound("/sounds/volumeUp.mp3", { volume: 0.4 });
+  const [playMute] = useSound("/sounds/mute.mp3", { volume: 0.4 });
 
   const toggleSoundSetting = () => {
     if (sound === true) {

@@ -25,6 +25,10 @@
     @apply bg-white dark:bg-[#0E141B];
   }
 
+  .bg-gradient {
+    @apply bg-gradient-to-r from-cyan-400 to-green-400 dark:from-green-300 dark:to-blue-600;
+  }
+
   .over {
     @apply outline outline-green-300 dark:outline-blue-500;
   }

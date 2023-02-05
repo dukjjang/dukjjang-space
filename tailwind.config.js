@@ -9,8 +9,15 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      animation: {
-        wiggle: "wiggle 1s ease-in-out infinite",
+      keyframes: {
+        arrowRight: {
+          "0%, 100%": { transform: "translateX(0px)" },
+          "50%": { transform: "translateX(20px)" },
+        },
+        arrowLeft: {
+          "0%, 100%": { transform: "translateX(0px)" },
+          "50%": { transform: "translateX(-20px)" },
+        },
       },
     },
   },

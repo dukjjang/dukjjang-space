@@ -71,7 +71,7 @@ const BlogListItem = ({ post, idx }: Props) => {
           <div className="text-background ">
             <div className="flex justify-between items-center mb-2">
               {/* title */}
-              <p className="md:text-2xl group-hover:text-gradient text-xl  font-bold">
+              <p className="md:text-2xl group-hover:text-gradient text-xl font-bold">
                 {post.title && post.title}
               </p>
 
