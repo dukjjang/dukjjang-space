@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
-import { useTheme } from "next-themes";
 
 import Waves from "./Waves";
 import Logo from "./Logo";
@@ -22,7 +21,6 @@ const Header = () => {
   const [showSideTaps, setShowSideTaps] = useState(false);
 
   const { scrolling } = useScroll();
-  const { theme } = useTheme();
 
   const LINKS = [
     { id: 0, name: "Writing", path: "writing" },
@@ -38,8 +36,6 @@ const Header = () => {
     if (isWriting) return "fixed bg-background";
     if (isStudio) return "hidden";
   };
-
-  console.log(theme);
 
   return (
     <header
@@ -61,7 +57,6 @@ const Header = () => {
           <SunMoon showSideTaps={showSideTaps} sunOrMoon={"sun"} />
           <SunMoon showSideTaps={showSideTaps} sunOrMoon={"moon"} />
         </SunMoonWrapper>
-
         <Nav
           showSideTaps={showSideTaps}
           setShowSideTaps={setShowSideTaps}

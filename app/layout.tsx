@@ -10,8 +10,8 @@ export default function RootLayout({
 }) {
   return (
     <ServerThemeProvider attribute="class">
-      <html className="bg-background" lang="en">
-        <body className="h-full bg-background overflow-x-hidden">
+      <html lang="en">
+        <body className="bg-background overflow-x-hidden">
           <Providers>
             <Header />
             {children}

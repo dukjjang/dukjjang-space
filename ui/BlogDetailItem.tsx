@@ -12,11 +12,11 @@ const BlogDetailItem = ({ post }: Props) => {
       id={post._id}
       className={`relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] 
       auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4
-      overflow-x-hidden${!post.mainImage && "pt-[88px]"} `}
+      overflow-x-hidden ${!post.mainImage && "pt-[88px]"} `}
     >
       {/* Main Image */}
       {post.mainImage && (
-        <div className={`!col-start-1 !col-end-4 relative h-60 `}>
+        <div className={` !col-start-1 !col-end-4 relative h-60 `}>
           <Img
             draggable="false"
             className="object-cover"
