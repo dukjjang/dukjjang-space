@@ -28,7 +28,7 @@ const DetailPage = async ({ params }: any) => {
 } `);
 
   return (
-    <main className="min-h-screen relatvie pt-[88px] overflow-x-hidden">
+    <main className="min-h-screen relatvie pt-[88px] overflow-x-hidden pb-20">
       <Stars />
       <BlogDetailItem post={post} />
     </main>

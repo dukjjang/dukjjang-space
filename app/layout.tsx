@@ -2,6 +2,7 @@ import { Providers } from "./shard/Provider";
 import { ServerThemeProvider } from "next-themes";
 import "../styles/global.css";
 import Header from "../ui/Header";
+import Footer from "../ui/Footer";
 
 export default function RootLayout({
   children,
@@ -13,8 +14,11 @@ export default function RootLayout({
       <html lang="en">
         <body className=" overflow-x-hidden">
           <Providers>
-            <Header />
-            {children}
+            <div>
+              <Header />
+              {children}
+              <Footer />
+            </div>
           </Providers>
         </body>
       </html>
