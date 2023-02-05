@@ -49,7 +49,7 @@
 @layer base {
   html,
   body {
-    @apply bg-white dark:bg-[#0E141B];
+    @apply bg-white dark:bg-[#0E141B] overflow-x-hidden;
   }
 
   footer {
