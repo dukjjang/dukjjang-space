@@ -29,23 +29,32 @@ const Header = () => {
     { id: 1, name: "Contact", path: "contact" },
   ];
 
-  console.log("theme", theme);
+  const styleAccordingToPage = (pathName: string) => {
+    const isHome = !pathName;
+    const isWriting = pathName.match("writing");
+    const isStudio = pathName.match("studio");
+
+    if (isHome) return "block bg-primary relative";
+    if (isWriting) return "fixed bg-background";
+    if (isStudio) return "hidden";
+  };
+
+  console.log(theme);
+
   return (
     <header
       id="header"
       ref={headerRef}
       className={`z-20 top-0 w-full transition-[transform,opacity] 
-        duration-700 delay-300 ease-in-out fixed ${
-          pathName.match("studio") && "hidden"
-        } ${!pathName ? "block bg-primary relative " : "bg-background"} ${
-        pathName.match("writing") && scrolling
-          ? "-translate-y-32 opacity-0 "
-          : "translate-y-0 opacity-100"
-      }`}
+        duration-700 delay-300 ease-in-out ${
+          pathName.match("writing") && scrolling
+            ? "-translate-y-32 opacity-0 "
+            : "translate-y-0 opacity-100"
+        } ${styleAccordingToPage(pathName)}  `}
     >
       {!pathName && <Stars />}
       <NavWrapper>
-        <Link href="/" scroll={false}>
+        <Link href="/" scroll={true}>
           <Logo />
         </Link>
         <SunMoonWrapper showSideTaps={showSideTaps}>

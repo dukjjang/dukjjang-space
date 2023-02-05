@@ -34,8 +34,8 @@ const Nav = ({ showSideTaps, setShowSideTaps, LINKS }: Props) => {
   return (
     <nav
       id="nav"
-      className=" text-background h-14 gap-3 md:gap-8 font-normal text-[16px] ml-auto 
-          flex items-center justify-center"
+      className=" text-background h-14 gap-3 md:gap-8 font-normal 
+      text-[16px] ml-auto flex items-center justify-center"
     >
       <DragIcon
         pathName={pathName}
