@@ -14,7 +14,7 @@ const Taps = ({ pathName, LINKS }: Props) => {
         <Link key={link.id} className="md:p-2 rounded" href={`/${link.path}`}>
           <h6 className="relative">
             {link.name}
-            {pathName === link.path && <UnderLine />}
+            {pathName.match(link.path) && <UnderLine />}
           </h6>
         </Link>
       ))}

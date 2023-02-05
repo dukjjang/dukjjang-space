@@ -5,7 +5,6 @@ import PreviewBlogs from "../../ui/PreviewBlogs";
 import PreviewSuspense from "../../ui/PreviewSuspense";
 import Blogs from "../../ui/Blogs";
 import Stars from "../../ui/Stars";
-import Footer from "../../ui/Footer";
 
 const query = groq`
   *[_type=='post'] {

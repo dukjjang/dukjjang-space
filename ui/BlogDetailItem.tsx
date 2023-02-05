@@ -7,6 +7,8 @@ type Props = {
   post: Post;
 };
 const BlogDetailItem = ({ post }: Props) => {
+  console.log(post);
+
   return (
     <article
       id={post._id}
