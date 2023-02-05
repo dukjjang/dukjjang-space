@@ -12,7 +12,7 @@ const BlogDetailItem = ({ post }: Props) => {
       id={post._id}
       className={`relative h-full w-full grid grid-cols-[1fr_min(65ch,100%)_1fr] 
       auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4
-      overflow-x-hidden ${!post.mainImage && "pt-[88px]"} `}
+      overflow-x-hidden `}
     >
       {/* Main Image */}
       {post.mainImage && (
