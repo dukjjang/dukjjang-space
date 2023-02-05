@@ -28,7 +28,7 @@ const BlogDetailItem = ({ post }: Props) => {
       )}
       {/* title */}
       <div className="flex justify-center my-10 ">
-        <p className="text-2xl md:text-4xl font-bold">
+        <p className="text-3xl md:text-4xl font-extrabold">
           {post.title && post.title}
         </p>
       </div>
