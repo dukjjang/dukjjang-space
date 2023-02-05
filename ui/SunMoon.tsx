@@ -16,8 +16,8 @@ const SunMoon = ({ showSideTaps, sunOrMoon }: Props) => {
   const isHomePage = usePathname().length < 1;
   const sunMoonRef = useRef<HTMLDivElement>(null);
   const [sound] = useSettingSound();
-  const [playPull] = useSound("/sounds/pull.mp3", { volume: 0.6 });
-  const [playShoot] = useSound("/sounds/shoot.mp3", { volume: 0.4 });
+  const [playPull] = useSound("/sounds/pull.mp3", { volume: 0.2 });
+  const [playShoot] = useSound("/sounds/shoot.mp3", { volume: 0.2 });
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);

@@ -13,9 +13,6 @@ const ArrowLinks = ({
   prevPath: string | null;
 }) => {
   const [sound] = useSettingSound();
-  const [playArrow] = useSound("/sounds/arrow.mp3", {
-    volume: sound === true ? 0.2 : 0,
-  });
   const [playClick] = useSound("/sounds/click.mp3", {
     volume: sound === true ? 0.8 : 0,
   });
@@ -23,7 +20,6 @@ const ArrowLinks = ({
     <div className="flex justify-between items-center px-4 py-8 w-full ">
       <Link
         onClick={() => playClick()}
-        onMouseEnter={() => playArrow()}
         href={`/writing/${prevPath}`}
         className={`flex items-center group relative w-16 h-10 after:content-[''] 
           after:absolute after:bottom-0 after:right-0 after:h-1 after:px-[18px] visible 
@@ -38,7 +34,6 @@ const ArrowLinks = ({
       </Link>
 
       <Link
-        onMouseEnter={() => playArrow()}
         onClick={() => playClick()}
         href={`/writing/${nextPath}`}
         className={`flex items-center group relative w-16 h-10 after:content-[''] 
