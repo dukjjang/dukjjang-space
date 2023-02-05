@@ -34,7 +34,7 @@ const Writing = async () => {
   return (
     <main
       id="writing"
-      className="relative w-full h-full bg-background overflow-x-hidden"
+      className="relative w-full min-h-screen bg-background overflow-x-hidden"
     >
       <Stars />
       <section className="h-fit mt-32 w-full lg:px-[180px] bg-background">
