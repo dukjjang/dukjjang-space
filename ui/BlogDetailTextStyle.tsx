@@ -56,14 +56,15 @@ const BlogDetailTextStyle = {
   },
   marks: {
     link: ({ children, value }: any) => {
-      const rel = !value.href.startsWith("/")
+      console.log(value);
+      const rel = !value.href?.startsWith("/")
         ? "noreferrer noopener"
         : undefined;
       return (
         <Link
           href={value.href}
           rel={rel}
-          className="underline decoration-green-500 hover:decoration-black"
+          className="underline text-green-400 dark:text-blue-500 "
         >
           {children}
         </Link>
