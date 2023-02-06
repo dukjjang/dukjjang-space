@@ -1,3 +1,5 @@
+"use client";
+
 import { useTheme } from "@wits/next-themes";
 import useSound from "use-sound";
 import { useSettingSound } from "../app/shard/SoundContext";
