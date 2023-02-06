@@ -23,7 +23,7 @@ const BlogDetailTextStyle = {
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="ml-10 py-1 md:py-3 list-disc">{children}</ul>
+      <ul className="ml-10 list-disc">{children}</ul>
     ),
     number: ({ children }: any) => (
       <ol className="mt-lg list-decimal">{children}</ol>
@@ -31,19 +31,25 @@ const BlogDetailTextStyle = {
   },
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-5xl py-5 md:py-8 font-bold">{children}</h1>
+      <h1 className="text-4xl py-3 font-bold text-slate-800 dark:text-slate-200 ">
+        {children}
+      </h1>
     ),
     h2: ({ children }: any) => (
-      <h1 className="text-4xl py-5 md:py-8 font-bold">{children}</h1>
+      <h1 className="text-3xl py-3 font-bold text-slate-800 dark:text-slate-200">
+        {children}
+      </h1>
     ),
     h3: ({ children }: any) => (
-      <h1 className="text-3xl py-5 md:py-8 font-bold">{children}</h1>
+      <h1 className="text-2xl py-3 font-bold text-slate-800 dark:text-slate-200">
+        {children}
+      </h1>
     ),
     h4: ({ children }: any) => (
-      <h1 className="text-2xl py-5 md:py-8 font-bold">{children}</h1>
+      <h1 className="text-xl py-3 font-bold dark:text-slate-200">{children}</h1>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-green-400 border-l-4 pl-5 py-5 my-5">
+      <blockquote className="border-l-green-400 dark:border-l-blue-500 border-l-4 pl-5 py-5 my-5">
         {children}
       </blockquote>
     ),
