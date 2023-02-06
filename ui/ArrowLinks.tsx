@@ -28,7 +28,7 @@ const ArrowLinks = ({
       >
         <BsArrowLeftShort
           size={30}
-          className="group-hover:animate-[arrowLeft_1s_ease-in-out_infinite] group-hover:text-green-400 dark:group-hover:text-blue-500"
+          className="group-hover:animate-[arrowLeft_1s_ease-in-out_infinite] text-green-400 dark:text-blue-500"
         />
         <h6 className="text-gradient ">prev</h6>
       </Link>
@@ -44,7 +44,7 @@ const ArrowLinks = ({
         <h6 className="text-gradient ">next</h6>
         <BsArrowRightShort
           size={30}
-          className="group-hover:animate-[arrowRight_1s_ease-in-out_infinite] group-hover:text-green-400 dark:group-hover:text-blue-500"
+          className="group-hover:animate-[arrowRight_1s_ease-in-out_infinite] text-green-400 dark:text-blue-500"
         />
       </Link>
     </div>

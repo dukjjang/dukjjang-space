@@ -18,7 +18,7 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
   return (
     <article
       id={post._id}
-      className={`relative h-full w-full grid grid-cols-[1fr_min(70ch,100%)_1fr] 
+      className={`relative h-full w-full grid grid-cols-[1fr_min(75ch,100%)_1fr] 
       auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4
       overflow-x-hidden bg-background `}
     >
@@ -36,13 +36,13 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
       )}
       {/* title */}
       <div className="flex justify-center py-20  ">
-        <p className="text-3xl md:text-5xl text-slate-900 dark:text-slate-200 font-extrabold">
+        <p className="text-3xl md:text-5xl text-slate-900 dark:text-slate-100 font-extrabold">
           {post.title && post.title}
         </p>
       </div>
       <div className={`mb-2 py-3`}>
         {/* description */}
-        <p className="text-background text-slate-800 dark:text-slate-200 text-2xl inline">
+        <p className="text-background text-slate-800 dark:text-slate-100 text-2xl inline">
           {post.description && `${post.description} `}
         </p>
       </div>
@@ -87,7 +87,9 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
           return (
             <div
               key={block._key}
-              className="my-7 text-[16px] text-gray-700 dark:text-slate-100"
+              className={`${
+                block.listItem ? "my-4" : "my-7"
+              }  text-[16px] text-gray-700 dark:text-slate-100`}
             >
               <PortableText value={block} components={BlogDetailTextStyle} />
             </div>
