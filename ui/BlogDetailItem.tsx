@@ -83,7 +83,7 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
       <div className="w-full m-auto">
         {post.body.map((block: Block) => {
           return (
-            <div key={block._key} className="my-5">
+            <div key={block._key} className="my-7">
               <PortableText value={block} components={BlogDetailTextStyle} />
             </div>
           );
