@@ -23,7 +23,7 @@ const BlogDetailTextStyle = {
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="ml-10 py-5 list-disc space-y-10">{children}</ul>
+      <ul className="ml-10 py-1 list-disc">{children}</ul>
     ),
     number: ({ children }: any) => (
       <ol className="mt-lg list-decimal">{children}</ol>
