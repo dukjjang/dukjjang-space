@@ -17,7 +17,7 @@ const Taps = ({ pathName, LINKS }: Props) => {
 
   return (
     <div
-      className={`hidden md:flex text-slate-900 relative items-center gap-2`}
+      className={`hidden md:flex text-slate-900 dark:text-slate-100 relative items-center gap-2`}
     >
       {LINKS.map((link) => (
         <Link
