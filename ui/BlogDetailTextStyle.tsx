@@ -56,7 +56,6 @@ const BlogDetailTextStyle = {
   },
   marks: {
     link: ({ children, value }: any) => {
-      console.log(value);
       const rel = !value.href?.startsWith("/")
         ? "noreferrer noopener"
         : undefined;

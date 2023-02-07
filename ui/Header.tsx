@@ -42,7 +42,7 @@ const Header = () => {
       id="header"
       ref={headerRef}
       className={`z-20 top-0 w-full transition-[transform,opacity] 
-        duration-700 delay-300 ease-in-out  ${
+        duration-700 ease-in-out  ${
           pathName.match("writing") && scrolling
             ? "-translate-y-32 opacity-0 shadow-md "
             : "translate-y-0 opacity-100"

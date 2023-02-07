@@ -42,7 +42,7 @@ export const useScroll = () => {
       if (scrollY > window.scrollY) setDirection("up");
       if (scrollY < window.scrollY) setDirection("down");
       else setDirection(null);
-    }, 700);
+    }, 400);
 
     const checkScroll = setInterval(() => {
       if (scrollY === window.scrollY) {
@@ -50,7 +50,7 @@ export const useScroll = () => {
       }
       clearInterval(checkScroll);
       clearInterval(checkDirection);
-    }, 900);
+    }, 500);
   }, [scrollY, scrolling, direction]);
 
   return { scrolling, direction, scrollY };
