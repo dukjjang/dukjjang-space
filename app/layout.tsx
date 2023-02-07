@@ -1,9 +1,11 @@
+"use client";
+
 import { Providers } from "./shard/Provider";
 import { ServerThemeProvider } from "@wits/next-themes";
 import "../styles/global.css";
 import Header from "../ui/Header";
 import Footer from "../ui/Footer";
-
+import GoogleClientAnalytics from "./shard/GoogleClientAnalytics";
 export default function RootLayout({
   children,
 }: {
@@ -13,12 +15,11 @@ export default function RootLayout({
     <ServerThemeProvider attribute="class">
       <html lang="en">
         <body className=" overflow-x-hidden">
+          <GoogleClientAnalytics />
           <Providers>
-            <div>
-              <Header />
-              {children}
-              <Footer />
-            </div>
+            <Header />
+            {children}
+            <Footer />
           </Providers>
         </body>
       </html>

@@ -1,4 +1,3 @@
-import { client } from "../../lib/sanity.client";
 import DefaultTags from "../shard/DefaultTags";
 
 export default async function Head() {

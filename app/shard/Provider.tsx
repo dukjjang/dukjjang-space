@@ -5,10 +5,12 @@ import { SoundProvider } from "./SoundContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class">
-      <DragProvider>
-        <SoundProvider>{children}</SoundProvider>
-      </DragProvider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider attribute="class">
+        <DragProvider>
+          <SoundProvider>{children}</SoundProvider>
+        </DragProvider>
+      </ThemeProvider>
+    </>
   );
 }
