@@ -1,6 +1,9 @@
 import { groq } from "next-sanity";
+import { previewData } from "next/headers";
 import { client } from "../../../lib/sanity.client";
 import BlogDetailItem from "../../../ui/BlogDetailItem";
+import PreviewBlogDetail from "../../../ui/PreviewBlogDetail";
+import PreviewSuspense from "../../../ui/PreviewSuspense";
 import Stars from "../../../ui/Stars";
 
 const allPostQuery = groq`
@@ -43,6 +46,25 @@ const DetailPage = async ({ params: { slug } }: any) => {
 
   const nextPath = nextPost?.slug?.current ?? null;
   const prevPath = prevPost?.slug?.current ?? null;
+
+  if (previewData()) {
+    return (
+      <PreviewSuspense
+        fallback={
+          <div>
+            <p>Loading Preview Data...</p>
+          </div>
+        }
+      >
+        <PreviewBlogDetail
+          query={postQuery}
+          nextPath={nextPath}
+          prevPath={prevPath}
+          slug={slug}
+        />
+      </PreviewSuspense>
+    );
+  }
 
   return (
     <main className="min-h-screen relatvie pt-[88px] overflow-x-hidden pb-20">

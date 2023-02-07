@@ -49,16 +49,20 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
       <div className="flex justify-between px-5 md:px-0">
         <div className="flex justify-center items-center ">
           {/* author */}
-          <Img
-            width={40}
-            height={40}
-            className="rounded-full w-12 h-12 object-cover mr-2"
-            src={urlFor(post.author.image).url()}
-            alt={post.author.name}
-          />
-          <p className="mr-1 text-gray-600 dark:text-gray-400">
-            {post.author.name} •{" "}
-          </p>
+          {post.author && (
+            <>
+              <Img
+                width={40}
+                height={40}
+                className="rounded-full w-12 h-12 object-cover mr-2"
+                src={urlFor(post.author.image).url()}
+                alt={post.author.name}
+              />
+              <p className="mr-1 text-gray-600 dark:text-gray-400">
+                {post.author.name} •{" "}
+              </p>
+            </>
+          )}
           {/* date */}
           <p className="text-sm font-sans text-gray-600 dark:text-gray-400">
             {new Date(post._createdAt).toLocaleDateString("ko-KR", {
@@ -82,6 +86,7 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
         </div>
       </div>
       {/* body */}
+
       <div className="w-full m-auto">
         {post.body.map((block: Block) => {
           return (

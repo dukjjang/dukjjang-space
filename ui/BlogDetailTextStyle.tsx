@@ -10,7 +10,7 @@ const BlogDetailTextStyle = {
     },
     image: ({ value }: any) => {
       return (
-        <div className="relative w-full h-96 mx-auto">
+        <div className="relative w-full h-56 md:h-96 mx-auto">
           <Image
             className="object-contain"
             src={urlFor(value).url()}
