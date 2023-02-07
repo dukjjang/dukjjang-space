@@ -7,6 +7,7 @@ export default async function Head() {
       <title>Writing | Dukjjang</title>
       <meta name="description" content="덕짱 블로그" />
       <meta property="og:title" content="Dukjjang's Blog" />
+      <meta property="og:description" content="덕짱의 블로그" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={"https://www.dukjjang.space/writing"} />
       <meta

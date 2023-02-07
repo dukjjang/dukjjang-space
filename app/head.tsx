@@ -4,8 +4,9 @@ export default function Head({ params }: { params: { slug: string } }) {
   return (
     <>
       <title>Dukjjang</title>
-      <meta name="description" content="덕짱의 포트폴리오" />
+      <meta name="description" content="덕짱의 공간" />
       <meta property="og:title" content={"Dukjjang"} />
+      <meta property="og:description" content="덕짱의 포트폴리오 & 블로그" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={"https://www.dukjjang.space"} />
       <meta
