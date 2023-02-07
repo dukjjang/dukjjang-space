@@ -1,5 +1,3 @@
-"use client";
-
 import { Providers } from "./shard/Provider";
 import { ServerThemeProvider } from "@wits/next-themes";
 import "../styles/global.css";
