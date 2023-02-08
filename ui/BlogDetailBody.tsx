@@ -11,7 +11,13 @@ const BlogDetailBody = ({ post }) => {
     <div className={`w-full m-auto`}>
       {post.body.map((block: Block) => {
         if (block._type === "code") {
-          return <CustomSandpack file={block.code} language={block.language} />;
+          return (
+            <CustomSandpack
+              key={block._key}
+              file={block.code}
+              language={block.language}
+            />
+          );
         }
         if (block._type === "image")
           return (
