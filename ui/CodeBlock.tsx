@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import { xonokai } from "react-syntax-highlighter/dist/esm/styles/prism";
+import TextTheme from "react-syntax-highlighter/dist/esm/styles/prism/xonokai";
 
 const CodeBlock = ({ code, language }: { code: string; language: string }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -22,7 +22,7 @@ const CodeBlock = ({ code, language }: { code: string; language: string }) => {
 
   return (
     <div
-      className="bg-[#2E313D] dark:bg-[#303136]/70 h-fit p-3 rounded-md 
+      className="bg-[#2E313D] dark:bg-[#282C34] h-fit p-3 rounded-md 
       w-full flex flex-col justify-center pb-6 [&_code]:!text-[0.9rem] 
       [&_code]:!font-semibold "
     >
@@ -43,7 +43,7 @@ const CodeBlock = ({ code, language }: { code: string; language: string }) => {
           border: "0px",
         }}
         language={language}
-        style={xonokai}
+        style={TextTheme}
       >
         {code}
       </SyntaxHighlighter>

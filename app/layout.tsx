@@ -10,15 +10,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className=" overflow-x-hidden">
-        <GoogleClientAnalytics />
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
-      </body>
-    </html>
+    <ServerThemeProvider attribute="class">
+      <html lang="en">
+        <head />
+        <body className=" overflow-x-hidden">
+          <GoogleClientAnalytics />
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </body>
+      </html>
+    </ServerThemeProvider>
   );
 }

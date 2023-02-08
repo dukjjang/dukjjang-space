@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "@wits/next-themes";
+import { useEffect } from "react";
 import useSound from "use-sound";
 import { useSettingSound } from "../app/shard/SoundContext";
 
@@ -17,6 +18,11 @@ const ThemeToggleButton = () => {
     );
     sound === true && play();
   };
+
+  useEffect(() => {
+    console.log("header", theme);
+    setTheme(theme === "undefined" ? "dark" : theme);
+  }, []);
 
   return (
     <button
