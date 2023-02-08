@@ -31,7 +31,7 @@ const StarsWrapper = () => {
   return (
     <div
       ref={starsRef}
-      className="z-10 hidden dark:block absolute left-0 top-0 right-0 bottom-0 h-full w-full bg-transparent"
+      className=" hidden dark:block absolute left-0 top-0 right-0 bottom-0 h-full w-full bg-transparent"
     >
       {stars.map((star) => (
         <Star key={crypto.randomUUID()} x={Number(star.x)} y={Number(star.y)} />
