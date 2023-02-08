@@ -1,3 +1,5 @@
+"use client";
+
 import { Providers } from "./shard/Provider";
 import { ServerThemeProvider } from "@wits/next-themes";
 import "../styles/global.css";
@@ -10,10 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ServerThemeProvider attribute="class">
+    <ServerThemeProvider enableSystem={false} attribute="class">
       <html lang="en">
         <head />
-        <body className=" overflow-x-hidden">
+        <body className="overflow-x-hidden">
           <GoogleClientAnalytics />
           <Providers>
             <Header />

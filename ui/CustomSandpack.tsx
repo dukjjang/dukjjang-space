@@ -7,7 +7,7 @@ import {
   SandpackCodeEditor,
 } from "@codesandbox/sandpack-react";
 import { useTheme } from "@wits/next-themes";
-import { githubLight, oceanBlue } from "@codesandbox/sandpack-themes";
+import { githubLight, nightOwl } from "@codesandbox/sandpack-themes";
 
 const CustomSandpack = ({ language, file }) => {
   const { theme } = useTheme();
@@ -19,7 +19,7 @@ const CustomSandpack = ({ language, file }) => {
         "/App.js": `${file}`,
       }}
     >
-      <SandpackThemeProvider theme={theme === "dark" ? oceanBlue : githubLight}>
+      <SandpackThemeProvider theme={theme === "dark" ? nightOwl : githubLight}>
         <div className="pt-7 bg-gray-200 dark:bg-gray-700 rounded-lg shadow-xl">
           <SandpackCodeEditor
             showLineNumbers={false}
@@ -31,7 +31,10 @@ const CustomSandpack = ({ language, file }) => {
             <SandpackPreview
               showOpenInCodeSandbox={false}
               showRefreshButton={false}
-              style={{ height: "300px", marginTop: "32px" }}
+              style={{
+                height: "300px",
+                borderTop: "1px solid rgba(0,0,0,0.2)",
+              }}
             />
           )}
         </div>
