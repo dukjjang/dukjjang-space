@@ -13,7 +13,7 @@ const BlogDetailTextStyle = {
   },
   block: {
     h1: ({ children }: any) => (
-      <h1 className="text-4xl py-3 font-bold text-slate-800 dark:text-slate-200 ">
+      <h1 className="text-4xl py-3 font-bold text-slate-800  dark:text-slate-200 ">
         {children}
       </h1>
     ),

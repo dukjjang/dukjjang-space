@@ -38,36 +38,41 @@ const Header = () => {
     if (isStudio) return "hidden";
   };
 
-  return (
-    <header
-      id="header"
-      ref={headerRef}
-      className={`z-20 top-0 w-full transition-[transform,opacity] 
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
+  if (mount)
+    return (
+      <header
+        id="header"
+        ref={headerRef}
+        className={`z-50 top-0 w-full transition-[transform,opacity] 
         duration-700 ease-in-out  ${
           pathName.match("writing") && scrolling
             ? "-translate-y-32 opacity-0 shadow-md "
             : "translate-y-0 opacity-100"
         } ${styleAccordingToPage(pathName)}  `}
-    >
-      {!pathName && <Stars />}
-      <NavWrapper>
-        <Link href="/" scroll={true}>
-          <Logo />
-        </Link>
-        <SunMoonWrapper showSideTaps={showSideTaps}>
-          <SunMoon showSideTaps={showSideTaps} sunOrMoon={"sun"} />
-          <SunMoon showSideTaps={showSideTaps} sunOrMoon={"moon"} />
-        </SunMoonWrapper>
-        <Nav
-          showSideTaps={showSideTaps}
-          setShowSideTaps={setShowSideTaps}
-          LINKS={LINKS}
-        />
-        <SideTaps LINKS={LINKS} showSlideMenu={showSideTaps} />
-      </NavWrapper>
-      <Waves wavesRef={wavesRef} />
-    </header>
-  );
+      >
+        {!pathName && <Stars />}
+        <NavWrapper>
+          <Link href="/" scroll={true}>
+            <Logo />
+          </Link>
+          <SunMoonWrapper showSideTaps={showSideTaps}>
+            <SunMoon showSideTaps={showSideTaps} sunOrMoon={"sun"} />
+            <SunMoon showSideTaps={showSideTaps} sunOrMoon={"moon"} />
+          </SunMoonWrapper>
+          <Nav
+            showSideTaps={showSideTaps}
+            setShowSideTaps={setShowSideTaps}
+            LINKS={LINKS}
+          />
+          <SideTaps LINKS={LINKS} showSlideMenu={showSideTaps} />
+        </NavWrapper>
+        <Waves wavesRef={wavesRef} />
+      </header>
+    );
 };
 
 export default Header;

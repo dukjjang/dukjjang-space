@@ -7,7 +7,7 @@ import {
   SandpackCodeEditor,
 } from "@codesandbox/sandpack-react";
 import { useTheme } from "@wits/next-themes";
-import { githubLight, nightOwl } from "@codesandbox/sandpack-themes";
+import { githubLight, ecoLight } from "@codesandbox/sandpack-themes";
 
 const CustomSandpack = ({ language, file }) => {
   const { theme } = useTheme();
@@ -19,8 +19,13 @@ const CustomSandpack = ({ language, file }) => {
         "/App.js": `${file}`,
       }}
     >
-      <SandpackThemeProvider theme={theme === "dark" ? nightOwl : githubLight}>
-        <div className="pt-7 bg-gray-200 dark:bg-gray-700 rounded-lg shadow-xl">
+      <SandpackThemeProvider theme={theme === "dark" ? ecoLight : githubLight}>
+        <div className="relative pt-7 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-xl">
+          <div className="absolute left-3 top-2 flex gap-2">
+            <div className="p-[6px] bg-red-500 top-0 left-0  rounded-full" />
+            <div className="p-[6px] bg-yellow-500 top-0 left-0 rounded-full" />
+            <div className="p-[6px] bg-green-500 top-0 left-0 rounded-full" />
+          </div>
           <SandpackCodeEditor
             showLineNumbers={false}
             showInlineErrors

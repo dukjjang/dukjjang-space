@@ -38,9 +38,9 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
       )}
       {/* title */}
       <div className="flex justify-center py-20  ">
-        <p className="text-3xl md:text-5xl text-slate-900 dark:text-slate-100 font-extrabold">
+        <h1 className="text-3xl md:text-5xl  text-slate-900 dark:text-slate-100 font-extrabold">
           {post.title && post.title}
-        </p>
+        </h1>
       </div>
       <div className={`mb-2 py-3`}>
         {/* description */}

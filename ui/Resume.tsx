@@ -6,7 +6,7 @@ import UnderLine from "./UnderLine";
 const Resume = () => {
   return (
     <section
-      className="-z-20 w-full px-5 lg:px-56 bg-white 
+      className="relative block w-full px-5 lg:px-56 bg-white 
       dark:bg-[#0E141B] h-[1000px] "
     >
       <div>
@@ -16,7 +16,7 @@ const Resume = () => {
           transition={{ delay: 0.5, duration: 1 }}
         >
           <h1
-            className=" text-[24px] w-fit mb-10 text-black dark:text-neutral-200 
+            className=" text-[24px] z-20 w-fit mb-10 text-black dark:text-neutral-200 
             md:text-4xl lg:text-6xl font-bold"
           >
             안녕하세요,
@@ -27,7 +27,7 @@ const Resume = () => {
             <span className="text-[#C3FA07] dark:text-blue-500">.</span>
           </h1>
           <h2
-            className="text-black dark:text-neutral-200 relative w-fit 
+            className="text-black z-20 dark:text-neutral-200 relative w-fit 
             mb-4 font-bold text-2xl"
           >
             Introduce
@@ -39,8 +39,10 @@ const Resume = () => {
               상상을 현실로 만드는 것을 좋아합니다. 호기심이 많아 새로운 기술을
               학습하고 적용하는 것을 좋아하며,{" "}
             </p>
-            <span className="relative w-fit">
-              <p className="inline-block">적응력과 개발속도가 빠른 편입니다</p>
+            <span className="relative w-fit z-20">
+              <p className="inline-block z-20">
+                적응력과 개발속도가 빠른 편입니다
+              </p>
               <UnderLine />
             </span>
             <p className="inline">
