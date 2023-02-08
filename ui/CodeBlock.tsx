@@ -4,12 +4,12 @@ import { useState } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { xonokai } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const CodeBlock = ({ value }: any) => {
+const CodeBlock = ({ code, language }: { code: string; language: string }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyCode = async () => {
     try {
-      await navigator.clipboard.writeText(value.code);
+      await navigator.clipboard.writeText(code);
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
@@ -22,8 +22,9 @@ const CodeBlock = ({ value }: any) => {
 
   return (
     <div
-      className="bg-[#2E313D] dark:bg-[#303136]/70 h-fit p-3 
-      rounded-md w-full flex flex-col justify-center pb-6 [&_code]:!text-[0.9rem] [&_code]:!font-semibold "
+      className="bg-[#2E313D] dark:bg-[#303136]/70 h-fit p-3 rounded-md 
+      w-full flex flex-col justify-center pb-6 [&_code]:!text-[0.9rem] 
+      [&_code]:!font-semibold "
     >
       <button
         type="button"
@@ -41,10 +42,10 @@ const CodeBlock = ({ value }: any) => {
           padding: "20px",
           border: "0px",
         }}
-        language={value.language}
+        language={language}
         style={xonokai}
       >
-        {value.code}
+        {code}
       </SyntaxHighlighter>
     </div>
   );

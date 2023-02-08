@@ -21,9 +21,7 @@ const ArrowLinks = ({
       <Link
         onClick={() => playClick()}
         href={`/writing/${prevPath}`}
-        className={`flex items-center group relative w-16 h-10 after:content-[''] 
-          after:absolute after:bottom-0 after:right-0 after:h-1 after:px-[18px] visible 
-          after:bg-gradient after:transition-all after:duration-300 after:ease-in-out
+        className={`flex items-center group relative w-16 h-10        
         ${prevPath === null && "invisible"}`}
       >
         <BsArrowLeftShort
@@ -36,10 +34,8 @@ const ArrowLinks = ({
       <Link
         onClick={() => playClick()}
         href={`/writing/${nextPath}`}
-        className={`flex items-center group relative w-16 h-10 after:content-[''] 
-          after:absolute after:bottom-0 after:left-0 after:h-1 after:px-[18px] visible 
-          after:bg-gradient after:transition-all after:duration-300 after:ease-in-out
-          ${nextPath === null && "invisible"}`}
+        className={`flex items-center group relative w-16 h-10           
+        ${nextPath === null && "invisible"}`}
       >
         <h6 className="text-gradient ">next</h6>
         <BsArrowRightShort

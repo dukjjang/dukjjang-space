@@ -1,8 +1,9 @@
+"use client";
+
 import Img from "next/image";
 import urlFor from "../lib/urlFor";
-import { PortableText } from "@portabletext/react";
-import BlogDetailTextStyle from "./BlogDetailTextStyle";
 import ArrowLinks from "./ArrowLinks";
+import BlogDetailBody from "./BlogDetailBody";
 
 type Slug = {
   _type: string;
@@ -14,11 +15,12 @@ type Props = {
   nextPath: string;
   prevPath: string;
 };
+
 const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
   return (
     <article
       id={post._id}
-      className={`relative h-full w-full grid grid-cols-[1fr_min(75ch,100%)_1fr] 
+      className={`text-inherit relative h-full w-full grid grid-cols-[1fr_min(75ch,100%)_1fr] 
       auto-rows-max [&>div]:col-end-2 [&>div]:col-start-2 [&>div]:px-4
       overflow-x-hidden bg-background `}
     >
@@ -85,22 +87,7 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
             ))}
         </div>
       </div>
-      {/* body */}
-
-      <div className="w-full m-auto">
-        {post.body.map((block: Block) => {
-          return (
-            <div
-              key={block._key}
-              className={`${
-                block.listItem ? "my-4" : "my-7"
-              }  text-[16px] text-gray-700 dark:text-slate-100`}
-            >
-              <PortableText value={block} components={BlogDetailTextStyle} />
-            </div>
-          );
-        })}
-      </div>
+      <BlogDetailBody post={post} />
       <ArrowLinks nextPath={nextPath} prevPath={prevPath} />
     </article>
   );

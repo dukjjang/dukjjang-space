@@ -1,5 +1,6 @@
 import { groq } from "next-sanity";
 import { previewData } from "next/headers";
+import { Suspense } from "react";
 import { client } from "../../../lib/sanity.client";
 import BlogDetailItem from "../../../ui/BlogDetailItem";
 import PreviewBlogDetail from "../../../ui/PreviewBlogDetail";

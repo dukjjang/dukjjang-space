@@ -1,3 +1,5 @@
+"use client";
+
 import Img from "next/image";
 import urlFor from "../lib/urlFor";
 import { useDrag } from "../app/shard/DragContext";

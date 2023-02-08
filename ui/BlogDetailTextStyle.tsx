@@ -1,26 +1,8 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
-import urlFor from "../lib/urlFor";
-import CodeBlock from "./CodeBlock";
 
 const BlogDetailTextStyle = {
-  types: {
-    code: ({ value }) => {
-      return <CodeBlock value={value} />;
-    },
-    image: ({ value }: any) => {
-      return (
-        <div className="relative w-full h-56 md:h-96 mx-auto">
-          <Image
-            className="object-contain"
-            src={urlFor(value).url()}
-            alt="Blog Post Image"
-            fill
-          />
-        </div>
-      );
-    },
-  },
   list: {
     bullet: ({ children }: any) => (
       <ul className="ml-10 list-disc">{children}</ul>

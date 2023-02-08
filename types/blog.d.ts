@@ -40,11 +40,14 @@ interface Slug {
 
 interface Block {
   _key: string;
-  _type: "block";
-  children: Span[];
-  markDefs: any[];
-  style: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+  _type: "block" | "code" | "image";
+  asset?: Reference;
+  children?: Span[];
+  markDefs?: any[];
+  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
   listItem?: "bullet";
+  code?: string;
+  language?: string;
 }
 
 interface Span {
