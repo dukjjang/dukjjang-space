@@ -19,7 +19,7 @@ const SoundToggleButton = () => {
 
   return (
     <div
-      className="text-orange-400 dark:text-yellow-400 md:hover:scale-150 cursor-pointer 
+      className="z-40 text-orange-400 dark:text-yellow-400 md:hover:scale-150 cursor-pointer 
        transition-all ease-in-out md:active:translate-y-3 px-1"
       onClick={toggleSoundSetting}
     >
