@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-
+import { useRef, useState } from "react";
 import Waves from "./Waves";
 import Logo from "./Logo";
 import SideTaps from "./SideTaps";
@@ -19,7 +18,6 @@ const Header = () => {
   const headerRef = useRef<HTMLElement>(null);
   const wavesRef = useRef<HTMLElement>(null);
   const [showSideTaps, setShowSideTaps] = useState(false);
-  const [mount, setMount] = useState(false);
 
   const { scrolling } = useScroll();
 
@@ -38,41 +36,38 @@ const Header = () => {
     if (isStudio) return "hidden";
   };
 
-  useEffect(() => {
-    setMount(true);
-  }, []);
-
-  if (mount)
-    return (
-      <header
-        id="header"
-        ref={headerRef}
-        className={`z-50 top-0 w-full transition-[transform,opacity] 
-        duration-700 ease-in-out  ${
+  return (
+    <header
+      id="header"
+      ref={headerRef}
+      className={`${styleAccordingToPage(
+        pathName
+      )} z-50 top-0 w-full transition-[transform,opacity] 
+        duration-700 ease-in-out ${
           pathName.match("writing") && scrolling
             ? "-translate-y-32 opacity-0 shadow-md "
             : "translate-y-0 opacity-100"
-        } ${styleAccordingToPage(pathName)}  `}
-      >
-        {!pathName && <Stars />}
-        <NavWrapper>
-          <Link href="/" scroll={true}>
-            <Logo />
-          </Link>
-          <SunMoonWrapper showSideTaps={showSideTaps}>
-            <SunMoon showSideTaps={showSideTaps} sunOrMoon={"sun"} />
-            <SunMoon showSideTaps={showSideTaps} sunOrMoon={"moon"} />
-          </SunMoonWrapper>
-          <Nav
-            showSideTaps={showSideTaps}
-            setShowSideTaps={setShowSideTaps}
-            LINKS={LINKS}
-          />
-          <SideTaps LINKS={LINKS} showSlideMenu={showSideTaps} />
-        </NavWrapper>
-        <Waves wavesRef={wavesRef} />
-      </header>
-    );
+        }   `}
+    >
+      {!pathName && <Stars />}
+      <NavWrapper>
+        <Link href="/" aria-label="home">
+          <Logo />
+        </Link>
+        <SunMoonWrapper showSideTaps={showSideTaps}>
+          <SunMoon showSideTaps={showSideTaps} sunOrMoon={"sun"} />
+          <SunMoon showSideTaps={showSideTaps} sunOrMoon={"moon"} />
+        </SunMoonWrapper>
+        <Nav
+          showSideTaps={showSideTaps}
+          setShowSideTaps={setShowSideTaps}
+          LINKS={LINKS}
+        />
+        <SideTaps LINKS={LINKS} showSlideMenu={showSideTaps} />
+      </NavWrapper>
+      <Waves wavesRef={wavesRef} />
+    </header>
+  );
 };
 
 export default Header;

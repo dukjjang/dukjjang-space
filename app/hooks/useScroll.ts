@@ -7,7 +7,6 @@ export const useScroll = () => {
   const [scrolling, setScrolling] = useState<Boolean>(false);
   const [scrollY, setScrollY] = useState<Number>(0);
   const [direction, setDirection] = useState<"down" | "up" | null>();
-  const pathName = usePathname();
 
   const handleScroll = (e: Event): void => {
     if (window.scrollY < 200) {
@@ -34,8 +33,8 @@ export const useScroll = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     if (typeof window === undefined) return;
 
     const checkDirection = setInterval(() => {

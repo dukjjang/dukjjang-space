@@ -158,8 +158,12 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       e.preventDefault();
     };
 
-    wizardRef.current.addEventListener("touchstart", handleTouchStart);
-    broomRef.current.addEventListener("touchstart", handleTouchStart);
+    wizardRef.current.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    broomRef.current.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
   }, []);
 
   return {

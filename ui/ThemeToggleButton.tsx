@@ -1,7 +1,6 @@
 "use client";
 
 import { useTheme } from "@wits/next-themes";
-import { useEffect } from "react";
 import useSound from "use-sound";
 import { useSettingSound } from "../app/shard/SoundContext";
 
@@ -22,6 +21,7 @@ const ThemeToggleButton = () => {
   return (
     <button
       type="button"
+      aria-label="theme toggle button"
       onClick={onClick}
       className="transition-all ease-in-out group md:active:translate-y-3 inline-flex 
       items-center border-0 p-1 rounded text-orange-400 dark:text-yellow-400

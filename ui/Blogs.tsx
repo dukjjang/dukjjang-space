@@ -24,6 +24,7 @@ const Blogs = ({ posts }: Props) => {
     >
       {posts.map((post, idx) => (
         <Link
+          aria-label="blog detail link"
           onClick={() => playClick()}
           className="h-fit"
           key={post._id}

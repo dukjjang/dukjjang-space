@@ -23,13 +23,12 @@ const Taps = ({ pathName, LINKS }: Props) => {
         <Link
           key={link.id}
           onClick={() => playClick()}
-          className="md:p-2 rounded"
+          className="relative mx-2"
           href={`/${link.path}`}
+          aria-label={link.name}
         >
-          <h6 className="relative">
-            {link.name}
-            {pathName.match(link.path) && <UnderLine />}
-          </h6>
+          {link.name}
+          {pathName.match(link.path) && <UnderLine />}
         </Link>
       ))}
     </div>
