@@ -19,11 +19,6 @@ const ThemeToggleButton = () => {
     sound === true && play();
   };
 
-  useEffect(() => {
-    console.log("header", theme);
-    setTheme(theme === "undefined" ? "dark" : theme);
-  }, []);
-
   return (
     <button
       type="button"

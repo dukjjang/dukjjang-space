@@ -9,12 +9,12 @@ const SkeletonBlogList = () => {
       md:px-16 md:gap-x-8 md:gap-y-14 md:pb-24 md:h-fit md:py-10 box-border
       overflow-hidden"
     >
-      {Array.from(new Array(6), (idx) => {
+      {Array.from(new Array(6), (_, idx) => {
         return (
           <li
             key={idx}
-            className="relative bg-white overflow-hidden shadow-xl dark:bg-[#222222] 
-            md:rounded-lg w-full h-[250px]"
+            className="relative bg-white overflow-hidden shadow-xl 
+            dark:bg-[#222222] md:rounded-lg w-full h-[250px]"
           >
             <motion.div
               initial={{ translateX: -70, translateY: -100, rotate: -40 }}

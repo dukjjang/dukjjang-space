@@ -23,7 +23,7 @@ const BlogDetailBody = ({ post }) => {
           return (
             <div
               key={block._key}
-              className="relative w-full h-56 md:h-96 mx-auto"
+              className="relative w-full h-56 md:h-80 mx-auto"
             >
               <Image
                 className="object-contain"

@@ -14,11 +14,6 @@ const SunMoon = ({ showSideTaps, sunOrMoon }: Props) => {
   const isHomePage = usePathname().length < 1;
   const sunMoonRef = useRef<HTMLDivElement>(null);
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  useSpring(x, { stiffness: 0, damping: 0 });
-  useSpring(y, { stiffness: 0, damping: 0 });
-
   return (
     <motion.div
       ref={sunMoonRef}
@@ -29,7 +24,6 @@ const SunMoon = ({ showSideTaps, sunOrMoon }: Props) => {
       animate={{
         translateY: [0, 10, 0],
       }}
-      style={{ x, y }}
       transition={{ repeat: showSideTaps ? 0 : Infinity, duration: 3 }}
       className={` ${sunOrMoon} ${
         sunOrMoon === "sun" ? "block dark:hidden" : "hidden dark:block"
