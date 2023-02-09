@@ -37,7 +37,7 @@ const Writing = async () => {
       className="relative w-full min-h-screen bg-background overflow-x-hidden"
     >
       <Stars />
-      <section className="h-fit mt-32 w-full lg:px-[180px] bg-background">
+      <section className="h-fit pt-32 w-full lg:px-[180px] bg-background">
         <Blogs posts={posts} />
       </section>
     </main>

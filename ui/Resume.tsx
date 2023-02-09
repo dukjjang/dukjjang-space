@@ -6,7 +6,7 @@ import UnderLine from "./UnderLine";
 const Resume = () => {
   return (
     <section
-      className="relative block w-full px-5 lg:px-56 bg-white 
+      className="relative w-full px-5 lg:px-56 bg-white 
       dark:bg-[#0E141B] h-[1000px] "
     >
       <div>
@@ -19,7 +19,7 @@ const Resume = () => {
             className=" text-[24px] z-20 w-fit mb-10 text-black dark:text-neutral-200 
             md:text-4xl lg:text-6xl font-bold"
           >
-            안녕하세요,
+            안녕하세요, 저는{" "}
             <span className="relative w-fit z-20">
               진현덕 <UnderLine />
             </span>

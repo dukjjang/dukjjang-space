@@ -13,7 +13,7 @@ export default function RootLayout({
     <ServerThemeProvider attribute="class">
       <html lang="en">
         <head />
-        <body className="overflow-x-hidden">
+        <body className="overflow-x-hidden overflow-y-scroll">
           <GoogleClientAnalytics />
           <Providers>
             <Header />

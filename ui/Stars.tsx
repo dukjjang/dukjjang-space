@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import { memo, useEffect, useRef, useState } from "react";
-import { useWindowSize } from "../app/hooks/useWindowSize";
 import Star from "./Star";
 
 const StarsWrapper = () => {
@@ -10,8 +9,6 @@ const StarsWrapper = () => {
   const [stars, setStars] = useState([]);
   const starsRef = useRef<HTMLDivElement>(null);
   const parentElement = starsRef.current?.parentElement;
-
-  const { windowSize } = useWindowSize();
 
   useEffect(() => {
     setStars(
