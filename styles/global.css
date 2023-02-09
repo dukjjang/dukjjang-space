@@ -53,7 +53,7 @@
 @layer base {
   html,
   body {
-    @apply bg-white dark:bg-[#0E141B];
+    @apply w-full h-full;
   }
 
   footer {
