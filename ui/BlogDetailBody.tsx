@@ -38,7 +38,7 @@ const BlogDetailBody = ({ post }) => {
             key={block._key}
             className={`${
               block.listItem ? "my-4" : "my-7"
-            }  text-[16px] text-gray-700 dark:text-slate-100`}
+            } text-[16px] md:text-[18px] text-gray-700 dark:text-slate-100`}
           >
             <PortableText value={block} components={BlogDetailTextStyle} />
           </div>
