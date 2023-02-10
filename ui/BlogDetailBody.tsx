@@ -7,6 +7,8 @@ import urlFor from "../lib/urlFor";
 import CustomSandpack from "./CustomSandpack";
 
 const BlogDetailBody = ({ post }) => {
+  const images = post.body.filter((block: Block) => block._type === "image");
+  const imageSize = images[0].asset._ref.split("-")[2].split("x");
   return (
     <div className={`w-full m-auto`}>
       {post.body.map((block: Block) => {
@@ -19,20 +21,23 @@ const BlogDetailBody = ({ post }) => {
             />
           );
         }
-        if (block._type === "image")
+        if (block._type === "image") {
+          const imageSize = block.asset._ref
+            .split("-")[2]
+            .split("x")
+            .map((size) => Number(size));
           return (
-            <div
-              key={block._key}
-              className="relative w-full h-56 md:h-80 mx-auto"
-            >
+            <div key={block._key} className={`relative  mx-auto`}>
               <Image
                 className="object-contain"
                 src={urlFor(block).url()}
                 alt="Blog Post Image"
-                fill
+                width={imageSize[0]}
+                height={imageSize[1]}
               />
             </div>
           );
+        }
         return (
           <div
             key={block._key}
