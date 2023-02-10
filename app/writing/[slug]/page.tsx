@@ -68,8 +68,8 @@ const DetailPage = async ({ params: { slug } }: any) => {
 
   return (
     <main className="min-h-screen relatvie pt-[88px] overflow-x-hidden pb-20">
-      <Stars />
       <BlogDetailItem nextPath={nextPath} prevPath={prevPath} post={post} />
+      <Stars />
     </main>
   );
 };
