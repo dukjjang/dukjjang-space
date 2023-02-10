@@ -22,14 +22,12 @@ const SideTaps = ({ LINKS, showSlideMenu }: Props) => {
         {LINKS.map((link) => (
           <li key={link.id} className="p-3 ">
             <Link
-              className="md:p-2 rounded"
+              className="md:p-2 rounded relative"
               href={`/${link.path}`}
               scroll={false}
             >
-              <h6 className=" relative text-lg w-fit ">
-                {link.name}
-                {pathName.match(link.path) && <UnderLine />}
-              </h6>
+              {link.name}
+              {pathName.match(link.path) && <UnderLine />}
             </Link>
           </li>
         ))}
