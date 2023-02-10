@@ -33,8 +33,8 @@ export const useScroll = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     if (typeof window === undefined) return;
 
     const checkDirection = setInterval(() => {
