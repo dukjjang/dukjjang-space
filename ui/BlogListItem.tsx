@@ -73,7 +73,7 @@ const BlogListItem = ({ post, idx }: Props) => {
           <div className="text-background ">
             <div className="flex justify-between items-center mb-2 ">
               {/* title */}
-              <p className="md:text-2xl group-hover:text-gradient w-[90%] text-xl font-bold">
+              <p className="md:text-2xl group-hover:text-gradient text-xl font-bold">
                 {post.title && post.title}
               </p>
 
@@ -82,7 +82,7 @@ const BlogListItem = ({ post, idx }: Props) => {
                 {post.categories &&
                   post.categories.slice(0, 1).map((category) => (
                     <p
-                      className="text-sm md:text-md font-bold text-green-400 dark:text-blue-400"
+                      className="text-sm md:text-md px-2 font-bold text-green-400 dark:text-blue-400"
                       key={category._id}
                     >
                       {category.title}
