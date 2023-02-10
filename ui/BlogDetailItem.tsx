@@ -26,7 +26,7 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
     >
       {/* Main Image */}
       {post.mainImage && (
-        <div className={` !col-start-1 !col-end-4 relative h-60 `}>
+        <div className={`!col-start-1 !col-end-4 relative h-60 `}>
           <Img
             draggable="false"
             className="object-cover"
@@ -44,7 +44,7 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
       </div>
       <div className={`mb-2 py-3`}>
         {/* description */}
-        <p className="text-background text-slate-800 dark:text-slate-100 text-2xl inline">
+        <p className="text-background text-slate-800 dark:text-slate-100 text-xl inline">
           {post.description && `${post.description} `}
         </p>
       </div>

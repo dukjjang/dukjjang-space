@@ -94,8 +94,9 @@ const BlogListItem = ({ post, idx }: Props) => {
               className={` h-fit relative text-primary flex-1 text-md 
             md:text-[16px] w-full overflow-hidden mb-2`}
             >
+              {/* description */}
               <p className="text-background inline text-md text-gray-700">
-                {post.description && `${post.description}  `}
+                {post.description && `${post.description}`}
               </p>
               <div className="h-fit inline text-[15px]">
                 {isNotEmpyBlock.slice(0, drag.cache[idx] + 1).map((block) => {
