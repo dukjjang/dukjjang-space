@@ -75,7 +75,7 @@ const BlogDetailItem = ({ post, nextPath, prevPath }: Props) => {
           </p>
         </div>
         {/* category */}
-        <div className=" ">
+        <div className="flex flex-col justify-center items-center">
           {post.categories &&
             post.categories.map((category) => (
               <p

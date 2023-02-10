@@ -71,14 +71,14 @@ const BlogListItem = ({ post, idx }: Props) => {
         text-white dark:text-black flex flex-col justify-between px-5 py-3"
         >
           <div className="text-background ">
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center mb-2 ">
               {/* title */}
-              <p className="md:text-2xl group-hover:text-gradient text-xl font-bold">
+              <p className="md:text-2xl group-hover:text-gradient w-[90%] text-xl font-bold">
                 {post.title && post.title}
               </p>
 
               {/* categories */}
-              <div className="  ">
+              <div className="">
                 {post.categories &&
                   post.categories.slice(0, 1).map((category) => (
                     <p
