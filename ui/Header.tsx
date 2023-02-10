@@ -30,9 +30,10 @@ const Header = () => {
     const isHome = !pathName;
     const isWriting = pathName.match("writing");
     const isStudio = pathName.match("studio");
+    const isContact = pathName.match("contact");
 
     if (isHome) return "block bg-primary relative";
-    if (isWriting) return "fixed bg-background";
+    if (isWriting || isContact) return "fixed bg-background";
     if (isStudio) return "hidden";
   };
 

@@ -9,11 +9,11 @@ type Props = {
 };
 
 const SunMoonWrapper = ({ children, showSideTaps }: Props) => {
-  const pathName = usePathname();
+  const pathName = usePathname().slice(1);
   return (
     <div
       className={`relative ml-10 lg:ml-36 flex justify-center items-center 
-             ${pathName.match("writing") ? "hidden" : "block"}`}
+             ${!!pathName ? "hidden" : "block"}`}
     >
       <motion.div
         className="z-50"
