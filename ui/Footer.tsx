@@ -9,10 +9,13 @@ export default function Footer() {
     >
       <h1 className="text-gradient">ⓒ 2023 Dukjjang</h1>
       <nav className="flex gap-8 [&>a:hover]:text-black [&>a:hover:]darktext-white">
-        <Link href="https://github.com/dukjjang">
+        <Link aria-label="github link" href="https://github.com/dukjjang">
           <AiFillGithub size={25} className="" />
         </Link>
-        <Link href="https://www.instagram.com/dukjjang">
+        <Link
+          aria-label="instagram link"
+          href="https://www.instagram.com/dukjjang"
+        >
           <AiOutlineInstagram size={25} />
         </Link>
       </nav>
