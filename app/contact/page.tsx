@@ -17,7 +17,7 @@ const Contact = () => {
         <Link href="https://www.instagram.com/dukjjang">
           <AiOutlineInstagram size={25} />
         </Link>
-        <Link href="https://dukjjang.notion.site/dukjjang-082657b78bbe408ea9e4bc93fd7a93a0">
+        <Link href="https://dukjjang.notion.site/Resume-082657b78bbe408ea9e4bc94fd7a93a0">
           <FiUser size={25} />
         </Link>
       </nav>
