@@ -21,7 +21,6 @@
     "@sanity/vision": "^3.0.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/refractor": "^3.0.2",
-    "@wits/next-themes": "^0.2.16",
     "axios": "^1.2.6",
     "babel-plugin-prismjs": "^2.1.0",
     "babel-preset-env": "^1.7.0",

@@ -1,11 +1,13 @@
 "use client";
 
-import { useTheme } from "@wits/next-themes";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import useSound from "use-sound";
 import { useSettingSound } from "../app/shard/SoundContext";
 
 const ThemeToggleButton = () => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [sound] = useSettingSound();
   const [play] = useSound("/sounds/bulb.mp3", { volume: 0.2 });
 
@@ -17,6 +19,10 @@ const ThemeToggleButton = () => {
     );
     sound === true && play();
   };
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
 
   return (
     <button

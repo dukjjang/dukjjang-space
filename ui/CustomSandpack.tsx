@@ -6,7 +6,7 @@ import {
   SandpackPreview,
   SandpackCodeEditor,
 } from "@codesandbox/sandpack-react";
-import { useTheme } from "@wits/next-themes";
+import { useTheme } from "next-themes";
 import { githubLight, ecoLight } from "@codesandbox/sandpack-themes";
 
 const CustomSandpack = ({ language, file }) => {
