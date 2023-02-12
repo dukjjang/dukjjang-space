@@ -8,7 +8,7 @@ import CustomSandpack from "./CustomSandpack";
 
 const BlogDetailBody = ({ post }) => {
   return (
-    <div className={`w-full m-auto`}>
+    <div className={`w-full m-auto z-40`}>
       {post.body.map((block: Block) => {
         if (block._type === "code") {
           return (
