@@ -50,11 +50,7 @@ const BlogListItem = ({ post, idx }: Props) => {
       >
         {/* Image */}
         {post.mainImage && (
-          <div
-            className={`relative h-40 w-full ${
-              drag.cache[idx] > 0 ? "md:block" : "md:hidden"
-            } `}
-          >
+          <div className={`relative h-40 w-full`}>
             <Img
               draggable="false"
               className="object-cover"
