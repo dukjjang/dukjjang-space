@@ -67,5 +67,9 @@ export default defineType({
       type: "code",
       title: "Code Block",
     }),
+    defineArrayMember({
+      type: "youtube",
+      title: "Youtube URL",
+    }),
   ],
 });

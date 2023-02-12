@@ -1,8 +1,18 @@
 "use client";
+import getYouTubeId from "get-youtube-id";
+import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 import Link from "next/link";
 
 const BlogDetailTextStyle = {
+  types: {
+    youtube: ({ value }) => {
+      const { url } = value;
+      const id = getYouTubeId(url);
+      return <LiteYouTubeEmbed id={id} title={""} />;
+    },
+  },
   list: {
     bullet: ({ children }: any) => (
       <ul className="ml-10 list-disc">{children}</ul>
