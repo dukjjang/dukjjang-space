@@ -1,8 +1,9 @@
 import { Providers } from "./shard/Provider";
-import "../styles/global.css";
 import Header from "../ui/Header";
 import Footer from "../ui/Footer";
 import GoogleClientAnalytics from "./shard/GoogleClientAnalytics";
+import "../styles/global.css";
+
 export default function RootLayout({
   children,
 }: {

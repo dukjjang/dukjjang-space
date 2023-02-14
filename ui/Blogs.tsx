@@ -10,6 +10,7 @@ type Props = {
 };
 
 const Blogs = ({ posts }: Props) => {
+  console.log(posts);
   const [sound] = useSettingSound();
   const [playClick] = useSound("/sounds/click.mp3", {
     volume: sound === true ? 0.8 : 0,
