@@ -1,5 +1,5 @@
 import { groq } from "next-sanity";
-import { previewData } from "next/headers";
+import { draftMode } from "next/headers";
 import { client } from "../../../lib/sanity.client";
 import BlogDetailItem from "../../../ui/BlogDetailItem";
 import PreviewBlogDetail from "../../../ui/PreviewBlogDetail";
@@ -53,7 +53,7 @@ const DetailPage = async (props: any) => {
   const nextPath = nextPost?.slug?.current ?? null;
   const prevPath = prevPost?.slug?.current ?? null;
 
-  if (await previewData()) {
+  if (draftMode().isEnabled) {
     return (
       <PreviewSuspense
         fallback={

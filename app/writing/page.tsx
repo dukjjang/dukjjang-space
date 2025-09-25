@@ -1,4 +1,4 @@
-import { previewData } from "next/headers";
+import { draftMode } from "next/headers";
 import { groq } from "next-sanity";
 import { client } from "../../lib/sanity.client";
 import PreviewBlogs from "../../ui/PreviewBlogs";
@@ -17,7 +17,7 @@ const query = groq`
 const Writing = async () => {
   const posts = await client.fetch(query);
 
-  if (await previewData()) {
+  if (draftMode().isEnabled) {
     return (
       <PreviewSuspense
         fallback={
