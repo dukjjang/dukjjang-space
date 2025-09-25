@@ -17,7 +17,7 @@ const query = groq`
 const Writing = async () => {
   const posts = await client.fetch(query);
 
-  if (previewData()) {
+  if (await previewData()) {
     return (
       <PreviewSuspense
         fallback={

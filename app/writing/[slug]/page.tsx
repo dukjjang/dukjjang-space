@@ -34,7 +34,13 @@ export async function generateStaticParams() {
   });
 }
 
-const DetailPage = async ({ params: { slug } }: any) => {
+const DetailPage = async (props: any) => {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const post = await client.fetch(postQuery, { slug });
   const createdAt = post._createdAt;
   const nextPost = await client.fetch(nextPostQuery, {
@@ -47,7 +53,7 @@ const DetailPage = async ({ params: { slug } }: any) => {
   const nextPath = nextPost?.slug?.current ?? null;
   const prevPath = prevPost?.slug?.current ?? null;
 
-  if (previewData()) {
+  if (await previewData()) {
     return (
       <PreviewSuspense
         fallback={
