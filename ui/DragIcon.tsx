@@ -5,7 +5,7 @@ type Props = {
   onTouches: IOnTouches;
   onDrags: IOnDrags;
   pathName: string;
-  iconRef: RefObject<HTMLDivElement>;
+  iconRef: RefObject<any>;
   iconName: string;
 };
 

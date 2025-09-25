@@ -6,9 +6,9 @@ import { useDrag } from "../shard/DragContext";
 import { useSettingSound } from "../shard/SoundContext";
 
 type Props = {
-  wizardRef: RefObject<HTMLImageElement | HTMLElement>;
-  broomRef: RefObject<HTMLImageElement | HTMLElement>;
-  cloneBoxRef: RefObject<HTMLElement>;
+  wizardRef: RefObject<HTMLImageElement | HTMLElement | null>;
+  broomRef: RefObject<HTMLImageElement | HTMLElement | null>;
+  cloneBoxRef: RefObject<HTMLDivElement | null>;
 };
 
 const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
@@ -92,7 +92,9 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
 
     cloneBoxRef.current.classList.add("hidden");
     const cloneElement = document.getElementById("cloneElement");
-    cloneBoxRef.current.removeChild(cloneElement);
+    if (cloneElement) {
+      cloneBoxRef.current.removeChild(cloneElement);
+    }
 
     setPosition({
       x: e.currentTarget.offsetLeft,

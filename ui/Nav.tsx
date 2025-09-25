@@ -16,10 +16,10 @@ type Props = {
 };
 
 const Nav = ({ showSideTaps, setShowSideTaps, LINKS }: Props) => {
-  const pathName = usePathname().slice(1);
-  const wizardRef = useRef<HTMLImageElement>(null);
-  const cloneBoxRef = useRef<HTMLDivElement>(null);
-  const broomRef = useRef<HTMLImageElement>(null);
+  const pathName = usePathname()?.slice(1) || "";
+  const wizardRef = useRef<HTMLImageElement | HTMLElement | null>(null);
+  const cloneBoxRef = useRef<HTMLDivElement | null>(null);
+  const broomRef = useRef<HTMLImageElement | HTMLElement | null>(null);
 
   const { position, onDrags, onTouches } = useDragAndDrop({
     wizardRef,

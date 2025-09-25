@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { RefObject } from "react";
 
-const Waves = ({ wavesRef }: { wavesRef: RefObject<HTMLElement> }) => {
+const Waves = ({ wavesRef }: { wavesRef: RefObject<HTMLElement | null> }) => {
   const isHomePage = usePathname() === "/";
   return (
     <section ref={wavesRef}>

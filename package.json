@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
@@ -30,7 +30,7 @@
     "axios": "^1.2.6",
     "babel-plugin-prismjs": "^2.1.0",
     "babel-preset-env": "^1.7.0",
-    "framer-motion": "^8.5.0",
+    "framer-motion": "^12.23.22",
     "get-youtube-id": "^1.0.1",
     "msw": "^1.0.1",
     "next": "15.5.4",

@@ -23,6 +23,7 @@ const BlogListItem = ({ post, idx }: Props) => {
       post.body.filter(
         (block) =>
           block._type === "block" &&
+          block.children &&
           block.children.filter((chil) => chil.text.length > 0).length > 0
       ),
     [post]
@@ -33,7 +34,7 @@ const BlogListItem = ({ post, idx }: Props) => {
     if (relatedTarget.id !== "wizard" && sound === true) play();
   };
 
-  if (isNotEmpyBlock)
+  if (isNotEmpyBlock) {
     return (
       <li
         id={post._id}
@@ -119,6 +120,8 @@ const BlogListItem = ({ post, idx }: Props) => {
         </div>
       </li>
     );
+  }
+  return null;
 };
 
 export default BlogListItem;

@@ -10,6 +10,7 @@ const BlogDetailTextStyle = {
     youtube: ({ value }) => {
       const { url } = value;
       const id = getYouTubeId(url);
+      if (!id) return <div>Invalid YouTube URL</div>;
       return <LiteYouTubeEmbed id={id} title={""} />;
     },
   },

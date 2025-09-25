@@ -16,8 +16,9 @@ const query = groq`
 
 const Writing = async () => {
   const posts = await client.fetch(query);
+  const draft = await draftMode();
 
-  if (draftMode().isEnabled) {
+  if (draft.isEnabled) {
     return (
       <PreviewSuspense
         fallback={

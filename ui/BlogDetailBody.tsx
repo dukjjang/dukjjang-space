@@ -19,7 +19,7 @@ const BlogDetailBody = ({ post }) => {
             />
           );
         }
-        if (block._type === "image") {
+        if (block._type === "image" && block.asset) {
           const imageSize = block.asset._ref
             .split("-")[2]
             .split("x")

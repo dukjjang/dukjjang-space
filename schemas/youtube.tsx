@@ -8,6 +8,9 @@ const Preview = (props) => {
     return <div>Missing YouTube URL</div>;
   }
   const id = getYouTubeId(url);
+  if (!id) {
+    return <div>Invalid YouTube URL</div>;
+  }
   return (
     <div>
       {renderDefault({ ...props, title: "YouTube Embed" })}

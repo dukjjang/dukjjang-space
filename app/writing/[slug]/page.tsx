@@ -53,7 +53,8 @@ const DetailPage = async (props: any) => {
   const nextPath = nextPost?.slug?.current ?? null;
   const prevPath = prevPost?.slug?.current ?? null;
 
-  if (draftMode().isEnabled) {
+  const draft = await draftMode();
+  if (draft.isEnabled) {
     return (
       <PreviewSuspense
         fallback={

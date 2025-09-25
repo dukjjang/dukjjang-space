@@ -14,7 +14,7 @@ import Stars from "./Stars";
 import { useScroll } from "../app/hooks/useScroll";
 
 const Header = () => {
-  const pathName = usePathname().slice(1);
+  const pathName = usePathname()?.slice(1) || "";
   const headerRef = useRef<HTMLElement>(null);
   const wavesRef = useRef<HTMLElement>(null);
   const [showSideTaps, setShowSideTaps] = useState(false);
