@@ -6,8 +6,8 @@ import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 import { getDefaultDocumentNode } from "./structure";
 import { codeInput } from "@sanity/code-input";
 
-const projectId = process.env.SANITY_PROJECT_ID!;
-const dataset = process.env.SANITY_DATASET!;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
 
 export default defineConfig({
   basePath: "/studio",
