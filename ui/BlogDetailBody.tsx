@@ -6,7 +6,7 @@ import BlogDetailTextStyle from "./BlogDetailTextStyle";
 import urlFor from "../lib/urlFor";
 import CustomSandpack from "./CustomSandpack";
 
-const BlogDetailBody = ({ post }) => {
+const BlogDetailBody = ({ post }: { post: Post }) => {
   return (
     <div className={`w-full m-auto z-40`}>
       {post.body.map((block: Block) => {
@@ -14,8 +14,8 @@ const BlogDetailBody = ({ post }) => {
           return (
             <CustomSandpack
               key={block._key}
-              file={block.code}
-              language={block.language}
+              file={block.code ?? ""}
+              language={block.language ?? "javascript"}
             />
           );
         }

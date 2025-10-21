@@ -2,7 +2,12 @@ import getYouTubeId from "get-youtube-id";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
-const Preview = (props) => {
+type PreviewProps = {
+  url?: string;
+  renderDefault: (props: any) => React.ReactNode;
+};
+
+const Preview = (props: PreviewProps) => {
   const { url, renderDefault } = props;
   if (!url) {
     return <div>Missing YouTube URL</div>;

@@ -6,7 +6,7 @@ import Star from "./Star";
 
 const StarsWrapper = () => {
   const pathName = usePathname();
-  const [stars, setStars] = useState([]);
+  const [stars, setStars] = useState<{ x: number; y: number }[]>([]);
   const starsRef = useRef<HTMLDivElement>(null);
   const parentElement = starsRef.current?.parentElement;
 
@@ -14,11 +14,11 @@ const StarsWrapper = () => {
     setStars(
       Array.from(new Array(30), (_) => {
         return {
-          x: Number((Math.random() * parentElement?.offsetWidth).toFixed(0)),
+          x: Number((Math.random() * (parentElement?.offsetWidth ?? 0)).toFixed(0)),
           y: pathName.match("writing")
-            ? Number((Math.random() * parentElement?.offsetHeight).toFixed(0))
+            ? Number((Math.random() * (parentElement?.offsetHeight ?? 0)).toFixed(0))
             : Number(
-                ((Math.random() * parentElement?.offsetHeight) / 2).toFixed(0)
+                ((Math.random() * (parentElement?.offsetHeight ?? 0)) / 2).toFixed(0)
               ),
         };
       })

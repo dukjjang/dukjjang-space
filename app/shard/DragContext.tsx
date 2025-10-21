@@ -22,7 +22,7 @@ const DragContext = React.createContext<
 >(undefined);
 
 export function DragProvider({ children }: { children: React.ReactNode }) {
-  const [drag, setDrag] = React.useState({
+  const [drag, setDrag] = React.useState<Drag>({
     overId: "",
     cache: [],
   });

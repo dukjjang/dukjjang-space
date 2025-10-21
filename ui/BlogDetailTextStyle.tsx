@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const BlogDetailTextStyle = {
   types: {
-    youtube: ({ value }) => {
+    youtube: ({ value }: { value: { url: string } }) => {
       const { url } = value;
       const id = getYouTubeId(url);
       if (!id) return <div>Invalid YouTube URL</div>;
