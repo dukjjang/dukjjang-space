@@ -35,8 +35,10 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
     cloneElement.id = "cloneElement";
     cloneImg.style.width = "70px";
     cloneImg.style.height = "70px";
-    cloneBoxRef.current.append(cloneElement);
-    cloneBoxRef.current.classList.remove("hidden");
+    if (cloneBoxRef.current) {
+      cloneBoxRef.current.append(cloneElement);
+      cloneBoxRef.current.classList.remove("hidden");
+    }
   };
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
@@ -90,10 +92,12 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       });
     }
 
-    cloneBoxRef.current.classList.add("hidden");
-    const cloneElement = document.getElementById("cloneElement");
-    if (cloneElement) {
-      cloneBoxRef.current.removeChild(cloneElement);
+    if (cloneBoxRef.current) {
+      cloneBoxRef.current.classList.add("hidden");
+      const cloneElement = document.getElementById("cloneElement");
+      if (cloneElement) {
+        cloneBoxRef.current.removeChild(cloneElement);
+      }
     }
 
     setPosition({
@@ -160,8 +164,12 @@ const useDragAndDrop = ({ wizardRef, cloneBoxRef, broomRef }: Props) => {
       e.preventDefault();
     };
 
-    wizardRef.current.addEventListener("touchstart", handleTouchStart, );
-    broomRef.current.addEventListener("touchstart", handleTouchStart);
+    if (wizardRef.current) {
+      wizardRef.current.addEventListener("touchstart", handleTouchStart);
+    }
+    if (broomRef.current) {
+      broomRef.current.addEventListener("touchstart", handleTouchStart);
+    }
   }, []);
 
   return {

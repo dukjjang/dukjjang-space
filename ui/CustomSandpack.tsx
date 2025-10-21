@@ -9,7 +9,7 @@ import {
 import { useTheme } from "next-themes";
 import { githubLight, ecoLight } from "@codesandbox/sandpack-themes";
 
-const CustomSandpack = ({ language, file }) => {
+const CustomSandpack = ({ language, file }: { language: string; file: string }) => {
   const { theme } = useTheme();
 
   return (
