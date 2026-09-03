@@ -11,7 +11,7 @@ type Props = {
 };
 
 const SunMoon = ({ showSideTaps, sunOrMoon }: Props) => {
-  const isHomePage = usePathname().length < 1;
+  const isHomePage = (usePathname() ?? "").length < 1;
   const sunMoonRef = useRef<HTMLDivElement>(null);
 
   return (

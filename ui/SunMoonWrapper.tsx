@@ -9,7 +9,7 @@ type Props = {
 };
 
 const SunMoonWrapper = ({ children, showSideTaps }: Props) => {
-  const pathName = usePathname().slice(1);
+  const pathName = (usePathname() ?? "").slice(1);
   return (
     <div
       className={`relative ml-10 lg:ml-36 flex justify-center items-center 

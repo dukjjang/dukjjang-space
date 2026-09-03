@@ -5,7 +5,7 @@ import { memo, useEffect, useRef, useState } from "react";
 import Star from "./Star";
 
 const StarsWrapper = () => {
-  const pathName = usePathname();
+  const pathName = usePathname() ?? "";
   const [stars, setStars] = useState<{ x: number; y: number }[]>([]);
   const starsRef = useRef<HTMLDivElement>(null);
   const parentElement = starsRef.current?.parentElement;

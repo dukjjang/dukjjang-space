@@ -4,7 +4,7 @@
 import { usePathname } from "next/navigation";
 
 const NavWrapper = ({ children }: { children: React.ReactNode }) => {
-  const pathName = usePathname();
+  const pathName = usePathname() ?? "";
   return (
     <div
       className={`text-background mx-auto flex px-5 md:px-20

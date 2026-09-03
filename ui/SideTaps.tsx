@@ -10,7 +10,7 @@ type Props = {
 };
 
 const SideTaps = ({ LINKS, showSlideMenu }: Props) => {
-  const pathName = usePathname().slice(1);
+  const pathName = (usePathname() ?? "").slice(1);
   return (
     <div
       className={`${showSlideMenu === true ? "scale-100" : "scale-0"} ${
